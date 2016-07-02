@@ -14,5 +14,5 @@ Also, as part of the LenMus project you will find the **Lomse library**
 
 Copyright © 2002-2016 Cecilio Salmeron. All files in this repo are licensed under the Creative Commons Attribution-ShareAlike 4.0 International License (“CC-BY-SA”). An explanation of CC-BY-SA is available at http://creativecommons.org/licenses/by-sa/4.0/.
 
-[[https://github.com/lenmus/ldp/blob/master/source/creative-commons-by-sa-88x31.png|alt=CreativeCommons]]
+![alt tag](source/creative-commons-by-sa-88x31.png)
 
