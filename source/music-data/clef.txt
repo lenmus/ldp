@@ -1,0 +1,36 @@
+.. _element_clef:
+
+Clefs
+~~~~~~~~~~~~~~~~~~~~~
+
+Setting or changing the clef is done with the :token:`clef` element:
+
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    clef: (clef `clefType` [`symbolSize`] [`staffNumber`] [`visible`] [`location`] )
+    clefType: { G | F4 | F3 | C1 | C2 | C3 | C4 | percussion |
+            :   C5 | F5 | G1 | 8_G | G_8 | 8_F4 | F4_8 |
+            :   15_G | G_15 | 15_F4 | F4_15 }
+    symbolSize : (symbolSize { full | cue | large } )
+
+
+The tessitura implied by a clef can be modified by adding a tessitura prefix { 8\_ | 15\_ } or suffix { \_8 | \_15 } to the clef name. This will draw, respectively, a 8va or 15ma symbol above or below the clef, and force the corresponding octave shift. 
+
+Example::
+
+    (score (vers 2.0)(instrument (musicData 
+        (clef G)            // G clef on 2nd line
+        (clef F4)           // F clef on 4th line
+        (clef 8_G)          // G clef with 8va symbol above
+        (clef F4_15)        // F clef on 4th line with 15ma symbol below
+    )))
+
+.. image:: ../figures/clef-01.png
+
+The :token:`symbolSize` element is, normally, not necessary as the rendering program will select the appropiate size. But it can be usefull for forcing a specific size. 
+
+.. important::
+    When no clef is defined, the notes will be positioned in the staff as if a G clef was defined, but no implicit G clef will exist. This is just a convention for placing the notes on the staff when no clef is defined.
+
+

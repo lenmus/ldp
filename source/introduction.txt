@@ -1,0 +1,146 @@
+=====================
+Introduction
+=====================
+
+.. _sIntro_lang:
+
+The LDP language
+-------------------
+
+The LenMus LDP notation language is a general purpose formal language for representing music scores in plain-text in a human-readable way. The name is an acronym from the Spanish sentence "Lenguaje de Descripcion de Partituras", that is "language to describe music scores". 
+
+All LDP files are text files based on Unicode, and are encoded in the UTF-8 encoding scheme.
+
+Currently LDP only covers common Western music notation from mid-17th century onwards, but I would like to widen it to cover other periods as well as other music notation systems (i.e. oriental, arabic ...). LDP is evolving and litle by litle more features are being added.
+
+
+Rendering LDP files
+----------------------
+
+LDP is the language used in the **LenMus project** (http://www.lenmus.org/). It is a free and open source project. The LenMus Phonascus program can be used for rendering, printing and playing back any score in LDP format.
+
+Also, as part of the LenMus project you will find the **Lomse library**
+(https://github.com/lenmus/lomse); it is a free open source library to provide software developers with a C++ library for rendering, editing and playing back music scores. With it, you can add capabilities to any program for displaying and editing music scores. It is written in C++ and it is platform independent. It also support scores in MusicXML language.
+
+
+Why a new language?
+-------------------
+
+Why to define a new language instead of using an existing one such as MusicXML, lilypond, abc or Guido? The answer is simple: when
+the LenMus project started (2002) I could not find any standard. In fact the only promising standard available was MusicXML. But
+it was an interchange format and, by that time (2002) it was at version 0.7 and didn't have facilities for accurate positioning of the different musical objects (note: these facilities introduced in MusicXML much later, at version 1.1). Also, it is too verbose (as any XML language) and by that time I had to write scores by hand. And additional reason was that designing my own language will force me to study more in depth the problems associated to the representation of music in all its aspects. Finally, the scores used in LenMus were very simple, just melody lines for one instrument, with very little addional symbols, and using MusicXML required to implement a lot of infrastructure for just the modest needs of LenMus.
+
+Therefore, the reason to start LDP was pragmatic: just create a simple language for the needs of LenMus with the additional benefit of forcing me to study more in depth the problems of representing music in textual form.
+
+
+
+.. _sIntro_example:
+
+A very simple introductory score
+----------------------------------
+
+As I had to write scores 'by hand' the LDP syntax tried to minimize the amount of keystrokes by using very short labels, using just one character for the most common elements (i.e. notes, rests, tuplets, beams, etc.).
+
+Let's see how a very simple score is encoded. The score will be just one measure, in G clef, time signature will be C major (no accidentals) and time signature will be 4 by 4. The measure will have a whole C note. Here is how it would look:
+
+.. image:: ./figures/introduction-01.png
+
+
+In LDP this score is described as follows::
+
+    (score
+        (vers 2.0)
+        (instrument
+            (musicData
+                (clef G)
+                (key C)
+                (time 4 4)
+                (n c4 w)
+                (barline)
+            )
+        )
+    )
+
+.. comment introduction-01.lms
+
+
+Let's analyse this code. First observe that in LDP all the information is structured as *elements*. An *element* is a list of keywords and data values enclosed in parenthesis. An element always starts with a keyword (i.e. vers) and it is followed by data items. These data items can be just simple data (single word values, such as '1.5' or 'G') or complex data: other elements -- those of you with an information science background will note that this is a LISP like syntax  -- In the example, we can note that all the score is a list starting with the keyword 'score'. The first data item of this element is also a list, '(vers 2.0)': it starts with the keyword 'vers' and has only a simple data item, the number 2.0.
+
+Blank space, indentation, tabs and line breaks have no meaning: they are just a visual help for humans to improve readability, and you can use them at your desire or not use them at all. For example, the previous score can be written in a single line as::
+
+    (score (vers 2.0)(instrument (musicData (clef G)(key C)(key C)(time 4 4)(n c4 w)(barline))))
+
+Or in two lines, for example as::
+
+    (score (vers 2.0)(instrument
+    (musicData (clef G)(key C)(time 4 4)(n c4 w)(barline))))
+
+The only rule is that you can not break keywords or simple data values. For example, you can not write::
+
+    (s c o r e ( ... ))
+
+LDP language is case sensitive, so for example, "score", "Score" and "SCORE" will not be considered the same token.
+
+
+
+
+.. _s1_comments:
+
+Comments
+---------
+
+To improve human legibility and understanding it is allowed to include comments. Two syntax are possible: 
+
+* Two consecutive slash characters (//) will be interpreted as the start of a comment and
+  all text until the end of the line will be ignored. For example::
+
+    // This is a score with comments
+    (score
+        (vers 2.0)              // version 2.0 of LDP is used
+        (instrument             // Start of music for the first voice
+            (musicData          // start this voice
+                (clef G)        // Clef: G on 2nd line
+                (key C)         // Key signature: C major
+                (time 4 4)      // Time signature: 4 4
+                (n c4 w)        // Note. Pitch: C4, duration: w (whole note)
+                (barline)       // a simple barline
+            )
+        )
+    )
+
+* Alternatively, you can start the comment with "/\*" and terminate it by "\*/". Examples:: 
+
+    (score (vers 55.2) /* Uhm! bad version */ (instrument (musicData /* empty staff */ )))
+
+    /* This is a score with comments. A comment
+       can also span multiple lines.
+    */
+    (score
+        (vers 2.0)              /* version 2.0 of LDP is used */
+        (instrument             /* Start of music for the first voice */
+            (musicData          /* start this voice */
+                (clef G)        /* Clef: G on 2nd line */
+                (key C)         /* Key signature: C major */
+                (time 4 4)      /* Time signature: 4 4 */
+                (n c4 w)        /* Note. Pitch: C4, duration: w (whole note) */
+                (barline)       /* a simple barline */
+            )
+        )
+    )
+
+
+
+.. _s1_notation:
+
+Notation used
+--------------
+
+To describe the language, Backus Naur form (BNF) syntax rules will be used:
+
+* Squared brackets are placed around optional elements.
+
+* Curly brackets are placed to enclose a list of alternatives. Elements within this list are considered exclusive and are separated by vertical bars.
+
+* Repeatable arguments will be followed by an asterisk (*), meaning 'zero or more repetitions' or by a plus sign (+), mening 'one or more repetitions'.
+
+

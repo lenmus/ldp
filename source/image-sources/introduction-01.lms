@@ -1,0 +1,13 @@
+(score
+    (vers 2.0)
+    (instrument
+        (musicData
+            (clef G)
+            (key C)
+            (time 4 4)
+            (n c4 w)
+            (barline)
+        )
+    )
+)
+

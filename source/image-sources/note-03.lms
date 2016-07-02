@@ -1,0 +1,7 @@
+(score (vers 2.0)(instrument (musicData 
+    (clef G)
+    (n c4 q)    //a C4 quarter note (C of octave 4, the central C)
+    (r q)       //a quarter rest
+    (barline)
+)))
+

@@ -1,0 +1,67 @@
+
+.. _element_beam:
+
+Beams
+--------------------------
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    beam : (beam `beamId` `beamtype`)
+    beamId : integer number
+    beamtype : string. See description
+
+    
+Beam segments are represented by a string, encoded in the :token:`beamtype` element. The string is formed by concatenation of 1 to 6 characters from the set { + | - | = | f | b }. Each caracter is associated to a beam level: the first character to the first level, the second character to the second level, etc. An the caracters have the following meaning:
+
+  - '+' for *start beam*. It starts a new beam and must be paired with a '-' in another note.
+  - '=' for *continue beam*. Must be included in intermediate notes.
+  - '-' for *end beam*. It stops a beam started in another note.
+  - 'f' for *forward hook*. For specifying a single beam forward hook that only affects the note in which it is defined.
+  - 'b' for *backward hook* For specifying a single beam backward hook that only affects the note in which it is defined.
+                          
+Some examples::
+
+    (score (vers 2.0) (instrument (musicData
+        (clef G)
+        //first group
+        (n c4 e (beam 17 +))
+        (n d4 e (beam 17 =))
+        (n e4 e (beam 17 =))
+        (n g4 e (beam 17 -))
+
+        //second group
+        (n c4 s (beam 18 +f))
+        (n d4 e (beam 18 =))
+        (n f4 s (beam 18 -b))
+
+        //third group
+        (n c4 t (beam 19 ++))
+        (n d4 t (beam 19 ==))
+        (n e4 t (beam 19 ==))
+        (n f4 t (beam 19 --))
+    )))
+
+.. image:: ../figures/beams-01.png
+        
+For beams in chords the :token:`beam` element must be placed only in the first note of each chord included in the beam. 
+Example, two beamed chords::
+
+    (score (vers 2.0) (instrument (musicData
+        (clef G)
+        (chord (n e4 e. (beam 31 +)) (n g4 e.) (n c5 e.))
+        (chord (n d4 s (beam 31 -b)) (n f4 s) (n a4 s))
+    )))
+
+.. image:: ../figures/beams-02.png
+
+
+Abbreviated notation (deprecated)
+.......................................
+
+LDP also supports an abbreviated syntax for beams in simple lines of music. It consists on marking only the first note of the beamed group with a ``g+`` notation and the last note of the group with a ``g-`` notation. All notes defined between these two will be automatically included in the beam, and the beam segments will be automatically computed based on notes duration. Example::
+
+    (n c4 q g+)(n d4 e)(n e4 e g-)
+
+A group of beamed notes, formed by a quarter C4 note, an eighth D4 note and an eighth E4 note.
+
+

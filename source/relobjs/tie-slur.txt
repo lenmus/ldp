@@ -1,0 +1,77 @@
+
+.. _element_tie:
+
+Ties
+~~~~~~~~~~~~~~~
+
+For creating a tie, the :token:`tie` element has to be used, included in the :token:`noteOptions` element. Two alternatives are possible for defining a tie:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    tie : { (tie num `tieType` [`bezier`] ) | l }
+    tieType : { start | stop }
+    bezier : (bezier [`ctrol1_x`] [`ctrol1_y`] [`ctrol2_x`] [`ctrol2_y`] )
+    ctrol1_x : (ctrol1-x tenths)  displacement in tenths from default location
+    ctrol1_y : (ctrol1-y tenths)  displacement in tenths from default location
+    ctrol2_x : (ctrol2-x tenths)  displacement in tenths from default location
+    ctrol2_y : (ctrol2-y tenths)  displacement in tenths from default location
+
+The simplest one, is to add to the note a character 'l' (lower case letter L) to indicate the start of a tie
+that will end in the next coming note of the same voice, staff and pitch than the one on which the 
+:token:`tie` element is included. No additional parameters are needed.
+                
+Example::
+
+    (score (vers 2.0) (instrument (musicData
+        (clef G)
+        (n c4 q l)(n c4 e)
+        (barline)
+    )))
+
+.. image:: ../figures/tie-01.png
+
+The other alternative is to use a full :token:`tie` element. In this case a tie element of type 'start' must be included in the first note. And also a tie element with type 'stop' must be included in the second note. Optionally, in the tie 'start' element, you can include a :token:`bezier` element for altering the default layout of the tie arch. In the :token:`bezier` element you can modify any control point of the bezier curve that defines the tie arch.
+                
+Example::
+
+    (score (vers 2.0) (instrument (musicData
+        (clef G)
+        (n c4 q (tie 1 start))
+        (n c4 e (tie 1 stop))
+        (n f4 q (tie 2 start (bezier (ctrol1-x -25)(ctrol1-y 55)) ))
+        (n f4 q (tie 2 stop))
+        (barline)
+    )))
+
+.. image:: ../figures/tie-02.png
+
+
+
+
+.. _element_slur:
+
+Slurs
+~~~~~~~~~~~~~~~
+
+For creating a slur, the :token:`slur` element has to be used, included in the :token:`noteOptions` element of the first and last note/rest connected by the slur arch:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    slur : (slur num `slurType` [`bezier`] [`color`] )
+    slurType : { start | stop }
+
+Example::
+
+    (score (vers 2.0) (instrument (musicData
+        (clef G)
+        (n c4 q (slur 1 start))
+        (n d4 q) (n e4 q) (n f4 q)
+        (n g4 e (slur 1 stop))
+        (n c5 e)
+        (barline)
+    )))
+
+.. image:: ../figures/slur-01.png
+
+
+

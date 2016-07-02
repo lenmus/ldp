@@ -1,0 +1,23 @@
+.. _ch_auxobjs:
+
+###########################################
+Notations attached to one object
+###########################################
+
+.. toctree::
+
+    fermata.txt
+
+.. AuxObjs
+
+    Accents
+    Technical marks
+    Articulations
+    Dynamic marks
+    Fermatas
+    Ornaments
+    Text boxes
+    Lines
+    Texts
+
+

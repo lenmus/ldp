@@ -1,0 +1,21 @@
+
+.. _element_fermata:
+
+Fermatas
+----------
+
+Fermatas are defined in note/rests, using :token:`fermata` element:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    fermata : (fermata `placement` [`componentOptions`*])
+    placement : { above | below }
+
+
+Examples::
+
+    (n g4 q (fermata above))
+    (n g4 q (fermata below))
+    (r q (fermata above))
+    (r q (fermata below))
+

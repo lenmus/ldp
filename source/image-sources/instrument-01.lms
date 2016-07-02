@@ -1,0 +1,8 @@
+(score (vers 2.0)
+    (instrument (name "Flute")
+        (staff 1 (staffType regular)(staffLines 5)(staffSpacing 120.00)(staffDistance 1000.00)(lineThickness 10.00))
+        (musicData)
+    )
+    (instrument (name "Piano")(staves 2)(musicData))
+)
+

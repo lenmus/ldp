@@ -1,0 +1,91 @@
+
+.. _element_tuplet:
+
+Tuplets
+--------
+
+A tuplet is a group of notes whose duration is modified; normally a graphic element (a tuplet bracket and/or a number) marks this group of notes. The notes in a tuplet are usually beamed together but this is not always the case.
+
+.. important::
+    The tuplet information is splitted for distinguish between graphical information and notes' duration modification information. The :token:`tuplet` element is only for defining the graphical information (presence of tuplet bracket and numbers). The notes' duration modification information is independently provided by the :token:`timeModification` element.
+
+In LDP, to specify the notes that form a tuplet, a :token:`tuplet` element must be included in first and last notes in the tuplet:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    tuplet :  (t `tupletID` { - | + `actualNotes` `normalNotes` [`tupletOptions`] })
+    tupletID : integer_number
+    actualNotes : integer number
+    normalNotes : integer number
+    tupletOptions :  noBracket [`displayBracket`] [`displayNumber`]
+    displayBracket : (displayBracket { yes | no })
+    displayNumber : (displayNumber { none | actual | both })
+
+.. commented out, for future
+
+    tupletOptions : [`bracketType`] [`displayBracket`] [`displayNumber`]
+    bracketType :  (bracketType { squaredBracket | curvedBracket })
+
+
+The :token:`tupletID` element was introduced for uniquely identifying each tuplet,
+mainly to distinguish nested tuplets.
+
+The tuplet type is a plus sign (+) or a minus sign (-) to indicate, respectively, that it is the start or the end of a tuplet. 
+
+The :token:`displayNumber` option is used to display the number of normal notes. By default, only the actual notes number is displayed.
+
+The :token:`displayBracket` option is used for controllin whether to display or not the tuplet bracket. If unspecified, the default behaviour follows the usual engraving rules: the bracket is not displayed if the tuplet notes form a beamed group.
+
+Examples::
+
+    (n c4 e (t 1 +)(tm 2 3)) (n d4 e (tm 2 3)) (n e4 e (t 1 -)(tm 2 3))
+
+This example is a triplet of eighth notes, that is, the three notes must be played
+in the time normally allotted for two eight notes.
+
+For specifying notes' duration modification, a :token:`timeModification` element must be included in all the notes in the tuplet:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    timeModification : (tm `numerator` `denominator`)
+    numerator : integer number
+    denominator : integer number
+
+The :token:`timeModification` element must be included in all the notes that form the tuplet. The time modificaction information is a multiplication factor to be applied to normal note/rest duration. This factor is defined, as a fraction, by its :token:`numerator` and :token:`denominator`.
+
+The tuplet element does not implies neither beaming nor time modification. Therefore elements :token:`tuplet`, :token:`tm` and :token:`beam` must be combined as needed. Remember that tuplet must be specified before beam. Examples::
+
+    (score (vers 2.0) (instrument (musicData
+        (n c4 e (t 1 + 2 3)(tm 2 3)(beam 1 +))
+        (n d4 s (tm 2 3)(beam 1 =+))
+        (n c4 s (tm 2 3)(beam 1 ==))
+        (n b3 s (t 1 -)(tm 2 3)(beam 1 --))
+        (barline)
+
+        (n c4 s (t 1 + 2 3)(tm 2 3)(beam 2 ++))
+        (n d4 s (tm 2 3)(beam 2 ==))
+        (n b3 s (t 1 -)(tm 2 3)(beam 2 --))
+        (barline)
+
+        (n f4 s (t 2 + 2 3)(tm 2 3)(beam 3 ++))
+        (n g4 s (tm 2 3)(beam 3 ==))
+        (n a4 s (t 2 -)(tm 2 3)(beam 3 --))
+        (barline)
+    )))
+
+.. image:: ..figures/tuplet-01.png
+
+
+
+Abbreviated notation (deprecated)
+.......................................
+
+Deprecated since version 1.6 ::
+
+     (t -)     --> t-
+     (t + n)   --> tn
+     (t + n m) --> tn/m
+
+
+
+

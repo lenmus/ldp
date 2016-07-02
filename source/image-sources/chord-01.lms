@@ -1,0 +1,9 @@
+(score (vers 2.0) (instrument (musicData
+    (clef C2)
+    (chord (n c4 q)(n e4 q)(n g4 q))    // C major chord
+    (chord (n c4 q)(n f4 q)(n a4 q))    // F major chord
+    (chord (n b3 q)(n f4 q)(n g4 q))    // G major 7 chord
+    (chord (n c4 q)(n e4 q)(n g4 q))    // C major chord
+    (barline)
+)))
+

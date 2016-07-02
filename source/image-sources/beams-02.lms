@@ -1,0 +1,6 @@
+(score (vers 2.0) (instrument (musicData
+    (clef G)
+    (chord (n e4 e. (beam 31 +)) (n g4 e.) (n c5 e.))
+    (chord (n d4 s (beam 31 -b)) (n f4 s) (n a4 s))
+)))
+

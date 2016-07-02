@@ -1,0 +1,9 @@
+(score (vers 2.0) (instrument (musicData
+    (clef G)
+    (n c4 q (tie 1 start))
+    (n c4 e (tie 1 stop))
+    (n f4 q (tie 2 start (bezier (ctrol1-x -25)(ctrol1-y 55)) ))
+    (n f4 q (tie 2 stop))
+    (barline)
+)))
+

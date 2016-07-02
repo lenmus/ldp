@@ -1,0 +1,74 @@
+
+.. _element_voice:
+
+Voices
+---------
+
+A voice is a sequence of musical events (e.g. notes, chords, rests) that proceeds linearly in time and can have its own rhythm independently of other voices on the same staff. In LDP the :token:`voice` element is used to distinguish between multiple voices in an instrument: 
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    voice : (voice num)
+
+The :token:`voice` element can be abbreviated by omitting the parenthesis and concatenating
+a "v" letter with the voice number. For instance ``(voice 3)`` can be replaced by ``v3``.
+
+By default, when voice is not specified, all notes and rest inherit the voice from the last note/rest in which the voice element was defined. When no voice defined, voice 1 is assumed.
+
+When using voices, notes and rest in each measure must be entered by voice lines, that is, one voice must be entered before entering the music for the next voice::
+
+    (score (vers 2.0)(instrument (musicData
+        (clef G)
+        (key C)
+        (time 4 4)
+
+        //first voice in this measure
+        (n g4 q v1)(n e4 e.)(n g4 s (stem up))(n c5 q (stem up))
+        
+        //second voice
+        (n c4 h v2 (stem down))(n e4 h (stem down))
+       
+        (barline)
+    )))
+
+.. image:: ../figures/voice-01.png
+
+
+
+
+.. _element_goFwd:
+
+Gaps in a voice
+-----------------
+
+In polyphonic instruments, such as piano, for legibility reasons, it is normal not to write rests for secondary voices. In many music notation editors this is achieved by inserting rests and changing their appearance to 'invisible'. In LDP this is also possible, but for semantic reasons it has been preferred not to use tricks and define a 'voice gap' element, the :token:`goFwd` element:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    goFwd : (goFwd `duration` [`voice`] )
+    duration : letter plus dots, as for notes/rests
+
+The :token:`goFwd` can be considered as an invisible rest but allows to distinguish between real rests and gaps in a voice. Example::
+
+    (score (vers 2.0)(instrument (musicData
+        (clef G)
+        (key c)
+        (time 4 4)
+
+        //first voice
+        (n c4 q v1 (stem down))(n e4 q (stem down))
+        (n c4 q (stem down))(n g3 q (stem down))
+        
+        //second voice
+        (goFwd h v2)    //advance voice 2 a half note
+        (n g4 e. v2)(n d4 s)
+
+        (barline)
+    )))
+
+.. image:: ../figures/gofwd-01.png
+
+
+
+
+

@@ -1,0 +1,9 @@
+(score (vers 2.0) (instrument (musicData
+    (time 2 4)(barline)
+    (time 6 8)(barline)
+    (time 12 8)(barline)
+    (time 3 8)(barline)
+    (time common)(barline)
+    (time cut)(barline)
+)))
+

@@ -1,0 +1,14 @@
+(score (vers 2.0)
+    (instrument 
+       (musicData 
+          (spacer 30)(barline simple)
+          (spacer 30)(barline double)
+          (spacer 30)(barline startRepetition)
+          (spacer 30)(barline endRepetition)
+          (spacer 30)(barline doubleRepetition)
+          (spacer 30)(barline start)
+          (spacer 30)(barline end)
+       )
+    )
+)
+

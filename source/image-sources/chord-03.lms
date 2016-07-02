@@ -1,0 +1,6 @@
+(score (vers 2.0) (instrument (musicData
+    (clef G)
+    (chord (n c4 h)(n e5 h)(n g4 h))    // C major chord
+    (barline)
+)))
+

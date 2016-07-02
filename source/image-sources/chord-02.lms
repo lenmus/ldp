@@ -1,0 +1,10 @@
+(score (vers 2.0)(instrument (staves 2)(musicData
+    (clef G p1)(clef F4 p2)
+    (key C)
+    (time 4 4)
+    (n e3 h p2 v1)
+    (n c4 h p1 v2 (stem down))
+    (n g5 h p1 v3 (stem down))
+    (barline)
+)))
+

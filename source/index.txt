@@ -1,0 +1,30 @@
+###########################################
+LDP language. Reference manual
+###########################################
+
+**Target audience:** People interested in learning the LDP language for writing music scores. This document provides details about the structure, organization and syntax of an LDP document; the LDP elements and their attributes; and how to write music scores using the LDP language.
+
+**Legal notice:** Copyright © 2002-2016 Cecilio Salmeron
+The text of and illustrations in the *LDP language. Reference manual* are licensed under the Creative Commons Attribution–Share Alike 3.0 Unported license ("CC-BY-SA"). An explanation of CC-BY-SA is available at http://creativecommons.org/licenses/by-sa/3.0/. In accordance with CC-BY-SA, if you distribute this document or an adaptation of it, you must provide the URL for the original version.
+
+.. image:: creative-commons-by-sa-88x31.png
+
+.. caution:: 
+    This document is a work in progress.
+
+
+Table of Contents
+=========================
+
+.. toctree::
+    :maxdepth: 3
+    :numbered:
+
+    introduction.txt
+    score/index.txt
+    music-data/index.txt
+    polyphony/index.txt
+    relobjs/index.txt
+    auxobjs/index.txt
+    format/index.txt
+

@@ -1,0 +1,26 @@
+.. _element_key:
+
+Key signatures
+~~~~~~~~~~~~~~~~~~~~
+
+Setting or changing the key signature is done with the :token:`key` element:
+
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    key: (key `keyType` [`staffobjOptions`*] )
+    keyType:  { C | G | D | A | E | B | F+ | C+ | C- | G- | D- | A- |
+           :              E- | B- | F | a | e | b | f+ | c+ | g+ | d+ | a+ | a- |
+           :              e- | b- | f | c | g | d }
+
+Key names in upper case refer to mayor keys. Key names in lower case are for minor keys. Plus (+) and minus (-) symbols are for sharp and flat, respectively.
+
+Examples::
+
+    (key F+)           //F sharp major key
+    (key f+)           //F sharp minor key
+    (key d-)           //D flat minor key
+    (key C)            //C major key
+
+
+

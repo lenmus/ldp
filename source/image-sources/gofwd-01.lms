@@ -1,0 +1,15 @@
+(score (vers 2.0)(instrument (musicData
+    (clef G)
+    (key c)
+    (time 4 4)
+
+    //first voice
+    (n c4 q v1 (stem down))(n e4 q (stem down))
+    (n c4 q (stem down))(n g3 q (stem down))
+    
+    //second voice
+    (goFwd h v2)    //advance voice 2 a half note
+    (n g4 e. v2)(n d4 s)
+
+    (barline)
+)))

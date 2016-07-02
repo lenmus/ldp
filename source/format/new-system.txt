@@ -1,0 +1,44 @@
+
+.. _element_newSystem:
+
+Forcing a new system
+--------------------------
+
+Forces to start a new system after current measure.
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    newSystem : (newSystem)
+
+
+Example::
+
+    (newSystem)
+
+
+
+.. _element_location:
+
+The Location element
+--------------------------
+
+The location element is used to specify a displacement of the point at which
+an object must be rendered:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    location : [(dx tenths)] [(dy tenths)]
+
+Element *dx* refers to the horizontal direction and 
+element *dy* to the vertical one. For example::
+
+    (dx 40)(dy -30.7)
+
+means that the computed vertical location must be shift by -30.7 tenths and the
+horizontal location must be shift by 40 tenths.
+
+The x coordinate increments always to right and y coordinate to bottom.
+Displacements can be negative.
+
+
+

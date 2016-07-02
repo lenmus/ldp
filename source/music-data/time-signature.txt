@@ -1,0 +1,40 @@
+
+
+.. _element_time:
+
+Time signatures
+~~~~~~~~~~~~~~~~~~~~
+
+Setting or changing the time signature is done with the :token:`time` element. 
+There are several alternatives to represent a time signature, but currently LDP only supports two:
+
+- As two stacked numbers: top and bottom. For simple meters the bottom number represents the note that 
+  takes one beat, and the top number represents the number of beats in a measure. For compound meters 
+  the bottom number represents the note that takes one-third of a beat, and the top number represents 
+  the number of notes to make a beat.
+ 
+- As a symbol: the common and cut time symbols.
+
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    time: {   (time [normal] `topNum` `bottomNum` [`visible`] [`location`])
+        :   | (time common [`visible`] [`location`])
+        :   | (time cut [`visible`] [`location`]) }
+    topNum: integer number
+    bottomNum: integer number
+
+Examples::
+
+    (score (vers 2.0) (instrument (musicData
+        (time 2 4)(barline)
+        (time 6 8)(barline)
+        (time 12 8)(barline)
+        (time 3 8)(barline)
+        (time common)(barline)
+        (time cut)(barline)
+    )))
+
+.. image:: ../figures/time-signature-01.png
+    
+

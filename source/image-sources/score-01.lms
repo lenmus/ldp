@@ -1,0 +1,11 @@
+(score (vers 2.0)
+    (parts
+        (instrIds S1 T1 B1 P1)
+        (group S1 B1 (symbol bracket)(joinBarlines yes))
+    )
+    (instrument S1 (name "Soprano")(abbrev "S")(musicData))
+    (instrument T1 (name "Tenor")(abbrev "T")(musicData))
+    (instrument B1 (name "Bass")(abbrev "B")(musicData))
+    (instrument P1 (name "Piano")(abbrev "P")(staves 2)(musicData))
+)
+

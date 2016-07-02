@@ -1,0 +1,7 @@
+(score (vers 2.0)(instrument (musicData 
+    (clef G)
+    (n +c4 q)   //a sharp C4 quarter note (C of octave 4, the central C)
+    (n --b3 h)  //a double flat B3 half note (B of octave 3, the B immediately below C4)
+    (n xe4 e)   //a double sharp E4 eighth note
+)))
+

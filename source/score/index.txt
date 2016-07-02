@@ -1,0 +1,11 @@
+.. _ch_score:
+
+###########################################
+The score and its structure
+###########################################
+
+.. toctree::
+
+    score.txt
+    instrument.txt
+

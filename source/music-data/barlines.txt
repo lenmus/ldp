@@ -1,0 +1,42 @@
+.. _element_barline:
+
+Barlines
+~~~~~~~~~~~~~~~
+
+Element :token:`barline` is used to specify a barline at the end of a measure. If the type of barline is not specified it is assumed to be a normal barline (simple line).
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    barline : (barline) | (barline `type` [`visible`] [`location`])
+    type : { start | end | double | simple | startRepetition |
+         :   endRepetition | doubleRepetition }
+
+
+Example::
+
+    (n c4 e)(n e4 e)(barline end)
+
+
+The following score will render all barline types::
+
+     (score (vers 2.0)
+        (instrument 
+           (musicData 
+              (spacer 30)(barline simple)
+              (spacer 30)(barline double)
+              (spacer 30)(barline startRepetition)
+              (spacer 30)(barline endRepetition)
+              (spacer 30)(barline doubleRepetition)
+              (spacer 30)(barline start)
+              (spacer 30)(barline end)
+           )
+        )
+     )
+
+.. comment barlines-01-lms
+
+and will render as:
+
+.. image:: ../figures/barline-01.png
+
+

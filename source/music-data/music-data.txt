@@ -1,0 +1,31 @@
+.. _element_musicData:
+
+The musicData element
+--------------------------
+
+The :token:`musicData` element is just a collection of objects, mainly notes and rests, that are attached to the staves of the instrument. These objects are named *staff objects* :
+
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    musicData: (musicData { `note` | `rest` | `chord` | `clef` | `key` | `time` | 
+             :              `barline` | `metronome` | `newSystem` | `spacer` |
+             :              `figuredBass` | `goFwd` }* )
+
+
+Examples::
+
+    //single note
+    (musicData (n c4 q))
+
+    //C major scale:
+    (musicData (n c4 q)(n d4 q)(n e4 q)(n f4 q)(n g4 q)(n a4 q)(n b4 q)(n c5 q))
+
+    //Short fragment with a measure:
+    (musicData (clef G)(key C)(time 2 4)(n c4 q)(n e4 q)(n g4 q)(n c5 q)(barline))
+
+
+
+
+
+

@@ -1,0 +1,7 @@
+(score (vers 2.0)(instrument (musicData 
+    (clef G)            // G clef on 2nd line
+    (clef F4)           // F clef on 4th line
+    (clef 8_G)          // G clef with 8va symbol above
+    (clef F4_15)        // F clef on 4th line with 15ma symbol below
+)))
+

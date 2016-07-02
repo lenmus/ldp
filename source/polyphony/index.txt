@@ -1,0 +1,12 @@
+.. _ch_polyphony:
+
+###########################################
+Polyophony: chords and voices
+###########################################
+
+.. toctree::
+
+    voices.txt
+    chords.txt
+
+

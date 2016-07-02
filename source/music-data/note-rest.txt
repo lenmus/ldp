@@ -1,0 +1,191 @@
+.. _element_Notes_Rests:
+
+Notes and rests
+~~~~~~~~~~~~~~~~~~~~~
+
+Notes are the most common elements in the score.
+Rests can be considered as notes with no pitch, so in LDP notes and rests are instances of a more general concept: *noterests*. A noterest is either a note or a rest.
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    note:  (n `pitch` `duration` [`noteOptions`*] [`noterestOptions`*]
+        :     [`componentOptions`*] [`attachments`*])
+    rest:  (r `duration` [`noterestOptions`*] [`componentOptions`*] [`attachments`*])
+    noteOptions:  { `tie` | `stem` | `slur` }
+    noterestOptions:  { `beam` | `tuplet` | `timeModification` | `voice` | `staffNumber` | `fermata` }
+    pitch:  label (see explanation)
+    duration:  label (see explanation)
+
+
+The minimum information required to represent a note is its pitch and its duration. For rests only their duration is needed::
+
+    (score (vers 2.0)(instrument (musicData 
+        (clef G)
+        (n c4 q)    //a C4 quarter note (C of octave 4, the central C)
+        (r q)       //a quarter rest
+        (barline)
+    )))
+
+.. image:: ../figures/note-03.png
+
+
+
+Duration
+..............
+
+Durations are written as a letter (from following table) followed by optional dots. 
+
+    +--------+---------------------------------------------+
+    | Letter | Duration                                    |
+    +========+=============================================+
+    |   l    | long (longa)                                |
+    +--------+---------------------------------------------+
+    |   b    | breve (double whole)                        |
+    +--------+---------------------------------------------+
+    |   w    | whole (semibreve)                           |
+    +--------+---------------------------------------------+
+    |   h    | half (minim)                                |
+    +--------+---------------------------------------------+
+    |   q    | quarter (crochet)                           |
+    +--------+---------------------------------------------+
+    |   e    | eighth, 8th (quaver)                        |
+    +--------+---------------------------------------------+
+    |   s    | sixteenth, 16th (semiquaver)                |
+    +--------+---------------------------------------------+
+    |   t    | 32th (demisemiquaver)                       |
+    +--------+---------------------------------------------+
+    |   i    | 64th (hemidemisemiquaver)                   |
+    +--------+---------------------------------------------+
+    |   o    | 128th (semihemidemisemiquaver)              |
+    +--------+---------------------------------------------+
+    |   f    | 256th (?)                                   |
+    +--------+---------------------------------------------+
+
+Examples::
+
+    e..     double dotted eighth note
+    o       128th note
+    q.      dotted quarter note
+
+
+
+Pitch
+...........
+
+The pitch is represented by an string combining the note name (step), the octave and the accidentals:
+
+    pitch ::= string accidentals-step-octave
+
+ The *step* is a lower case letter that represents the diatonic step:
+
+    step ::= { c | d | e | f | g | a | b }
+
+
+The *octave* is an integer number indicating the octave of the note, where octave 4 is the central one (a4 = 440Hz). All octaves start with note name c and ends in note name b, so note c4 is the c note just below the a4 note. Octaves range is 0 to 9.
+
+*Accidentals* are represented by combinations of the signs plus (+), minus (-), equal (=) and the letter x (x). They represent, respectively, sharps, flats, naturals and the double sharp symbol. So, for example, ++ represents two sharps, x a double sharp, and =- represents  a natural flat.
+
+With all this, the pitch is just the combination of the previous signs. Examples::
+
+    (score (vers 2.0)(instrument (musicData 
+        (clef G)
+        (n +c4 q)   //a sharp C4 quarter note (C of octave 4, the central C)
+        (n --b3 h)  //a double flat B3 half note (B of octave 3, the B immediately below C4)
+        (n xe4 e)   //a double sharp E4 eighth note
+    )))
+
+.. image:: ../figures/note-01.png
+
+
+.. important::
+    Accidentals are relative to the context. That is, you have to write only those accidentals that are not implied by the key signature or that are not implied by a previous accidental in the same measure. This is as if you were writing the notes on manuscript paper.
+
+Therefore, in the following example::
+
+    (score (vers 2.0)(instrument (musicData 
+        (clef G)(key F)(n f4 q)(n b4 q)(barline)
+    )))
+
+.. image:: ../figures/note-02.png
+
+the quarter b4 note will be a flat b4, as it is in F major key, but no flat sign is displayed before the note, as it is in the key signature.
+
+
+
+
+
+.. _element_stem:
+
+Stem
+.....................
+
+Stem direction and size will be automatically computed by the rendering program,
+according to usual engraving rules. Nevertheless, the stem of a note can
+be fully specified by using the :token:`stem` element. It forces stem direction.
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    stem : (stem { up | down })
+
+Example::
+
+    (score (vers 2.0) (instrument (musicData
+        (clef G)
+        (n c4 q)
+        (n c4 q (stem down))
+        (n c5 q)
+        (n c5 q (stem up))
+        (barline)
+    )))
+
+.. image:: ../figures/stem-01.png
+
+
+
+
+.. _element_staff_number:
+
+Selecting the staff
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When an instrument has several staves (e.g. the upper and lower staves in a grand-staff)
+it is necessary to specify in which staff a note, rest, clef, or other object must
+be placed. For this purpose, a :token:`staffNumber` element is used.
+
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    staffNumber : (p num)
+
+
+
+It can be abbreviated by omitting the parenthesis and joining
+the :token:`p`  and the number. Example: ``(p 2)`` is equivalent to ``p2``.
+
+
+The staves for each instrument are numbered from top to bottom, starting at staff 1. The staff number
+is inherited by all coming elements until a new :token:`p` notation is found.
+
+
+Example: a scale across two staves::
+
+    (score (vers 2.0)
+        (instrument (staves 2)
+            (musicData
+                (clef G p1)(clef F p2)(key C)
+                (n g3 w p2)(n a3 w)(n b3 w)(n c4 w)(n d4 w p1)(n e4 w)(n f4 w)(n g4 w)
+                (barline end)
+            )
+        )
+    )
+
+.. comment music-data-01.lms
+
+.. image:: ../figures/music-data-01.png
+
+G clef is placed on first staff (p1) and F clef on second staff (p2). The
+key is common to all staves of the instrument so no staff is specified. First note
+(G3) is placed on second staff and consecutive notes inherits this, until
+note D4 for which first staff is specified (p1). Remaining notes
+inherits this.
+
