@@ -1,0 +1,174 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.1. Ties &mdash; LDP language manual. Vers. 2.0 (draft)</title>
+    
+    <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
+    <link rel="up" title="5. Notations relating two or more objects" href="index.html" />
+    <link rel="next" title="5.3. Beams" href="beams.html" />
+    <link rel="prev" title="5. Notations relating two or more objects" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="header-wrapper">
+      <div class="header">
+        <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
+        <div class="rel">
+          <a href="index.html" title="5. Notations relating two or more objects"
+             accesskey="P">previous</a> |
+          <a href="beams.html" title="5.3. Beams"
+             accesskey="N">next</a> |
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="ties">
+<span id="element-tie"></span><h1>5.1. Ties</h1>
+<p>For creating a tie, the <a class="reference internal" href="#grammar-token-tie"><code class="xref std std-token docutils literal"><span class="pre">tie</span></code></a> element has to be used, included in the <a class="reference internal" href="../music-data/note-rest.html#grammar-token-noteOptions"><code class="xref std std-token docutils literal"><span class="pre">noteOptions</span></code></a> element. Two alternatives are possible for defining a tie:</p>
+<pre class="bnf-rule">
+<strong id="grammar-token-tie">tie     </strong> ::=  { (tie num <a class="reference internal" href="#grammar-token-tieType"><code class="xref docutils literal"><span class="pre">tieType</span></code></a> [<a class="reference internal" href="#grammar-token-bezier"><code class="xref docutils literal"><span class="pre">bezier</span></code></a>] ) | l }
+<strong id="grammar-token-tieType">tieType </strong> ::=  { start | stop }
+<strong id="grammar-token-bezier">bezier  </strong> ::=  (bezier [<a class="reference internal" href="#grammar-token-ctrol1_x"><code class="xref docutils literal"><span class="pre">ctrol1_x</span></code></a>] [<a class="reference internal" href="#grammar-token-ctrol1_y"><code class="xref docutils literal"><span class="pre">ctrol1_y</span></code></a>] [<a class="reference internal" href="#grammar-token-ctrol2_x"><code class="xref docutils literal"><span class="pre">ctrol2_x</span></code></a>] [<a class="reference internal" href="#grammar-token-ctrol2_y"><code class="xref docutils literal"><span class="pre">ctrol2_y</span></code></a>] )
+<strong id="grammar-token-ctrol1_x">ctrol1_x</strong> ::=  (ctrol1-x tenths)  displacement in tenths from default location
+<strong id="grammar-token-ctrol1_y">ctrol1_y</strong> ::=  (ctrol1-y tenths)  displacement in tenths from default location
+<strong id="grammar-token-ctrol2_x">ctrol2_x</strong> ::=  (ctrol2-x tenths)  displacement in tenths from default location
+<strong id="grammar-token-ctrol2_y">ctrol2_y</strong> ::=  (ctrol2-y tenths)  displacement in tenths from default location
+</pre>
+<p>The simplest one, is to add to the note a character &#8216;l&#8217; (lower case letter L) to indicate the start of a tie
+that will end in the next coming note of the same voice, staff and pitch than the one on which the
+<a class="reference internal" href="#grammar-token-tie"><code class="xref std std-token docutils literal"><span class="pre">tie</span></code></a> element is included. No additional parameters are needed.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
+    (clef G)
+    (n c4 q l)(n c4 e)
+    (barline)
+)))
+</pre></div>
+</div>
+<img alt="../_images/tie-01.png" src="../_images/tie-01.png" />
+<p>The other alternative is to use a full <a class="reference internal" href="#grammar-token-tie"><code class="xref std std-token docutils literal"><span class="pre">tie</span></code></a> element. In this case a tie element of type &#8216;start&#8217; must be included in the first note. And also a tie element with type &#8216;stop&#8217; must be included in the second note. Optionally, in the tie &#8216;start&#8217; element, you can include a <a class="reference internal" href="#grammar-token-bezier"><code class="xref std std-token docutils literal"><span class="pre">bezier</span></code></a> element for altering the default layout of the tie arch. In the <a class="reference internal" href="#grammar-token-bezier"><code class="xref std std-token docutils literal"><span class="pre">bezier</span></code></a> element you can modify any control point of the bezier curve that defines the tie arch.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
+    (clef G)
+    (n c4 q (tie 1 start))
+    (n c4 e (tie 1 stop))
+    (n f4 q (tie 2 start (bezier (ctrol1-x -25)(ctrol1-y 55)) ))
+    (n f4 q (tie 2 stop))
+    (barline)
+)))
+</pre></div>
+</div>
+<img alt="../_images/tie-02.png" src="../_images/tie-02.png" />
+</div>
+<div class="section" id="slurs">
+<span id="element-slur"></span><h1>5.2. Slurs</h1>
+<p>For creating a slur, the <a class="reference internal" href="#grammar-token-slur"><code class="xref std std-token docutils literal"><span class="pre">slur</span></code></a> element has to be used, included in the <a class="reference internal" href="../music-data/note-rest.html#grammar-token-noteOptions"><code class="xref std std-token docutils literal"><span class="pre">noteOptions</span></code></a> element of the first and last note/rest connected by the slur arch:</p>
+<pre class="bnf-rule">
+<strong id="grammar-token-slur">slur    </strong> ::=  (slur num <a class="reference internal" href="#grammar-token-slurType"><code class="xref docutils literal"><span class="pre">slurType</span></code></a> [<a class="reference internal" href="#grammar-token-bezier"><code class="xref docutils literal"><span class="pre">bezier</span></code></a>] [<code class="xref docutils literal"><span class="pre">color</span></code>] )
+<strong id="grammar-token-slurType">slurType</strong> ::=  { start | stop }
+</pre>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
+    (clef G)
+    (n c4 q (slur 1 start))
+    (n d4 q) (n e4 q) (n f4 q)
+    (n g4 e (slur 1 stop))
+    (n c5 e)
+    (barline)
+)))
+</pre></div>
+</div>
+<img alt="../_images/slur-01.png" src="../_images/slur-01.png" />
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table Of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../score/index.html">2. The score and its structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../music-data/index.html">3. Music description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../polyphony/index.html">4. Polyophony: chords and voices</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. Notations relating two or more objects</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">5.1. Ties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#slurs">5.2. Slurs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="beams.html">5.3. Beams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tuplets.html">5.4. Tuplets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../auxobjs/index.html">6. Notations attached to one object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../format/index.html">7. Format control</a></li>
+</ul>
+
+          <h3 style="margin-top: 1.5em;">Search</h3>
+          <form class="search" action="../search.html" method="get">
+            <input type="text" name="q" size="18" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+          <p class="searchtip" style="font-size: 90%">
+            Enter search terms or a module, class or function name.
+          </p>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <a href="index.html" title="5. Notations relating two or more objects"
+             >previous</a> |
+          <a href="beams.html" title="5.3. Beams"
+             >next</a> |
+          <a href="../genindex.html" title="General Index"
+             >index</a>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+      Last updated on 2016-Jul-02.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

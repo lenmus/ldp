@@ -1,0 +1,293 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.6. Notes and rests &mdash; LDP language manual. Vers. 2.0 (draft)</title>
+    
+    <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
+    <link rel="up" title="3. Music description" href="index.html" />
+    <link rel="next" title="4. Polyophony: chords and voices" href="../polyphony/index.html" />
+    <link rel="prev" title="3.5. Barlines" href="barlines.html" /> 
+  </head>
+  <body role="document">
+    <div class="header-wrapper">
+      <div class="header">
+        <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
+        <div class="rel">
+          <a href="barlines.html" title="3.5. Barlines"
+             accesskey="P">previous</a> |
+          <a href="../polyphony/index.html" title="4. Polyophony: chords and voices"
+             accesskey="N">next</a> |
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="notes-and-rests">
+<span id="element-notes-rests"></span><h1>3.6. Notes and rests</h1>
+<p>Notes are the most common elements in the score.
+Rests can be considered as notes with no pitch, so in LDP notes and rests are instances of a more general concept: <em>noterests</em>. A noterest is either a note or a rest.</p>
+<pre class="bnf-rule">
+<strong id="grammar-token-note">note           </strong> ::=   (n <a class="reference internal" href="#grammar-token-pitch"><code class="xref docutils literal"><span class="pre">pitch</span></code></a> <a class="reference internal" href="../polyphony/voices.html#grammar-token-duration"><code class="xref docutils literal"><span class="pre">duration</span></code></a> [<a class="reference internal" href="#grammar-token-noteOptions"><code class="xref docutils literal"><span class="pre">noteOptions</span></code></a>*] [<a class="reference internal" href="#grammar-token-noterestOptions"><code class="xref docutils literal"><span class="pre">noterestOptions</span></code></a>*]
+                         [<code class="xref docutils literal"><span class="pre">componentOptions</span></code>*] [<code class="xref docutils literal"><span class="pre">attachments</span></code>*])
+<strong id="grammar-token-rest">rest           </strong> ::=   (r <a class="reference internal" href="../polyphony/voices.html#grammar-token-duration"><code class="xref docutils literal"><span class="pre">duration</span></code></a> [<a class="reference internal" href="#grammar-token-noterestOptions"><code class="xref docutils literal"><span class="pre">noterestOptions</span></code></a>*] [<code class="xref docutils literal"><span class="pre">componentOptions</span></code>*] [<code class="xref docutils literal"><span class="pre">attachments</span></code>*])
+<strong id="grammar-token-noteOptions">noteOptions    </strong> ::=   { <a class="reference internal" href="../relobjs/tie-slur.html#grammar-token-tie"><code class="xref docutils literal"><span class="pre">tie</span></code></a> | <a class="reference internal" href="#grammar-token-stem"><code class="xref docutils literal"><span class="pre">stem</span></code></a> | <a class="reference internal" href="../relobjs/tie-slur.html#grammar-token-slur"><code class="xref docutils literal"><span class="pre">slur</span></code></a> }
+<strong id="grammar-token-noterestOptions">noterestOptions</strong> ::=   { <a class="reference internal" href="../relobjs/beams.html#grammar-token-beam"><code class="xref docutils literal"><span class="pre">beam</span></code></a> | <a class="reference internal" href="../relobjs/tuplets.html#grammar-token-tuplet"><code class="xref docutils literal"><span class="pre">tuplet</span></code></a> | <a class="reference internal" href="../relobjs/tuplets.html#grammar-token-timeModification"><code class="xref docutils literal"><span class="pre">timeModification</span></code></a> | <a class="reference internal" href="../polyphony/voices.html#grammar-token-voice"><code class="xref docutils literal"><span class="pre">voice</span></code></a> | <a class="reference internal" href="#grammar-token-staffNumber"><code class="xref docutils literal"><span class="pre">staffNumber</span></code></a> | <a class="reference internal" href="../auxobjs/fermata.html#grammar-token-fermata"><code class="xref docutils literal"><span class="pre">fermata</span></code></a> }
+<strong id="grammar-token-pitch">pitch          </strong> ::=   label (see explanation)
+<strong id="grammar-token-duration">duration       </strong> ::=   label (see explanation)
+</pre>
+<p>The minimum information required to represent a note is its pitch and its duration. For rests only their duration is needed:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
+    (clef G)
+    (n c4 q)    //a C4 quarter note (C of octave 4, the central C)
+    (r q)       //a quarter rest
+    (barline)
+)))
+</pre></div>
+</div>
+<img alt="../_images/note-03.png" src="../_images/note-03.png" />
+<div class="section" id="duration">
+<h2>3.6.1. Duration</h2>
+<p>Durations are written as a letter (from following table) followed by optional dots.</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Letter</th>
+<th class="head">Duration</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>l</td>
+<td>long (longa)</td>
+</tr>
+<tr class="row-odd"><td>b</td>
+<td>breve (double whole)</td>
+</tr>
+<tr class="row-even"><td>w</td>
+<td>whole (semibreve)</td>
+</tr>
+<tr class="row-odd"><td>h</td>
+<td>half (minim)</td>
+</tr>
+<tr class="row-even"><td>q</td>
+<td>quarter (crochet)</td>
+</tr>
+<tr class="row-odd"><td>e</td>
+<td>eighth, 8th (quaver)</td>
+</tr>
+<tr class="row-even"><td>s</td>
+<td>sixteenth, 16th (semiquaver)</td>
+</tr>
+<tr class="row-odd"><td>t</td>
+<td>32th (demisemiquaver)</td>
+</tr>
+<tr class="row-even"><td>i</td>
+<td>64th (hemidemisemiquaver)</td>
+</tr>
+<tr class="row-odd"><td>o</td>
+<td>128th (semihemidemisemiquaver)</td>
+</tr>
+<tr class="row-even"><td>f</td>
+<td>256th (?)</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre>e..     double dotted eighth note
+o       128th note
+q.      dotted quarter note
+</pre></div>
+</div>
+</div>
+<div class="section" id="pitch">
+<h2>3.6.2. Pitch</h2>
+<p>The pitch is represented by an string combining the note name (step), the octave and the accidentals:</p>
+<blockquote>
+<div><blockquote>
+<div>pitch ::= string accidentals-step-octave</div></blockquote>
+<p>The <em>step</em> is a lower case letter that represents the diatonic step:</p>
+<blockquote>
+<div>step ::= { c | d | e | f | g | a | b }</div></blockquote>
+</div></blockquote>
+<p>The <em>octave</em> is an integer number indicating the octave of the note, where octave 4 is the central one (a4 = 440Hz). All octaves start with note name c and ends in note name b, so note c4 is the c note just below the a4 note. Octaves range is 0 to 9.</p>
+<p><em>Accidentals</em> are represented by combinations of the signs plus (+), minus (-), equal (=) and the letter x (x). They represent, respectively, sharps, flats, naturals and the double sharp symbol. So, for example, ++ represents two sharps, x a double sharp, and =- represents  a natural flat.</p>
+<p>With all this, the pitch is just the combination of the previous signs. Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
+    (clef G)
+    (n +c4 q)   //a sharp C4 quarter note (C of octave 4, the central C)
+    (n --b3 h)  //a double flat B3 half note (B of octave 3, the B immediately below C4)
+    (n xe4 e)   //a double sharp E4 eighth note
+)))
+</pre></div>
+</div>
+<img alt="../_images/note-01.png" src="../_images/note-01.png" />
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Accidentals are relative to the context. That is, you have to write only those accidentals that are not implied by the key signature or that are not implied by a previous accidental in the same measure. This is as if you were writing the notes on manuscript paper.</p>
+</div>
+<p>Therefore, in the following example:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
+    (clef G)(key F)(n f4 q)(n b4 q)(barline)
+)))
+</pre></div>
+</div>
+<img alt="../_images/note-02.png" src="../_images/note-02.png" />
+<p>the quarter b4 note will be a flat b4, as it is in F major key, but no flat sign is displayed before the note, as it is in the key signature.</p>
+</div>
+<div class="section" id="stem">
+<span id="element-stem"></span><h2>3.6.3. Stem</h2>
+<p>Stem direction and size will be automatically computed by the rendering program,
+according to usual engraving rules. Nevertheless, the stem of a note can
+be fully specified by using the <a class="reference internal" href="#grammar-token-stem"><code class="xref std std-token docutils literal"><span class="pre">stem</span></code></a> element. It forces stem direction.</p>
+<pre class="bnf-rule">
+<strong id="grammar-token-stem">stem</strong> ::=  (stem { up | down })
+</pre>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
+    (clef G)
+    (n c4 q)
+    (n c4 q (stem down))
+    (n c5 q)
+    (n c5 q (stem up))
+    (barline)
+)))
+</pre></div>
+</div>
+<img alt="../_images/stem-01.png" src="../_images/stem-01.png" />
+</div>
+</div>
+<div class="section" id="selecting-the-staff">
+<span id="element-staff-number"></span><h1>3.7. Selecting the staff</h1>
+<p>When an instrument has several staves (e.g. the upper and lower staves in a grand-staff)
+it is necessary to specify in which staff a note, rest, clef, or other object must
+be placed. For this purpose, a <a class="reference internal" href="#grammar-token-staffNumber"><code class="xref std std-token docutils literal"><span class="pre">staffNumber</span></code></a> element is used.</p>
+<pre class="bnf-rule">
+<strong id="grammar-token-staffNumber">staffNumber</strong> ::=  (p num)
+</pre>
+<p>It can be abbreviated by omitting the parenthesis and joining
+the <code class="xref std std-token docutils literal"><span class="pre">p</span></code>  and the number. Example: <code class="docutils literal"><span class="pre">(p</span> <span class="pre">2)</span></code> is equivalent to <code class="docutils literal"><span class="pre">p2</span></code>.</p>
+<p>The staves for each instrument are numbered from top to bottom, starting at staff 1. The staff number
+is inherited by all coming elements until a new <code class="xref std std-token docutils literal"><span class="pre">p</span></code> notation is found.</p>
+<p>Example: a scale across two staves:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)
+    (instrument (staves 2)
+        (musicData
+            (clef G p1)(clef F p2)(key C)
+            (n g3 w p2)(n a3 w)(n b3 w)(n c4 w)(n d4 w p1)(n e4 w)(n f4 w)(n g4 w)
+            (barline end)
+        )
+    )
+)
+</pre></div>
+</div>
+<img alt="../_images/music-data-01.png" src="../_images/music-data-01.png" />
+<p>G clef is placed on first staff (p1) and F clef on second staff (p2). The
+key is common to all staves of the instrument so no staff is specified. First note
+(G3) is placed on second staff and consecutive notes inherits this, until
+note D4 for which first staff is specified (p1). Remaining notes
+inherits this.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table Of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../score/index.html">2. The score and its structure</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Music description</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="music-data.html">3.1. The musicData element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clef.html">3.2. Clefs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="key-signature.html">3.3. Key signatures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="time-signature.html">3.4. Time signatures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="barlines.html">3.5. Barlines</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">3.6. Notes and rests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#duration">3.6.1. Duration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pitch">3.6.2. Pitch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stem">3.6.3. Stem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#selecting-the-staff">3.7. Selecting the staff</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../polyphony/index.html">4. Polyophony: chords and voices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relobjs/index.html">5. Notations relating two or more objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auxobjs/index.html">6. Notations attached to one object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../format/index.html">7. Format control</a></li>
+</ul>
+
+          <h3 style="margin-top: 1.5em;">Search</h3>
+          <form class="search" action="../search.html" method="get">
+            <input type="text" name="q" size="18" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+          <p class="searchtip" style="font-size: 90%">
+            Enter search terms or a module, class or function name.
+          </p>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <a href="barlines.html" title="3.5. Barlines"
+             >previous</a> |
+          <a href="../polyphony/index.html" title="4. Polyophony: chords and voices"
+             >next</a> |
+          <a href="../genindex.html" title="General Index"
+             >index</a>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+      Last updated on 2016-Jul-02.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

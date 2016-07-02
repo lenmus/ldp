@@ -1,0 +1,156 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4.3. Chords &mdash; LDP language manual. Vers. 2.0 (draft)</title>
+    
+    <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
+    <link rel="up" title="4. Polyophony: chords and voices" href="index.html" />
+    <link rel="next" title="5. Notations relating two or more objects" href="../relobjs/index.html" />
+    <link rel="prev" title="4.1. Voices" href="voices.html" /> 
+  </head>
+  <body role="document">
+    <div class="header-wrapper">
+      <div class="header">
+        <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
+        <div class="rel">
+          <a href="voices.html" title="4.1. Voices"
+             accesskey="P">previous</a> |
+          <a href="../relobjs/index.html" title="5. Notations relating two or more objects"
+             accesskey="N">next</a> |
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="chords">
+<span id="element-chord"></span><h1>4.3. Chords</h1>
+<p>A chord, in polyphony, is any harmonic set of usually three or more notes that is heard as if sounding simultaneously. Therefore, a chord is obtained by defining three or more notes, in different voices sounding simultaneously:</p>
+<img alt="../_images/chord-02.png" src="../_images/chord-02.png" />
+<p>Also, what engravers call a chord, is a musical unit in which the notes share vertical baseline, stem, articulation, etc. This grouping
+indicates not only simultaneity, but also the composer&#8217;s intent to visually group simultaneous notes as a musical event:</p>
+<img alt="../_images/chord-03.png" src="../_images/chord-03.png" />
+<p>In LDP the <a class="reference internal" href="#grammar-token-chord"><code class="xref std std-token docutils literal"><span class="pre">chord</span></code></a> element must be understood in this last way, as a musical unit in which the notes share properties. In LDP a chord is just the list of notes that form the chord:</p>
+<pre class="bnf-rule">
+<strong id="grammar-token-chord">chord</strong> ::=  (chord <a class="reference internal" href="../music-data/note-rest.html#grammar-token-note"><code class="xref docutils literal"><span class="pre">note</span></code></a>*)
+</pre>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
+    (clef C2)
+    (chord (n c4 q)(n e4 q)(n g4 q))    // C major chord
+    (chord (n c4 q)(n f4 q)(n a4 q))    // F major chord
+    (chord (n b3 q)(n f4 q)(n g4 q))    // G major 7 chord
+    (chord (n c4 q)(n e4 q)(n g4 q))    // C major chord
+    (barline)
+)))
+</pre></div>
+</div>
+<img alt="../_images/chord-01.png" src="../_images/chord-01.png" />
+<p>Chords has some unique characteristics that are different from stacking notes by using different voices.
+The first issue is that all the notes in a <a class="reference internal" href="#grammar-token-chord"><code class="xref std std-token docutils literal"><span class="pre">chord</span></code></a> element <strong>must be of the same type</strong> (duration) and are <strong>assigned to the same voice</strong>.</p>
+<p>The other important issue is that non-note-specific properties that are shared by
+all notes in a chord may only occur once, and must occur on the first
+note. These include both visual properties like stems/beams and musical
+properties like articulations. It does not include true note-grain
+properties like cue or color.</p>
+<p>For instance, to change the stem direction the <a class="reference internal" href="../music-data/note-rest.html#grammar-token-stem"><code class="xref std std-token docutils literal"><span class="pre">stem</span></code></a> must be included <strong>only</strong> in first note:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
+    (clef G)
+    (chord (n c4 q)(n e4 q)(n g4 q))
+    (chord (n c4 q (stem down))(n e4 q)(n g4 q))
+    (barline)
+)))
+</pre></div>
+</div>
+<img alt="../_images/chord-04.png" src="../_images/chord-04.png" />
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table Of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../score/index.html">2. The score and its structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../music-data/index.html">3. Music description</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. Polyophony: chords and voices</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="voices.html">4.1. Voices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="voices.html#gaps-in-a-voice">4.2. Gaps in a voice</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">4.3. Chords</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../relobjs/index.html">5. Notations relating two or more objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auxobjs/index.html">6. Notations attached to one object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../format/index.html">7. Format control</a></li>
+</ul>
+
+          <h3 style="margin-top: 1.5em;">Search</h3>
+          <form class="search" action="../search.html" method="get">
+            <input type="text" name="q" size="18" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+          <p class="searchtip" style="font-size: 90%">
+            Enter search terms or a module, class or function name.
+          </p>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <a href="voices.html" title="4.1. Voices"
+             >previous</a> |
+          <a href="../relobjs/index.html" title="5. Notations relating two or more objects"
+             >next</a> |
+          <a href="../genindex.html" title="General Index"
+             >index</a>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+      Last updated on 2016-Jul-02.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

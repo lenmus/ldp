@@ -1,0 +1,185 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.4. Tuplets &mdash; LDP language manual. Vers. 2.0 (draft)</title>
+    
+    <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
+    <link rel="up" title="5. Notations relating two or more objects" href="index.html" />
+    <link rel="next" title="6. Notations attached to one object" href="../auxobjs/index.html" />
+    <link rel="prev" title="5.3. Beams" href="beams.html" /> 
+  </head>
+  <body role="document">
+    <div class="header-wrapper">
+      <div class="header">
+        <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
+        <div class="rel">
+          <a href="beams.html" title="5.3. Beams"
+             accesskey="P">previous</a> |
+          <a href="../auxobjs/index.html" title="6. Notations attached to one object"
+             accesskey="N">next</a> |
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tuplets">
+<span id="element-tuplet"></span><h1>5.4. Tuplets</h1>
+<p>A tuplet is a group of notes whose duration is modified; normally a graphic element (a tuplet bracket and/or a number) marks this group of notes. The notes in a tuplet are usually beamed together but this is not always the case.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">The tuplet information is splitted for distinguish between graphical information and notes&#8217; duration modification information. The <a class="reference internal" href="#grammar-token-tuplet"><code class="xref std std-token docutils literal"><span class="pre">tuplet</span></code></a> element is only for defining the graphical information (presence of tuplet bracket and numbers). The notes&#8217; duration modification information is independently provided by the <a class="reference internal" href="#grammar-token-timeModification"><code class="xref std std-token docutils literal"><span class="pre">timeModification</span></code></a> element.</p>
+</div>
+<p>In LDP, to specify the notes that form a tuplet, a <a class="reference internal" href="#grammar-token-tuplet"><code class="xref std std-token docutils literal"><span class="pre">tuplet</span></code></a> element must be included in first and last notes in the tuplet:</p>
+<pre class="bnf-rule">
+<strong id="grammar-token-tuplet">tuplet        </strong> ::=   (t <a class="reference internal" href="#grammar-token-tupletID"><code class="xref docutils literal"><span class="pre">tupletID</span></code></a> { - | + <a class="reference internal" href="#grammar-token-actualNotes"><code class="xref docutils literal"><span class="pre">actualNotes</span></code></a> <a class="reference internal" href="#grammar-token-normalNotes"><code class="xref docutils literal"><span class="pre">normalNotes</span></code></a> [<a class="reference internal" href="#grammar-token-tupletOptions"><code class="xref docutils literal"><span class="pre">tupletOptions</span></code></a>] })
+<strong id="grammar-token-tupletID">tupletID      </strong> ::=  integer_number
+<strong id="grammar-token-actualNotes">actualNotes   </strong> ::=  integer number
+<strong id="grammar-token-normalNotes">normalNotes   </strong> ::=  integer number
+<strong id="grammar-token-tupletOptions">tupletOptions </strong> ::=   noBracket [<a class="reference internal" href="#grammar-token-displayBracket"><code class="xref docutils literal"><span class="pre">displayBracket</span></code></a>] [<a class="reference internal" href="#grammar-token-displayNumber"><code class="xref docutils literal"><span class="pre">displayNumber</span></code></a>]
+<strong id="grammar-token-displayBracket">displayBracket</strong> ::=  (displayBracket { yes | no })
+<strong id="grammar-token-displayNumber">displayNumber </strong> ::=  (displayNumber { none | actual | both })
+</pre>
+<p>The <a class="reference internal" href="#grammar-token-tupletID"><code class="xref std std-token docutils literal"><span class="pre">tupletID</span></code></a> element was introduced for uniquely identifying each tuplet,
+mainly to distinguish nested tuplets.</p>
+<p>The tuplet type is a plus sign (+) or a minus sign (-) to indicate, respectively, that it is the start or the end of a tuplet.</p>
+<p>The <a class="reference internal" href="#grammar-token-displayNumber"><code class="xref std std-token docutils literal"><span class="pre">displayNumber</span></code></a> option is used to display the number of normal notes. By default, only the actual notes number is displayed.</p>
+<p>The <a class="reference internal" href="#grammar-token-displayBracket"><code class="xref std std-token docutils literal"><span class="pre">displayBracket</span></code></a> option is used for controllin whether to display or not the tuplet bracket. If unspecified, the default behaviour follows the usual engraving rules: the bracket is not displayed if the tuplet notes form a beamed group.</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre>(n c4 e (t 1 +)(tm 2 3)) (n d4 e (tm 2 3)) (n e4 e (t 1 -)(tm 2 3))
+</pre></div>
+</div>
+<p>This example is a triplet of eighth notes, that is, the three notes must be played
+in the time normally allotted for two eight notes.</p>
+<p>For specifying notes&#8217; duration modification, a <a class="reference internal" href="#grammar-token-timeModification"><code class="xref std std-token docutils literal"><span class="pre">timeModification</span></code></a> element must be included in all the notes in the tuplet:</p>
+<pre class="bnf-rule">
+<strong id="grammar-token-timeModification">timeModification</strong> ::=  (tm <a class="reference internal" href="#grammar-token-numerator"><code class="xref docutils literal"><span class="pre">numerator</span></code></a> <a class="reference internal" href="#grammar-token-denominator"><code class="xref docutils literal"><span class="pre">denominator</span></code></a>)
+<strong id="grammar-token-numerator">numerator       </strong> ::=  integer number
+<strong id="grammar-token-denominator">denominator     </strong> ::=  integer number
+</pre>
+<p>The <a class="reference internal" href="#grammar-token-timeModification"><code class="xref std std-token docutils literal"><span class="pre">timeModification</span></code></a> element must be included in all the notes that form the tuplet. The time modificaction information is a multiplication factor to be applied to normal note/rest duration. This factor is defined, as a fraction, by its <a class="reference internal" href="#grammar-token-numerator"><code class="xref std std-token docutils literal"><span class="pre">numerator</span></code></a> and <a class="reference internal" href="#grammar-token-denominator"><code class="xref std std-token docutils literal"><span class="pre">denominator</span></code></a>.</p>
+<p>The tuplet element does not implies neither beaming nor time modification. Therefore elements <a class="reference internal" href="#grammar-token-tuplet"><code class="xref std std-token docutils literal"><span class="pre">tuplet</span></code></a>, <code class="xref std std-token docutils literal"><span class="pre">tm</span></code> and <a class="reference internal" href="beams.html#grammar-token-beam"><code class="xref std std-token docutils literal"><span class="pre">beam</span></code></a> must be combined as needed. Remember that tuplet must be specified before beam. Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
+    (n c4 e (t 1 + 2 3)(tm 2 3)(beam 1 +))
+    (n d4 s (tm 2 3)(beam 1 =+))
+    (n c4 s (tm 2 3)(beam 1 ==))
+    (n b3 s (t 1 -)(tm 2 3)(beam 1 --))
+    (barline)
+
+    (n c4 s (t 1 + 2 3)(tm 2 3)(beam 2 ++))
+    (n d4 s (tm 2 3)(beam 2 ==))
+    (n b3 s (t 1 -)(tm 2 3)(beam 2 --))
+    (barline)
+
+    (n f4 s (t 2 + 2 3)(tm 2 3)(beam 3 ++))
+    (n g4 s (tm 2 3)(beam 3 ==))
+    (n a4 s (t 2 -)(tm 2 3)(beam 3 --))
+    (barline)
+)))
+</pre></div>
+</div>
+<img alt="relobjs/..figures/tuplet-01.png" src="relobjs/..figures/tuplet-01.png" />
+<div class="section" id="abbreviated-notation-deprecated">
+<h2>5.4.1. Abbreviated notation (deprecated)</h2>
+<p>Deprecated since version 1.6</p>
+<div class="highlight-python"><div class="highlight"><pre>(t -)     --&gt; t-
+(t + n)   --&gt; tn
+(t + n m) --&gt; tn/m
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table Of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../score/index.html">2. The score and its structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../music-data/index.html">3. Music description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../polyphony/index.html">4. Polyophony: chords and voices</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. Notations relating two or more objects</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tie-slur.html">5.1. Ties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tie-slur.html#slurs">5.2. Slurs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="beams.html">5.3. Beams</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">5.4. Tuplets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#abbreviated-notation-deprecated">5.4.1. Abbreviated notation (deprecated)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../auxobjs/index.html">6. Notations attached to one object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../format/index.html">7. Format control</a></li>
+</ul>
+
+          <h3 style="margin-top: 1.5em;">Search</h3>
+          <form class="search" action="../search.html" method="get">
+            <input type="text" name="q" size="18" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+          <p class="searchtip" style="font-size: 90%">
+            Enter search terms or a module, class or function name.
+          </p>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <a href="beams.html" title="5.3. Beams"
+             >previous</a> |
+          <a href="../auxobjs/index.html" title="6. Notations attached to one object"
+             >next</a> |
+          <a href="../genindex.html" title="General Index"
+             >index</a>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+      Last updated on 2016-Jul-02.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

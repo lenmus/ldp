@@ -1,0 +1,178 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.3. Beams &mdash; LDP language manual. Vers. 2.0 (draft)</title>
+    
+    <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
+    <link rel="up" title="5. Notations relating two or more objects" href="index.html" />
+    <link rel="next" title="5.4. Tuplets" href="tuplets.html" />
+    <link rel="prev" title="5.1. Ties" href="tie-slur.html" /> 
+  </head>
+  <body role="document">
+    <div class="header-wrapper">
+      <div class="header">
+        <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
+        <div class="rel">
+          <a href="tie-slur.html" title="5.1. Ties"
+             accesskey="P">previous</a> |
+          <a href="tuplets.html" title="5.4. Tuplets"
+             accesskey="N">next</a> |
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="beams">
+<span id="element-beam"></span><h1>5.3. Beams</h1>
+<pre class="bnf-rule">
+<strong id="grammar-token-beam">beam    </strong> ::=  (beam <a class="reference internal" href="#grammar-token-beamId"><code class="xref docutils literal"><span class="pre">beamId</span></code></a> <a class="reference internal" href="#grammar-token-beamtype"><code class="xref docutils literal"><span class="pre">beamtype</span></code></a>)
+<strong id="grammar-token-beamId">beamId  </strong> ::=  integer number
+<strong id="grammar-token-beamtype">beamtype</strong> ::=  string. See description
+</pre>
+<p>Beam segments are represented by a string, encoded in the <a class="reference internal" href="#grammar-token-beamtype"><code class="xref std std-token docutils literal"><span class="pre">beamtype</span></code></a> element. The string is formed by concatenation of 1 to 6 characters from the set { + | - | = | f | b }. Each caracter is associated to a beam level: the first character to the first level, the second character to the second level, etc. An the caracters have the following meaning:</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8216;+&#8217; for <em>start beam</em>. It starts a new beam and must be paired with a &#8216;-&#8216; in another note.</li>
+<li>&#8216;=&#8217; for <em>continue beam</em>. Must be included in intermediate notes.</li>
+<li>&#8216;-&#8216; for <em>end beam</em>. It stops a beam started in another note.</li>
+<li>&#8216;f&#8217; for <em>forward hook</em>. For specifying a single beam forward hook that only affects the note in which it is defined.</li>
+<li>&#8216;b&#8217; for <em>backward hook</em> For specifying a single beam backward hook that only affects the note in which it is defined.</li>
+</ul>
+</div></blockquote>
+<p>Some examples:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
+    (clef G)
+    //first group
+    (n c4 e (beam 17 +))
+    (n d4 e (beam 17 =))
+    (n e4 e (beam 17 =))
+    (n g4 e (beam 17 -))
+
+    //second group
+    (n c4 s (beam 18 +f))
+    (n d4 e (beam 18 =))
+    (n f4 s (beam 18 -b))
+
+    //third group
+    (n c4 t (beam 19 ++))
+    (n d4 t (beam 19 ==))
+    (n e4 t (beam 19 ==))
+    (n f4 t (beam 19 --))
+)))
+</pre></div>
+</div>
+<img alt="../_images/beams-01.png" src="../_images/beams-01.png" />
+<p>For beams in chords the <a class="reference internal" href="#grammar-token-beam"><code class="xref std std-token docutils literal"><span class="pre">beam</span></code></a> element must be placed only in the first note of each chord included in the beam.
+Example, two beamed chords:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
+    (clef G)
+    (chord (n e4 e. (beam 31 +)) (n g4 e.) (n c5 e.))
+    (chord (n d4 s (beam 31 -b)) (n f4 s) (n a4 s))
+)))
+</pre></div>
+</div>
+<img alt="../_images/beams-02.png" src="../_images/beams-02.png" />
+<div class="section" id="abbreviated-notation-deprecated">
+<h2>5.3.1. Abbreviated notation (deprecated)</h2>
+<p>LDP also supports an abbreviated syntax for beams in simple lines of music. It consists on marking only the first note of the beamed group with a <code class="docutils literal"><span class="pre">g+</span></code> notation and the last note of the group with a <code class="docutils literal"><span class="pre">g-</span></code> notation. All notes defined between these two will be automatically included in the beam, and the beam segments will be automatically computed based on notes duration. Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>(n c4 q g+)(n d4 e)(n e4 e g-)
+</pre></div>
+</div>
+<p>A group of beamed notes, formed by a quarter C4 note, an eighth D4 note and an eighth E4 note.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table Of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../score/index.html">2. The score and its structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../music-data/index.html">3. Music description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../polyphony/index.html">4. Polyophony: chords and voices</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. Notations relating two or more objects</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tie-slur.html">5.1. Ties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tie-slur.html#slurs">5.2. Slurs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">5.3. Beams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#abbreviated-notation-deprecated">5.3.1. Abbreviated notation (deprecated)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tuplets.html">5.4. Tuplets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../auxobjs/index.html">6. Notations attached to one object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../format/index.html">7. Format control</a></li>
+</ul>
+
+          <h3 style="margin-top: 1.5em;">Search</h3>
+          <form class="search" action="../search.html" method="get">
+            <input type="text" name="q" size="18" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+          <p class="searchtip" style="font-size: 90%">
+            Enter search terms or a module, class or function name.
+          </p>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <a href="tie-slur.html" title="5.1. Ties"
+             >previous</a> |
+          <a href="tuplets.html" title="5.4. Tuplets"
+             >next</a> |
+          <a href="../genindex.html" title="General Index"
+             >index</a>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+      Last updated on 2016-Jul-02.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>
