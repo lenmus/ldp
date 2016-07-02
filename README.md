@@ -12,10 +12,7 @@ Also, as part of the LenMus project you will find the **Lomse library**
 
 ## License
 
-Copyright © 2002-2016 Cecilio Salmeron. All files in this repo are licensed under the Creative Commons Attribution–Share Alike 3.0 Unported license (“CC-BY-SA”). An explanation of CC-BY-SA is available at http://creativecommons.org/licenses/by-sa/3.0/. In accordance with CC-BY-SA, if you distribute this document or an adaptation of it, you must provide the URL for the original version.
+Copyright © 2002-2016 Cecilio Salmeron. All files in this repo are licensed under the Creative Commons Attribution-ShareAlike 4.0 International License (“CC-BY-SA”). An explanation of CC-BY-SA is available at http://creativecommons.org/licenses/by-sa/4.0/.
 
-_images/creative-commons-by-sa-88x31.png
-
-
-
+[[https://github.com/lenmus/ldp/blob/master/source/creative-commons-by-sa-88x31.png|alt=CreativeCommons]]
 
