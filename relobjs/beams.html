@@ -69,7 +69,23 @@
 <li>&#8216;b&#8217; for <em>backward hook</em> For specifying a single beam backward hook that only affects the note in which it is defined.</li>
 </ul>
 </div></blockquote>
-<p>Some examples:</p>
+<p>For instance, lets define the beam for the group in following image:</p>
+<img alt="../_images/beams-03.png" src="../_images/beams-03.png" />
+<p>The beam will be assigned, arbitrarily, the ID 31. In first note one beam line starts; this is encoded as <code class="docutils literal"><span class="pre">(beam</span> <span class="pre">31</span> <span class="pre">+)</span></code>.
+In second note the first beam line continues (&#8216;=&#8217;), a second line starts (&#8216;+&#8217;) and has a forward hook (&#8216;f&#8217;); therefore, the beam in second note will be encoded as <code class="docutils literal"><span class="pre">(beam</span> <span class="pre">31</span> <span class="pre">=+f)</span></code>. The third note has two beam lines that continue from previous note; therefore the beam is encoded as
+<code class="docutils literal"><span class="pre">(beam</span> <span class="pre">31</span> <span class="pre">==)</span></code>. Finally, in the last note the two beams end and there is a backwards hook; therefore <code class="docutils literal"><span class="pre">(beam</span> <span class="pre">31</span> <span class="pre">--b)</span></code>. This is the score:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
+    (clef G)
+    (n e4 e (beam 31 +))
+    (n g4 t (beam 31 =+f))
+    (n d4 s (beam 31 ==))
+    (n f4 t (beam 31 --b))
+    (spacer 30)
+    (barline)
+)))
+</pre></div>
+</div>
+<p>Some more examples:</p>
 <div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
     (clef G)
     //first group
@@ -105,10 +121,53 @@ Example, two beamed chords:</p>
 <div class="section" id="abbreviated-notation-deprecated">
 <h2>5.3.1. Abbreviated notation (deprecated)</h2>
 <p>LDP also supports an abbreviated syntax for beams in simple lines of music. It consists on marking only the first note of the beamed group with a <code class="docutils literal"><span class="pre">g+</span></code> notation and the last note of the group with a <code class="docutils literal"><span class="pre">g-</span></code> notation. All notes defined between these two will be automatically included in the beam, and the beam segments will be automatically computed based on notes duration. Example:</p>
-<div class="highlight-python"><div class="highlight"><pre>(n c4 q g+)(n d4 e)(n e4 e g-)
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
+    (clef G)
+    (key C)
+    (time 2 4)
+
+    //Measure 1
+    (n c4 e. g+ v1)
+    (n d4 s v1)
+    (n e4 e g- v1)
+    (n c4 s g+ v1)
+    (n d4 s v1)
+    (n e4 e g- v1)
+    (barline simple)
+
+    //Measure 2
+    (n c4 s g+ v1)
+    (n d4 e v1)
+    (n e4 s g- v1)
+    (n c4 s g+ v1)
+    (n d4 s v1)
+    (n d4 s v1)
+    (n e4 s g- v1)
+    (barline simple)
+
+    //Measure 3
+    (n c4 s g+ v1)
+    (n d4 e. g- v1)
+    (n c4 t g+ v1)
+    (n d4 e v1)
+    (n d4 t v1)
+    (n e4 s g- v1)
+    (barline simple)
+
+    //Measure 4
+    (n c4 s g+ v1)
+    (n d4 t v1)
+    (n d4 t v1)
+    (n e4 e g- v1)
+    (n c4 s g+ v1)
+    (n d4 t v1)
+    (n d4 e v1)
+    (n e4 t g- v1)
+    (barline simple)
+)))
 </pre></div>
 </div>
-<p>A group of beamed notes, formed by a quarter C4 note, an eighth D4 note and an eighth E4 note.</p>
+<img alt="../_images/beams-04.png" src="../_images/beams-04.png" />
 </div>
 </div>
 
@@ -167,7 +226,7 @@ Example, two beamed chords:</p>
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Jul-02.
+      Last updated on 2016-Jul-03.
     </div>
         </div>
         <div class="clearer"></div>

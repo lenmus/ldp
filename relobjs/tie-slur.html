@@ -58,7 +58,12 @@
 <pre class="bnf-rule">
 <strong id="grammar-token-tie">tie     </strong> ::=  { (tie num <a class="reference internal" href="#grammar-token-tieType"><code class="xref docutils literal"><span class="pre">tieType</span></code></a> [<a class="reference internal" href="#grammar-token-bezier"><code class="xref docutils literal"><span class="pre">bezier</span></code></a>] ) | l }
 <strong id="grammar-token-tieType">tieType </strong> ::=  { start | stop }
-<strong id="grammar-token-bezier">bezier  </strong> ::=  (bezier [<a class="reference internal" href="#grammar-token-ctrol1_x"><code class="xref docutils literal"><span class="pre">ctrol1_x</span></code></a>] [<a class="reference internal" href="#grammar-token-ctrol1_y"><code class="xref docutils literal"><span class="pre">ctrol1_y</span></code></a>] [<a class="reference internal" href="#grammar-token-ctrol2_x"><code class="xref docutils literal"><span class="pre">ctrol2_x</span></code></a>] [<a class="reference internal" href="#grammar-token-ctrol2_y"><code class="xref docutils literal"><span class="pre">ctrol2_y</span></code></a>] )
+<strong id="grammar-token-bezier">bezier  </strong> ::=  (bezier [<a class="reference internal" href="#grammar-token-start_x"><code class="xref docutils literal"><span class="pre">start_x</span></code></a>] [<a class="reference internal" href="#grammar-token-start_y"><code class="xref docutils literal"><span class="pre">start_y</span></code></a>] [<a class="reference internal" href="#grammar-token-end_x"><code class="xref docutils literal"><span class="pre">end_x</span></code></a>] [<a class="reference internal" href="#grammar-token-end_y"><code class="xref docutils literal"><span class="pre">end_y</span></code></a>]
+                      [<a class="reference internal" href="#grammar-token-ctrol1_x"><code class="xref docutils literal"><span class="pre">ctrol1_x</span></code></a>] [<a class="reference internal" href="#grammar-token-ctrol1_y"><code class="xref docutils literal"><span class="pre">ctrol1_y</span></code></a>] [<a class="reference internal" href="#grammar-token-ctrol2_x"><code class="xref docutils literal"><span class="pre">ctrol2_x</span></code></a>] [<a class="reference internal" href="#grammar-token-ctrol2_y"><code class="xref docutils literal"><span class="pre">ctrol2_y</span></code></a>] )
+<strong id="grammar-token-start_x">start_x </strong> ::=  (start-x tenths)  displacement in tenths from default location
+<strong id="grammar-token-start_y">start_y </strong> ::=  (start-y tenths)  displacement in tenths from default location
+<strong id="grammar-token-end_x">end_x   </strong> ::=  (end-x tenths)  displacement in tenths from default location
+<strong id="grammar-token-end_y">end_y   </strong> ::=  (end-y tenths)  displacement in tenths from default location
 <strong id="grammar-token-ctrol1_x">ctrol1_x</strong> ::=  (ctrol1-x tenths)  displacement in tenths from default location
 <strong id="grammar-token-ctrol1_y">ctrol1_y</strong> ::=  (ctrol1-y tenths)  displacement in tenths from default location
 <strong id="grammar-token-ctrol2_x">ctrol2_x</strong> ::=  (ctrol2-x tenths)  displacement in tenths from default location
@@ -163,7 +168,7 @@ that will end in the next coming note of the same voice, staff and pitch than th
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Jul-02.
+      Last updated on 2016-Jul-03.
     </div>
         </div>
         <div class="clearer"></div>

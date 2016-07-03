@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>6.1. Fermatas &mdash; LDP language manual. Vers. 2.0 (draft)</title>
+    <title>6.2. Graphical objects &mdash; LDP language manual. Vers. 2.0 (draft)</title>
     
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,17 +26,17 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
     <link rel="up" title="6. Notations attached to one object" href="index.html" />
-    <link rel="next" title="6.2. Graphical objects" href="graphical-objects.html" />
-    <link rel="prev" title="6. Notations attached to one object" href="index.html" /> 
+    <link rel="next" title="7. Format control" href="../format/index.html" />
+    <link rel="prev" title="6.1. Fermatas" href="fermata.html" /> 
   </head>
   <body role="document">
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
         <div class="rel">
-          <a href="index.html" title="6. Notations attached to one object"
+          <a href="fermata.html" title="6.1. Fermatas"
              accesskey="P">previous</a> |
-          <a href="graphical-objects.html" title="6.2. Graphical objects"
+          <a href="../format/index.html" title="7. Format control"
              accesskey="N">next</a> |
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a>
@@ -52,25 +52,41 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="fermatas">
-<span id="element-fermata"></span><h1>6.1. Fermatas</h1>
-<p>Fermatas are defined attached to notes and rests, using the <a class="reference internal" href="#grammar-token-fermata"><code class="xref std std-token docutils literal"><span class="pre">fermata</span></code></a> element:</p>
+  <div class="section" id="graphical-objects">
+<h1>6.2. Graphical objects</h1>
+<div class="section" id="lines">
+<span id="element-line"></span><h2>6.2.1. Lines</h2>
+<p>Lines cane be defined in any staff object, using the <a class="reference internal" href="#grammar-token-line"><code class="xref std std-token docutils literal"><span class="pre">line</span></code></a> element:</p>
 <pre class="bnf-rule">
-<strong id="grammar-token-fermata">fermata  </strong> ::=  (fermata <a class="reference internal" href="#grammar-token-placement"><code class="xref docutils literal"><span class="pre">placement</span></code></a> [<code class="xref docutils literal"><span class="pre">componentOptions</span></code>*])
-<strong id="grammar-token-placement">placement</strong> ::=  { above | below }
+<strong id="grammar-token-line">line        </strong> ::=  (line <a class="reference internal" href="#grammar-token-startPoint"><code class="xref docutils literal"><span class="pre">startPoint</span></code></a> <a class="reference internal" href="#grammar-token-endPoint"><code class="xref docutils literal"><span class="pre">endPoint</span></code></a> [<code class="xref docutils literal"><span class="pre">width</span></code>] [<a class="reference internal" href="#grammar-token-lineCapStart"><code class="xref docutils literal"><span class="pre">lineCapStart</span></code></a>] [<a class="reference internal" href="#grammar-token-lineCapEnd"><code class="xref docutils literal"><span class="pre">lineCapEnd</span></code></a>]
+                        [<a class="reference internal" href="#grammar-token-lineStyle"><code class="xref docutils literal"><span class="pre">lineStyle</span></code></a>] [<code class="xref docutils literal"><span class="pre">color</span></code>])
+<strong id="grammar-token-startPoint">startPoint  </strong> ::=  (startPoint <a class="reference internal" href="../format/new-system.html#grammar-token-location"><code class="xref docutils literal"><span class="pre">location</span></code></a>)
+<strong id="grammar-token-endPoint">endPoint    </strong> ::=  (endPoint <a class="reference internal" href="../format/new-system.html#grammar-token-location"><code class="xref docutils literal"><span class="pre">location</span></code></a>)
+<strong id="grammar-token-lineCapStart">lineCapStart</strong> ::=  (lineCapStart capValue)
+<strong id="grammar-token-lineCapEnd">lineCapEnd  </strong> ::=  (lineCapEnd capValue)
+<strong id="grammar-token-capValue">capValue    </strong> ::=  { none | dot | solid | longDash | shortDash | dotDash }
+<strong id="grammar-token-lineStyle">lineStyle   </strong> ::=  (lineStyle { none | arrowhead | arrowtail | circle | square | diamond } )
 </pre>
-<p>Examples:</p>
+<p>Elements <a class="reference internal" href="#grammar-token-startPoint"><code class="xref std std-token docutils literal"><span class="pre">startPoint</span></code></a> and <a class="reference internal" href="#grammar-token-endPoint"><code class="xref std std-token docutils literal"><span class="pre">endPoint</span></code></a> are coordinates in tenths, relative to the position on which the parent object is placed.</p>
+<p>Example. A note with an attached arrow pointing to it:</p>
 <div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
-    (clef G)(key C)
-    (n g4  q (fermata above))
-    (n g4  q (fermata below))
-    (r q (fermata above))
-    (r q (fermata below))
+    (clef G)(key C)(time 2 4)
+    (n c4 q
+        (line (startPoint (dx 25.0) (dy 60.0))
+              (endPoint (dx 100) (dy 90.0))
+              (width 1.0)
+              (color #000000)
+              (lineStyle solid)
+              (lineCapStart arrowhead)
+              (lineCapEnd none)
+        )
+    )
     (barline end)
 )))
 </pre></div>
 </div>
-<img alt="../_images/fermata-01.png" src="../_images/fermata-01.png" />
+<img alt="../_images/line-01.png" src="../_images/line-01.png" />
+</div>
 </div>
 
 
@@ -87,8 +103,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../polyphony/index.html">4. Polyophony: chords and voices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relobjs/index.html">5. Notations relating two or more objects</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Notations attached to one object</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">6.1. Fermatas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="graphical-objects.html">6.2. Graphical objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fermata.html">6.1. Fermatas</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">6.2. Graphical objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lines">6.2.1. Lines</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../format/index.html">7. Format control</a></li>
@@ -112,9 +131,9 @@
     <div class="footer-wrapper">
       <div class="footer">
         <div class="left">
-          <a href="index.html" title="6. Notations attached to one object"
+          <a href="fermata.html" title="6.1. Fermatas"
              >previous</a> |
-          <a href="graphical-objects.html" title="6.2. Graphical objects"
+          <a href="../format/index.html" title="7. Format control"
              >next</a> |
           <a href="../genindex.html" title="General Index"
              >index</a>
