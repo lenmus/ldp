@@ -7,6 +7,7 @@ Notations attached to one object
 .. toctree::
 
     fermata.txt
+    graphical-objects.txt
 
 .. AuxObjs
 
@@ -17,7 +18,6 @@ Notations attached to one object
     Fermatas
     Ornaments
     Text boxes
-    Lines
     Texts
 
 

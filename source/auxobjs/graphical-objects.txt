@@ -1,0 +1,45 @@
+
+Graphical objects
+::::::::::::::::::::::
+
+.. _element_line:
+
+Lines
+----------
+
+Lines cane be defined in any staff object, using the :token:`line` element:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    line : (line `startPoint` `endPoint` [`width`] [`lineCapStart`] [`lineCapEnd`]
+         :       [`lineStyle`] [`color`])
+    startPoint : (startPoint `location`)
+    endPoint : (endPoint `location`)
+    lineCapStart : (lineCapStart capValue)
+    lineCapEnd : (lineCapEnd capValue)
+    capValue : { none | dot | solid | longDash | shortDash | dotDash }
+    lineStyle : (lineStyle { none | arrowhead | arrowtail | circle | square | diamond } )
+
+Elements :token:`startPoint` and :token:`endPoint` are coordinates in tenths, relative to the position on which the parent object is placed.
+
+Example. A note with an attached arrow pointing to it::
+
+    (score (vers 2.0) (instrument (musicData
+        (clef G)(key C)(time 2 4)
+        (n c4 q
+            (line (startPoint (dx 25.0) (dy 60.0))
+                  (endPoint (dx 100) (dy 90.0))
+                  (width 1.0)
+                  (color #000000)
+                  (lineStyle solid)
+                  (lineCapStart arrowhead)
+                  (lineCapEnd none)
+            )
+        )
+        (barline end) 
+    )))
+
+.. image:: ../figures/line-01.png
+
+
+

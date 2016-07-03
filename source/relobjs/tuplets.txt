@@ -73,7 +73,7 @@ The tuplet element does not implies neither beaming nor time modification. There
         (barline)
     )))
 
-.. image:: ..figures/tuplet-01.png
+.. image:: ../figures/tuplet-01.png
 
 
 

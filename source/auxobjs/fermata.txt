@@ -4,7 +4,7 @@
 Fermatas
 ----------
 
-Fermatas are defined in note/rests, using :token:`fermata` element:
+Fermatas are defined attached to notes and rests, using the :token:`fermata` element:
 
 .. rst-class:: bnf-rule
 .. productionlist:: *
@@ -14,8 +14,15 @@ Fermatas are defined in note/rests, using :token:`fermata` element:
 
 Examples::
 
-    (n g4 q (fermata above))
-    (n g4 q (fermata below))
-    (r q (fermata above))
-    (r q (fermata below))
+    (score (vers 2.0) (instrument (musicData
+        (clef G)(key C)
+        (n g4  q (fermata above))
+        (n g4  q (fermata below))
+        (r q (fermata above))
+        (r q (fermata below))
+        (barline end)
+    )))
+
+.. image:: ../figures/fermata-01.png
+
 

@@ -10,7 +10,12 @@ For creating a tie, the :token:`tie` element has to be used, included in the :to
 .. productionlist:: *
     tie : { (tie num `tieType` [`bezier`] ) | l }
     tieType : { start | stop }
-    bezier : (bezier [`ctrol1_x`] [`ctrol1_y`] [`ctrol2_x`] [`ctrol2_y`] )
+    bezier : (bezier [`start_x`] [`start_y`] [`end_x`] [`end_y`]
+           :         [`ctrol1_x`] [`ctrol1_y`] [`ctrol2_x`] [`ctrol2_y`] )
+    start_x : (start-x tenths)  displacement in tenths from default location
+    start_y : (start-y tenths)  displacement in tenths from default location
+    end_x : (end-x tenths)  displacement in tenths from default location
+    end_y : (end-y tenths)  displacement in tenths from default location
     ctrol1_x : (ctrol1-x tenths)  displacement in tenths from default location
     ctrol1_y : (ctrol1-y tenths)  displacement in tenths from default location
     ctrol2_x : (ctrol2-x tenths)  displacement in tenths from default location

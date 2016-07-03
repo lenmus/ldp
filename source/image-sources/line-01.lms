@@ -1,0 +1,15 @@
+(score (vers 2.0) (instrument (musicData
+    (clef G)(key C)(time 2 4)
+    (n c4 q
+        (line (startPoint (dx 25.0) (dy 60.0))
+              (endPoint (dx 100) (dy 90.0))
+              (width 1.0)
+              (color #000000)
+              (lineStyle solid)
+              (lineCapStart arrowhead)
+              (lineCapEnd none)
+        )
+    )
+    (barline end) 
+)))
+

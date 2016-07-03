@@ -18,8 +18,26 @@ Beam segments are represented by a string, encoded in the :token:`beamtype` elem
   - '-' for *end beam*. It stops a beam started in another note.
   - 'f' for *forward hook*. For specifying a single beam forward hook that only affects the note in which it is defined.
   - 'b' for *backward hook* For specifying a single beam backward hook that only affects the note in which it is defined.
-                          
-Some examples::
+
+For instance, lets define the beam for the group in following image:
+
+.. image:: ../figures/beams-03.png
+
+The beam will be assigned, arbitrarily, the ID 31. In first note one beam line starts; this is encoded as ``(beam 31 +)``.
+In second note the first beam line continues ('='), a second line starts ('+') and has a forward hook ('f'); therefore, the beam in second note will be encoded as ``(beam 31 =+f)``. The third note has two beam lines that continue from previous note; therefore the beam is encoded as
+``(beam 31 ==)``. Finally, in the last note the two beams end and there is a backwards hook; therefore ``(beam 31 --b)``. This is the score::
+
+    (score (vers 2.0) (instrument (musicData
+        (clef G)
+        (n e4 e (beam 31 +))
+        (n g4 t (beam 31 =+f))
+        (n d4 s (beam 31 ==))
+        (n f4 t (beam 31 --b))
+        (spacer 30)
+        (barline)
+    )))
+
+Some more examples::
 
     (score (vers 2.0) (instrument (musicData
         (clef G)
@@ -60,8 +78,51 @@ Abbreviated notation (deprecated)
 
 LDP also supports an abbreviated syntax for beams in simple lines of music. It consists on marking only the first note of the beamed group with a ``g+`` notation and the last note of the group with a ``g-`` notation. All notes defined between these two will be automatically included in the beam, and the beam segments will be automatically computed based on notes duration. Example::
 
-    (n c4 q g+)(n d4 e)(n e4 e g-)
+    (score (vers 2.0) (instrument (musicData
+        (clef G)
+        (key C)
+        (time 2 4)
 
-A group of beamed notes, formed by a quarter C4 note, an eighth D4 note and an eighth E4 note.
+        //Measure 1
+        (n c4 e. g+ v1)
+        (n d4 s v1)
+        (n e4 e g- v1)
+        (n c4 s g+ v1)
+        (n d4 s v1)
+        (n e4 e g- v1)
+        (barline simple)
+
+        //Measure 2
+        (n c4 s g+ v1)
+        (n d4 e v1)
+        (n e4 s g- v1)
+        (n c4 s g+ v1)
+        (n d4 s v1)
+        (n d4 s v1)
+        (n e4 s g- v1)
+        (barline simple)
+
+        //Measure 3
+        (n c4 s g+ v1)
+        (n d4 e. g- v1)
+        (n c4 t g+ v1)
+        (n d4 e v1)
+        (n d4 t v1)
+        (n e4 s g- v1)
+        (barline simple)
+
+        //Measure 4
+        (n c4 s g+ v1)
+        (n d4 t v1)
+        (n d4 t v1)
+        (n e4 e g- v1)
+        (n c4 s g+ v1)
+        (n d4 t v1)
+        (n d4 e v1)
+        (n e4 t g- v1)
+        (barline simple)
+    )))
+
+.. image:: ../figures/beams-04.png
 
 

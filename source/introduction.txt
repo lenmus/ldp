@@ -144,3 +144,15 @@ To describe the language, Backus Naur form (BNF) syntax rules will be used:
 * Repeatable arguments will be followed by an asterisk (*), meaning 'zero or more repetitions' or by a plus sign (+), mening 'one or more repetitions'.
 
 
+
+.. _license:
+
+License
+--------------
+
+Copyright © 2002-2016 Cecilio Salmeron. 
+The text of and illustrations in the *LDP language. Reference manual* are licensed under the Creative Commons Attribution-ShareAlike 4.0 International License ("CC-BY-SA"). An explanation of CC-BY-SA is available at http://creativecommons.org/licenses/by-sa/4.0/. In accordance with CC-BY-SA, if you distribute this document or an adaptation of it, you must provide the URL for the original version.
+
+.. image:: creative-commons-by-sa-88x31.png
+
+
