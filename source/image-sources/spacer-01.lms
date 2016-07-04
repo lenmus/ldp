@@ -1,0 +1,19 @@
+(score (vers 2.0)(instrument (musicData 
+    (clef G)
+    (barline)
+
+    //measure 1: default layoput without spacer, for comparison
+    (n f4 q)
+    (barline)
+
+    //measure 2: insert an space of 10 lines before the note
+    (spacer 100)    
+    (n f4 q)
+    (barline)
+
+    //measure 3: a null spacer does nothing
+    (spacer 0)
+    (n f4 q)
+    (barline)
+)))
+

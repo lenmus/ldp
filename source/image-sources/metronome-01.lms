@@ -1,0 +1,14 @@
+(score (vers 2.0) (instrument (musicData 
+    (clef G)(key C)(time 2 4)
+    (metronome q 60)            // quarter-note = 60
+    (n e4 q)(n g4 q)(barline)
+    (metronome q q.)            // quarter-note = dotted-quarter-note
+    (n e4 q)(n g4 q)(barline)
+    (metronome 60)              // m.m. = 60
+    (n e4 q)(n g4 q)(barline)
+    (metronome q 60 parenthesis)    // (quarter-note = 60)
+    (n e4 q)(n g4 q)(barline)
+    (metronome q 60 noVisible)      // nothing displayed
+    (n e4 q)(n g4 q)(barline end)
+)))
+

@@ -12,5 +12,6 @@ Music description
     time-signature.txt
     barlines.txt
     note-rest.txt
+    metronome.txt
 
 
