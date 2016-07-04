@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3. Music description &mdash; LDP language manual. Vers. 2.0 (draft)</title>
+    <title>3.8. Metronome marks &mdash; LDP language manual. Vers. 2.0 (draft)</title>
     
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,17 +25,18 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
-    <link rel="next" title="3.1. The musicData element" href="music-data.html" />
-    <link rel="prev" title="2.2. The Instrument element" href="../score/instrument.html" /> 
+    <link rel="up" title="3. Music description" href="index.html" />
+    <link rel="next" title="4. Polyophony: chords and voices" href="../polyphony/index.html" />
+    <link rel="prev" title="3.6. Notes and rests" href="note-rest.html" /> 
   </head>
   <body role="document">
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
         <div class="rel">
-          <a href="../score/instrument.html" title="2.2. The Instrument element"
+          <a href="note-rest.html" title="3.6. Notes and rests"
              accesskey="P">previous</a> |
-          <a href="music-data.html" title="3.1. The musicData element"
+          <a href="../polyphony/index.html" title="4. Polyophony: chords and voices"
              accesskey="N">next</a> |
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a>
@@ -51,25 +52,36 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="music-description">
-<span id="ch-music-data"></span><h1>3. Music description</h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="music-data.html">3.1. The musicData element</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clef.html">3.2. Clefs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="key-signature.html">3.3. Key signatures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="time-signature.html">3.4. Time signatures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="barlines.html">3.5. Barlines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="note-rest.html">3.6. Notes and rests</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="note-rest.html#duration">3.6.1. Duration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="note-rest.html#pitch">3.6.2. Pitch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="note-rest.html#stem">3.6.3. Stem</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="note-rest.html#selecting-the-staff">3.7. Selecting the staff</a></li>
-<li class="toctree-l1"><a class="reference internal" href="metronome.html">3.8. Metronome marks</a></li>
-</ul>
+  <div class="section" id="metronome-marks">
+<span id="element-metronome"></span><h1>3.8. Metronome marks</h1>
+<p>Standard metronome marks can be displayed using the <a class="reference internal" href="#grammar-token-metronome"><code class="xref std std-token docutils literal"><span class="pre">metronome</span></code></a> element.
+It also affects the default tempo in playback.</p>
+<pre class="bnf-rule">
+<strong id="grammar-token-metronome">metronome     </strong> ::=  (metronome { <a class="reference internal" href="#grammar-token-noteType"><code class="xref docutils literal"><span class="pre">noteType</span></code></a> {<a class="reference internal" href="#grammar-token-ticksPerMinute"><code class="xref docutils literal"><span class="pre">ticksPerMinute</span></code></a> | <a class="reference internal" href="#grammar-token-noteType"><code class="xref docutils literal"><span class="pre">noteType</span></code></a>} | <a class="reference internal" href="#grammar-token-ticksPerMinute"><code class="xref docutils literal"><span class="pre">ticksPerMinute</span></code></a> }
+                               [parenthesis] [noVisible] )
+<strong id="grammar-token-noteType">noteType      </strong> ::=  note duration, a letter with optional dots, as in notes/rest
+<strong id="grammar-token-ticksPerMinute">ticksPerMinute</strong> ::=  number
+</pre>
+<p>To set the tempo in playback without printing anything on the score, make the metronome
+marking invisible by using a <code class="xref std std-token docutils literal"><span class="pre">noVisible</span></code> option.</p>
+<p>The <code class="xref std std-token docutils literal"><span class="pre">parenthesis</span></code> option is for enclosing the metronome mark between parenthesis.</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
+    (clef G)(key C)(time 2 4)
+    (metronome q 60)            // quarter-note = 60
+    (n e4 q)(n g4 q)(barline)
+    (metronome q q.)            // quarter-note = dotted-quarter-note
+    (n e4 q)(n g4 q)(barline)
+    (metronome 60)              // m.m. = 60
+    (n e4 q)(n g4 q)(barline)
+    (metronome q 60 parenthesis)    // (quarter-note = 60)
+    (n e4 q)(n g4 q)(barline)
+    (metronome q 60 noVisible)      // nothing displayed
+    (n e4 q)(n g4 q)(barline end)
+)))
+</pre></div>
 </div>
+<img alt="../_images/metronome-01.png" src="../_images/metronome-01.png" />
 </div>
 
 
@@ -82,7 +94,7 @@
           <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../score/index.html">2. The score and its structure</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">3. Music description</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Music description</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="music-data.html">3.1. The musicData element</a></li>
 <li class="toctree-l2"><a class="reference internal" href="clef.html">3.2. Clefs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="key-signature.html">3.3. Key signatures</a></li>
@@ -90,7 +102,7 @@
 <li class="toctree-l2"><a class="reference internal" href="barlines.html">3.5. Barlines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="note-rest.html">3.6. Notes and rests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="note-rest.html#selecting-the-staff">3.7. Selecting the staff</a></li>
-<li class="toctree-l2"><a class="reference internal" href="metronome.html">3.8. Metronome marks</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">3.8. Metronome marks</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../polyphony/index.html">4. Polyophony: chords and voices</a></li>
@@ -117,9 +129,9 @@
     <div class="footer-wrapper">
       <div class="footer">
         <div class="left">
-          <a href="../score/instrument.html" title="2.2. The Instrument element"
+          <a href="note-rest.html" title="3.6. Notes and rests"
              >previous</a> |
-          <a href="music-data.html" title="3.1. The musicData element"
+          <a href="../polyphony/index.html" title="4. Polyophony: chords and voices"
              >next</a> |
           <a href="../genindex.html" title="General Index"
              >index</a>

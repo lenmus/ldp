@@ -57,7 +57,7 @@
 <p>The <a class="reference internal" href="#grammar-token-musicData"><code class="xref std std-token docutils literal"><span class="pre">musicData</span></code></a> element is just a collection of objects, mainly notes and rests, that are attached to the staves of the instrument. These objects are named <em>staff objects</em> :</p>
 <pre class="bnf-rule">
 <strong id="grammar-token-musicData">musicData</strong> ::=  (musicData { <a class="reference internal" href="note-rest.html#grammar-token-note"><code class="xref docutils literal"><span class="pre">note</span></code></a> | <a class="reference internal" href="note-rest.html#grammar-token-rest"><code class="xref docutils literal"><span class="pre">rest</span></code></a> | <a class="reference internal" href="../polyphony/chords.html#grammar-token-chord"><code class="xref docutils literal"><span class="pre">chord</span></code></a> | <a class="reference internal" href="clef.html#grammar-token-clef"><code class="xref docutils literal"><span class="pre">clef</span></code></a> | <a class="reference internal" href="key-signature.html#grammar-token-key"><code class="xref docutils literal"><span class="pre">key</span></code></a> | <a class="reference internal" href="time-signature.html#grammar-token-time"><code class="xref docutils literal"><span class="pre">time</span></code></a> |
-                            <a class="reference internal" href="barlines.html#grammar-token-barline"><code class="xref docutils literal"><span class="pre">barline</span></code></a> | <code class="xref docutils literal"><span class="pre">metronome</span></code> | <a class="reference internal" href="../format/new-system.html#grammar-token-newSystem"><code class="xref docutils literal"><span class="pre">newSystem</span></code></a> | <code class="xref docutils literal"><span class="pre">spacer</span></code> |
+                            <a class="reference internal" href="barlines.html#grammar-token-barline"><code class="xref docutils literal"><span class="pre">barline</span></code></a> | <a class="reference internal" href="metronome.html#grammar-token-metronome"><code class="xref docutils literal"><span class="pre">metronome</span></code></a> | <a class="reference internal" href="../format/new-system.html#grammar-token-newSystem"><code class="xref docutils literal"><span class="pre">newSystem</span></code></a> | <a class="reference internal" href="../format/spacer.html#grammar-token-spacer"><code class="xref docutils literal"><span class="pre">spacer</span></code></a> |
                             <code class="xref docutils literal"><span class="pre">figuredBass</span></code> | <a class="reference internal" href="../polyphony/voices.html#grammar-token-goFwd"><code class="xref docutils literal"><span class="pre">goFwd</span></code></a> }* )
 </pre>
 <p>Examples:</p>
@@ -91,6 +91,7 @@
 <li class="toctree-l2"><a class="reference internal" href="barlines.html">3.5. Barlines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="note-rest.html">3.6. Notes and rests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="note-rest.html#selecting-the-staff">3.7. Selecting the staff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metronome.html">3.8. Metronome marks</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../polyphony/index.html">4. Polyophony: chords and voices</a></li>
@@ -128,7 +129,7 @@
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Jul-02.
+      Last updated on 2016-Jul-04.
     </div>
         </div>
         <div class="clearer"></div>
