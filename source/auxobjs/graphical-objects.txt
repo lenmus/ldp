@@ -1,7 +1,3 @@
-
-Graphical objects
-::::::::::::::::::::::
-
 .. _element_line:
 
 Lines

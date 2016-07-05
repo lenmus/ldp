@@ -10,6 +10,10 @@ The text of and illustrations in the *LDP language. Reference manual* are licens
 .. image:: creative-commons-by-sa-88x31.png
 
 
+.. important::
+    This document is a draft, still in development. It should be accurate but it is not yet finished and some details could change from one day to the next, as the text is being reviewed and completed.
+
+
 Table of Contents
 =========================
 
@@ -24,4 +28,5 @@ Table of Contents
     relobjs/index.txt
     auxobjs/index.txt
     format/index.txt
+    common/index.txt
 

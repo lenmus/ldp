@@ -8,11 +8,17 @@ Rests can be considered as notes with no pitch, so in LDP notes and rests are in
 
 .. rst-class:: bnf-rule
 .. productionlist:: *
-    note:  (n `pitch` `duration` [`noteOptions`*] [`noterestOptions`*]
-        :     [`componentOptions`*] [`attachments`*])
-    rest:  (r `duration` [`noterestOptions`*] [`componentOptions`*] [`attachments`*])
+    note:  (n `pitch` `duration` [`abbreviatedElements`*] [`noteOptions`*]
+        :     [`noterestOptions`*] [`staffObjOptions`*] [`attachments`*])
+    rest:  (r `duration` [`abbreviatedElements`*] [`noterestOptions`*]
+        :     [`staffObjOptions`*] [`attachments`*])
+    abbreviatedElements : abbreviated elements 'tie' (l), 'beam' (g), 'staffNumber' (p),
+                        : 'tuplet' (t) and 'voice' (v)
     noteOptions:  { `tie` | `stem` | `slur` }
-    noterestOptions:  { `beam` | `tuplet` | `timeModification` | `voice` | `staffNumber` | `fermata` }
+    noterestOptions:  { `beam` | `tuplet` | `timeModification` | `voice` }
+    staffObjOptions : { `staffNumber` | `printOptions` }
+    printOptions : { `visible` | `location` | `color` }
+    attachments : { `text` | `textbox` | `line` | `fermata` | `dynamics` }
     pitch:  label (see explanation)
     duration:  label (see explanation)
 
@@ -28,6 +34,8 @@ The minimum information required to represent a note is its pitch and its durati
 
 .. image:: ../figures/note-03.png
 
+After duration we can find old abbreviated elements: :token:`tie` (l), :token:`beam` (g), 
+:token:`staffNumber` (p) and :token:`voice` (v) in any order.
 
 
 Duration

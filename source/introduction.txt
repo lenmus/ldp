@@ -4,6 +4,10 @@ Introduction
 
 .. _sIntro_lang:
 
+.. important::
+    This document is a draft, still in development. It should be accurate but it is not yet finished and some details could change from one day to the next, as the text is being reviewed and completed.
+    
+
 The LDP language
 -------------------
 

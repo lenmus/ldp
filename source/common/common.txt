@@ -1,0 +1,51 @@
+.. _element_color:
+
+Color
+----------
+
+The :token:`color` element defines a color in RGB or RGBA format:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    color : (color { #rrggbb | #rrggbbaa } )
+
+The color is written as a hash character, "#", followed by some number of hexadecimal characters (digits 0-9 and letters a-f, the case of the letters doesn’t matter:  #00ff00 is identical to #00FF00). In the RGB format, the first two hex digits are for the red channel (rr), the next two for the green channel (gg) and the last two for the blue channel (bb). In RGBA format, two additional hex digits (aa) for the alpha channel (opacity) must be provided, where a value of '00' is full transparent and a value of 'ff' is full opaque.
+
+Examples::
+
+    (color #ff0000)     //red (opaque)
+    (color #ffff0000)   //transparent yellow
+    (color #4bc11fc0)   //bright green, 25% transparent
+
+
+
+
+.. _element_width_height:
+
+Width and height
+-------------------
+
+Some elements requires a :token:`width` element, a :token:`height` element or both:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    width : (width number)
+    height : (height number)
+
+The units depend on were the :token:`width` and :token:`height` elements are used. Normally values are expresed in tenths but in certain elements, width and height are expresed in absolute units (cents of a millimeter). See details in each element using the :token:`width` and :token:`height` elements.
+
+Examples::
+
+    (width 77.0)
+    (height 50)
+
+
+.. _element_visible:
+
+Hide /show objects
+-------------------
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    visible : (visible {yes | no}) | noVisible
+
