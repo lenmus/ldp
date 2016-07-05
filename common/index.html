@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3.3. Key signatures &mdash; LDP language manual. Vers. 2.0 (draft)</title>
+    <title>8. Common elements widely used &mdash; LDP language manual. Vers. 2.0 (draft)</title>
     
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,18 +25,17 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
-    <link rel="up" title="3. Music description" href="index.html" />
-    <link rel="next" title="3.4. Time signatures" href="time-signature.html" />
-    <link rel="prev" title="3.2. Clefs" href="clef.html" /> 
+    <link rel="next" title="8.1. Color" href="common.html" />
+    <link rel="prev" title="7.3. Spacers" href="../format/spacer.html" /> 
   </head>
   <body role="document">
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
         <div class="rel">
-          <a href="clef.html" title="3.2. Clefs"
+          <a href="../format/spacer.html" title="7.3. Spacers"
              accesskey="P">previous</a> |
-          <a href="time-signature.html" title="3.4. Time signatures"
+          <a href="common.html" title="8.1. Color"
              accesskey="N">next</a> |
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a>
@@ -52,22 +51,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="key-signatures">
-<span id="element-key"></span><h1>3.3. Key signatures</h1>
-<p>Setting or changing the key signature is done with the <a class="reference internal" href="#grammar-token-key"><code class="xref std std-token docutils literal"><span class="pre">key</span></code></a> element:</p>
-<pre class="bnf-rule">
-<strong id="grammar-token-key">key    </strong> ::=  (key <a class="reference internal" href="#grammar-token-keyType"><code class="xref docutils literal"><span class="pre">keyType</span></code></a> [<code class="xref docutils literal"><span class="pre">staffobjOptions</span></code>*] )
-<strong id="grammar-token-keyType">keyType</strong> ::=   { C | G | D | A | E | B | F+ | C+ | C- | G- | D- | A- |
-                          E- | B- | F | a | e | b | f+ | c+ | g+ | d+ | a+ | a- |
-                          e- | b- | f | c | g | d }
-</pre>
-<p>Key names in upper case refer to mayor keys. Key names in lower case are for minor keys. Plus (+) and minus (-) symbols are for sharp and flat, respectively.</p>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre>(key F+)           //F sharp major key
-(key f+)           //F sharp minor key
-(key d-)           //D flat minor key
-(key C)            //C major key
-</pre></div>
+  <div class="section" id="common-elements-widely-used">
+<span id="ch-common"></span><h1>8. Common elements widely used</h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="common.html">8.1. Color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common.html#width-and-height">8.2. Width and height</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common.html#hide-show-objects">8.3. Hide /show objects</a></li>
+</ul>
 </div>
 </div>
 
@@ -81,22 +72,17 @@
           <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../score/index.html">2. The score and its structure</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Music description</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="music-data.html">3.1. The musicData element</a></li>
-<li class="toctree-l2"><a class="reference internal" href="clef.html">3.2. Clefs</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">3.3. Key signatures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="time-signature.html">3.4. Time signatures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="barlines.html">3.5. Barlines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="note-rest.html">3.6. Notes and rests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="note-rest.html#selecting-the-staff">3.7. Selecting the staff</a></li>
-<li class="toctree-l2"><a class="reference internal" href="metronome.html">3.8. Metronome marks</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../music-data/index.html">3. Music description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../polyphony/index.html">4. Polyophony: chords and voices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relobjs/index.html">5. Notations relating two or more objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../auxobjs/index.html">6. Notations attached to one object</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../format/index.html">7. Format control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../common/index.html">8. Common elements widely used</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">8. Common elements widely used</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="common.html">8.1. Color</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#width-and-height">8.2. Width and height</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#hide-show-objects">8.3. Hide /show objects</a></li>
+</ul>
+</li>
 </ul>
 
           <h3 style="margin-top: 1.5em;">Search</h3>
@@ -117,9 +103,9 @@
     <div class="footer-wrapper">
       <div class="footer">
         <div class="left">
-          <a href="clef.html" title="3.2. Clefs"
+          <a href="../format/spacer.html" title="7.3. Spacers"
              >previous</a> |
-          <a href="time-signature.html" title="3.4. Time signatures"
+          <a href="common.html" title="8.1. Color"
              >next</a> |
           <a href="../genindex.html" title="General Index"
              >index</a>

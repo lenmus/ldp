@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3.3. Key signatures &mdash; LDP language manual. Vers. 2.0 (draft)</title>
+    <title>6.2. Dynamics marks &mdash; LDP language manual. Vers. 2.0 (draft)</title>
     
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,18 +25,18 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
-    <link rel="up" title="3. Music description" href="index.html" />
-    <link rel="next" title="3.4. Time signatures" href="time-signature.html" />
-    <link rel="prev" title="3.2. Clefs" href="clef.html" /> 
+    <link rel="up" title="6. Notations attached to one object" href="index.html" />
+    <link rel="next" title="6.3. Lines" href="graphical-objects.html" />
+    <link rel="prev" title="6.1. Fermatas" href="fermata.html" /> 
   </head>
   <body role="document">
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
         <div class="rel">
-          <a href="clef.html" title="3.2. Clefs"
+          <a href="fermata.html" title="6.1. Fermatas"
              accesskey="P">previous</a> |
-          <a href="time-signature.html" title="3.4. Time signatures"
+          <a href="graphical-objects.html" title="6.3. Lines"
              accesskey="N">next</a> |
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a>
@@ -52,23 +52,24 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="key-signatures">
-<span id="element-key"></span><h1>3.3. Key signatures</h1>
-<p>Setting or changing the key signature is done with the <a class="reference internal" href="#grammar-token-key"><code class="xref std std-token docutils literal"><span class="pre">key</span></code></a> element:</p>
+  <div class="section" id="dynamics-marks">
+<span id="element-dynamics"></span><h1>6.2. Dynamics marks</h1>
+<p>A dynamics mark is a string, such as &#8220;p&#8221;, &#8220;pp&#8221;, &#8220;sf&#8221;, &#8220;ff&#8221;, &#8220;fff&#8221;, &#8220;sf&#8221;, etc. attached to a note and normally placed under the note, on the space between the note staff and the next staff:</p>
 <pre class="bnf-rule">
-<strong id="grammar-token-key">key    </strong> ::=  (key <a class="reference internal" href="#grammar-token-keyType"><code class="xref docutils literal"><span class="pre">keyType</span></code></a> [<code class="xref docutils literal"><span class="pre">staffobjOptions</span></code>*] )
-<strong id="grammar-token-keyType">keyType</strong> ::=   { C | G | D | A | E | B | F+ | C+ | C- | G- | D- | A- |
-                          E- | B- | F | a | e | b | f+ | c+ | g+ | d+ | a+ | a- |
-                          e- | b- | f | c | g | d }
+<strong id="grammar-token-dynamics">dynamics</strong> ::=  (dyn string [<a class="reference internal" href="fermata.html#grammar-token-placement"><code class="xref docutils literal"><span class="pre">placement</span></code></a>] <a class="reference internal" href="../music-data/note-rest.html#grammar-token-printOptions"><code class="xref docutils literal"><span class="pre">printOptions</span></code></a>* )
 </pre>
-<p>Key names in upper case refer to mayor keys. Key names in lower case are for minor keys. Plus (+) and minus (-) symbols are for sharp and flat, respectively.</p>
 <p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre>(key F+)           //F sharp major key
-(key f+)           //F sharp minor key
-(key d-)           //D flat minor key
-(key C)            //C major key
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
+    (clef G)(key C)
+    (n g4 q (dyn &quot;fff&quot; below))
+    (n g4 q (dyn &quot;ppp&quot;))
+    (n g4 q (dyn &quot;sfz&quot; above))
+    (n g4 q (dyn &quot;sfffz&quot; above (color #ff0000)))
+    (barline end)
+)))
 </pre></div>
 </div>
+<img alt="../_images/dynamics-01.png" src="../_images/dynamics-01.png" />
 </div>
 
 
@@ -81,20 +82,15 @@
           <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../score/index.html">2. The score and its structure</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Music description</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="music-data.html">3.1. The musicData element</a></li>
-<li class="toctree-l2"><a class="reference internal" href="clef.html">3.2. Clefs</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">3.3. Key signatures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="time-signature.html">3.4. Time signatures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="barlines.html">3.5. Barlines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="note-rest.html">3.6. Notes and rests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="note-rest.html#selecting-the-staff">3.7. Selecting the staff</a></li>
-<li class="toctree-l2"><a class="reference internal" href="metronome.html">3.8. Metronome marks</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../music-data/index.html">3. Music description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../polyphony/index.html">4. Polyophony: chords and voices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relobjs/index.html">5. Notations relating two or more objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../auxobjs/index.html">6. Notations attached to one object</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Notations attached to one object</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fermata.html">6.1. Fermatas</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">6.2. Dynamics marks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphical-objects.html">6.3. Lines</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../format/index.html">7. Format control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../common/index.html">8. Common elements widely used</a></li>
 </ul>
@@ -117,9 +113,9 @@
     <div class="footer-wrapper">
       <div class="footer">
         <div class="left">
-          <a href="clef.html" title="3.2. Clefs"
+          <a href="fermata.html" title="6.1. Fermatas"
              >previous</a> |
-          <a href="time-signature.html" title="3.4. Time signatures"
+          <a href="graphical-objects.html" title="6.3. Lines"
              >next</a> |
           <a href="../genindex.html" title="General Index"
              >index</a>

@@ -1,0 +1,145 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>8.1. Color &mdash; LDP language manual. Vers. 2.0 (draft)</title>
+    
+    <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
+    <link rel="up" title="8. Common elements widely used" href="index.html" />
+    <link rel="prev" title="8. Common elements widely used" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="header-wrapper">
+      <div class="header">
+        <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
+        <div class="rel">
+          <a href="index.html" title="8. Common elements widely used"
+             accesskey="P">previous</a> |
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="color">
+<span id="element-color"></span><h1>8.1. Color</h1>
+<p>The <a class="reference internal" href="#grammar-token-color"><code class="xref std std-token docutils literal"><span class="pre">color</span></code></a> element defines a color in RGB or RGBA format:</p>
+<pre class="bnf-rule">
+<strong id="grammar-token-color">color</strong> ::=  (color { #rrggbb | #rrggbbaa } )
+</pre>
+<p>The color is written as a hash character, &#8220;#&#8221;, followed by some number of hexadecimal characters (digits 0-9 and letters a-f, the case of the letters doesn’t matter:  #00ff00 is identical to #00FF00). In the RGB format, the first two hex digits are for the red channel (rr), the next two for the green channel (gg) and the last two for the blue channel (bb). In RGBA format, two additional hex digits (aa) for the alpha channel (opacity) must be provided, where a value of &#8216;00&#8217; is full transparent and a value of &#8216;ff&#8217; is full opaque.</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre>(color #ff0000)     //red (opaque)
+(color #ffff0000)   //transparent yellow
+(color #4bc11fc0)   //bright green, 25% transparent
+</pre></div>
+</div>
+</div>
+<div class="section" id="width-and-height">
+<span id="element-width-height"></span><h1>8.2. Width and height</h1>
+<p>Some elements requires a <a class="reference internal" href="../format/spacer.html#grammar-token-width"><code class="xref std std-token docutils literal"><span class="pre">width</span></code></a> element, a <a class="reference internal" href="#grammar-token-height"><code class="xref std std-token docutils literal"><span class="pre">height</span></code></a> element or both:</p>
+<pre class="bnf-rule">
+<strong id="grammar-token-width">width </strong> ::=  (width number)
+<strong id="grammar-token-height">height</strong> ::=  (height number)
+</pre>
+<p>The units depend on were the <a class="reference internal" href="../format/spacer.html#grammar-token-width"><code class="xref std std-token docutils literal"><span class="pre">width</span></code></a> and <a class="reference internal" href="#grammar-token-height"><code class="xref std std-token docutils literal"><span class="pre">height</span></code></a> elements are used. Normally values are expresed in tenths but in certain elements, width and height are expresed in absolute units (cents of a millimeter). See details in each element using the <a class="reference internal" href="../format/spacer.html#grammar-token-width"><code class="xref std std-token docutils literal"><span class="pre">width</span></code></a> and <a class="reference internal" href="#grammar-token-height"><code class="xref std std-token docutils literal"><span class="pre">height</span></code></a> elements.</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre>(width 77.0)
+(height 50)
+</pre></div>
+</div>
+</div>
+<div class="section" id="hide-show-objects">
+<span id="element-visible"></span><h1>8.3. Hide /show objects</h1>
+<pre class="bnf-rule">
+<strong id="grammar-token-visible">visible</strong> ::=  (visible {yes | no}) | noVisible
+</pre>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table Of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../score/index.html">2. The score and its structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../music-data/index.html">3. Music description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../polyphony/index.html">4. Polyophony: chords and voices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relobjs/index.html">5. Notations relating two or more objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auxobjs/index.html">6. Notations attached to one object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../format/index.html">7. Format control</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">8. Common elements widely used</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">8.1. Color</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#width-and-height">8.2. Width and height</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hide-show-objects">8.3. Hide /show objects</a></li>
+</ul>
+</li>
+</ul>
+
+          <h3 style="margin-top: 1.5em;">Search</h3>
+          <form class="search" action="../search.html" method="get">
+            <input type="text" name="q" size="18" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+          <p class="searchtip" style="font-size: 90%">
+            Enter search terms or a module, class or function name.
+          </p>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <a href="index.html" title="8. Common elements widely used"
+             >previous</a> |
+          <a href="../genindex.html" title="General Index"
+             >index</a>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+      Last updated on 2016-Jul-05.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>
