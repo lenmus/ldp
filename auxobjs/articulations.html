@@ -1,0 +1,194 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7.3. Accents and articulations &mdash; LDP language manual. Vers. 2.0 (draft)</title>
+    
+    <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
+    <link rel="up" title="7. Notations attached to one object" href="index.html" />
+    <link rel="next" title="8. Format control" href="../format/index.html" />
+    <link rel="prev" title="7.2. Lines" href="graphical-objects.html" /> 
+  </head>
+  <body role="document">
+    <div class="header-wrapper">
+      <div class="header">
+        <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
+        <div class="rel">
+          <a href="graphical-objects.html" title="7.2. Lines"
+             accesskey="P">previous</a> |
+          <a href="../format/index.html" title="8. Format control"
+             accesskey="N">next</a> |
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="accents-and-articulations">
+<span id="element-articulations"></span><h1>7.3. Accents and articulations</h1>
+<p>In LDP articulations are represented by an <a class="reference internal" href="#grammar-token-articulation"><code class="xref std std-token docutils literal"><span class="pre">articulation</span></code></a> element attached normally to a <a class="reference internal" href="../music-data/note-rest.html#grammar-token-note"><code class="xref std std-token docutils literal"><span class="pre">note</span></code></a> element.
+The <a class="reference internal" href="#grammar-token-articulation"><code class="xref std std-token docutils literal"><span class="pre">articulation</span></code></a> element defines symbols, such as accents, stress marks and other that are not specific for any particular instrument and that affects how the note should be played.
+Instrument-specific notations are defined by the <code class="xref std std-token docutils literal"><span class="pre">technical</span></code> element.</p>
+<p>The following articulation elements are currently supported in LDP:</p>
+<pre class="bnf-rule">
+<strong id="grammar-token-articulation">articulation</strong> ::=  { <a class="reference internal" href="#grammar-token-accentMark"><code class="xref docutils literal"><span class="pre">accentMark</span></code></a> | <a class="reference internal" href="#grammar-token-stressMark"><code class="xref docutils literal"><span class="pre">stressMark</span></code></a> | <a class="reference internal" href="#grammar-token-jazzPitch"><code class="xref docutils literal"><span class="pre">jazzPitch</span></code></a> }
+</pre>
+<div class="section" id="accents">
+<h2>7.3.1. Accents</h2>
+<p>Accents are normally displayed as a symbol above or below a note or chord:</p>
+<pre class="bnf-rule">
+<strong id="grammar-token-accentMark">accentMark</strong> ::=  (<a class="reference internal" href="#grammar-token-accentType"><code class="xref docutils literal"><span class="pre">accentType</span></code></a> [<a class="reference internal" href="../pauses/pauses.html#grammar-token-placement"><code class="xref docutils literal"><span class="pre">placement</span></code></a>] <a class="reference internal" href="../music-data/note-rest.html#grammar-token-printOptions"><code class="xref docutils literal"><span class="pre">printOptions</span></code></a>* )
+<strong id="grammar-token-accentType">accentType</strong> ::=  { accent | legato-duro | marccato | marccato-legato |
+                  marccato-staccato | mezzo-staccato | staccato |
+                  staccato-duro | staccatissimo | tenuto }
+</pre>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
+    (clef G)
+    (n e4 q (accent))
+    (n c5 q (legato-duro))
+    (n e4 q (staccato))
+    (barline)
+)))
+</pre></div>
+</div>
+<img alt="../_images/accent-01.png" src="../_images/accent-01.png" />
+<p>The following accents are currently available:</p>
+<img alt="../_images/accent-02.png" src="../_images/accent-02.png" />
+</div>
+<div class="section" id="stress-marks">
+<h2>7.3.2. Stress marks</h2>
+<p>Stress marks refer to additional accents introduced by Schoenberg&#8217; <em>Suite for piano, Op.25</em> and other sources for filling the gaps in the traditional accents. They are also displayed as a symbol above or below a note or chord:</p>
+<pre class="bnf-rule">
+<strong id="grammar-token-stressMark">stressMark</strong> ::=  (<a class="reference internal" href="#grammar-token-stressType"><code class="xref docutils literal"><span class="pre">stressType</span></code></a> [<a class="reference internal" href="../pauses/pauses.html#grammar-token-placement"><code class="xref docutils literal"><span class="pre">placement</span></code></a>] <a class="reference internal" href="../music-data/note-rest.html#grammar-token-printOptions"><code class="xref docutils literal"><span class="pre">printOptions</span></code></a>* )
+<strong id="grammar-token-stressType">stressType</strong> ::=  { stress | unstress }
+</pre>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
+    (clef G)
+    (n e4 q (stress))(n c5 q (stress))
+    (n e4 q (unstress))(n c5 q (unstress))
+    (barline)
+)))
+</pre></div>
+</div>
+<img alt="../_images/stress-01.png" src="../_images/stress-01.png" />
+</div>
+<div class="section" id="jazz-pitch-slide-marks">
+<h2>7.3.3. Jazz pitch slide marks</h2>
+<p>This group is formed by articulations used in the jazz world for denoting an unspecified pitch slide when attacking or releasing a note:</p>
+<pre class="bnf-rule">
+<strong id="grammar-token-jazzPitch">jazzPitch    </strong> ::=  (<a class="reference internal" href="#grammar-token-jazzPitchType"><code class="xref docutils literal"><span class="pre">jazzPitchType</span></code></a> <a class="reference internal" href="../music-data/note-rest.html#grammar-token-printOptions"><code class="xref docutils literal"><span class="pre">printOptions</span></code></a>* )
+<strong id="grammar-token-jazzPitchType">jazzPitchType</strong> ::=  { scoop | plop | doit | fallOff }
+</pre>
+<p>They are displayed as lines attached to a single note for indicating the direction and the start/end of the pitch slide:</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
+    (clef G)
+    (n e4 q (scoop))(n c5 q (scoop))
+    (n e4 q (plop))(n c5 q (plop))
+    (n e4 q (doit))(n c5 q (doit))
+    (n e4 q (fallOff))(n c5 q (fallOff))
+    (barline)
+)))
+</pre></div>
+</div>
+<img alt="auxobjs/../figures/jazz-pitch-01.png" src="auxobjs/../figures/jazz-pitch-01.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table Of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../score/index.html">2. The score and its structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../music-data/index.html">3. Music description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../polyphony/index.html">4. Polyophony: chords and voices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relobjs/index.html">5. Note relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pauses/index.html">6. Pauses and breath marks</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">7. Notations attached to one object</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dynamics.html">7.1. Dynamics marks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphical-objects.html">7.2. Lines</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">7.3. Accents and articulations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#accents">7.3.1. Accents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stress-marks">7.3.2. Stress marks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jazz-pitch-slide-marks">7.3.3. Jazz pitch slide marks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../format/index.html">8. Format control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common/index.html">9. Common elements widely used</a></li>
+</ul>
+
+          <h3 style="margin-top: 1.5em;">Search</h3>
+          <form class="search" action="../search.html" method="get">
+            <input type="text" name="q" size="18" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+          <p class="searchtip" style="font-size: 90%">
+            Enter search terms or a module, class or function name.
+          </p>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <a href="graphical-objects.html" title="7.2. Lines"
+             >previous</a> |
+          <a href="../format/index.html" title="8. Format control"
+             >next</a> |
+          <a href="../genindex.html" title="General Index"
+             >index</a>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+      Last updated on 2016-Jul-09.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

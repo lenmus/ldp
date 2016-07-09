@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>6.2. Dynamics marks &mdash; LDP language manual. Vers. 2.0 (draft)</title>
+    <title>7.1. Dynamics marks &mdash; LDP language manual. Vers. 2.0 (draft)</title>
     
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,18 +25,18 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
-    <link rel="up" title="6. Notations attached to one object" href="index.html" />
-    <link rel="next" title="6.3. Lines" href="graphical-objects.html" />
-    <link rel="prev" title="6.1. Fermatas" href="fermata.html" /> 
+    <link rel="up" title="7. Notations attached to one object" href="index.html" />
+    <link rel="next" title="7.2. Lines" href="graphical-objects.html" />
+    <link rel="prev" title="7. Notations attached to one object" href="index.html" /> 
   </head>
   <body role="document">
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
         <div class="rel">
-          <a href="fermata.html" title="6.1. Fermatas"
+          <a href="index.html" title="7. Notations attached to one object"
              accesskey="P">previous</a> |
-          <a href="graphical-objects.html" title="6.3. Lines"
+          <a href="graphical-objects.html" title="7.2. Lines"
              accesskey="N">next</a> |
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a>
@@ -53,10 +53,10 @@
           <div class="body" role="main">
             
   <div class="section" id="dynamics-marks">
-<span id="element-dynamics"></span><h1>6.2. Dynamics marks</h1>
-<p>A dynamics mark is a string, such as &#8220;p&#8221;, &#8220;pp&#8221;, &#8220;sf&#8221;, &#8220;ff&#8221;, &#8220;fff&#8221;, &#8220;sf&#8221;, etc. attached to a note and normally placed under the note, on the space between the note staff and the next staff:</p>
+<span id="element-dynamics"></span><h1>7.1. Dynamics marks</h1>
+<p>A dynamics mark is a string, such as &#8220;p&#8221;, &#8220;pp&#8221;, &#8220;sfz&#8221;, &#8220;mp&#8221;, &#8220;fff&#8221;, &#8220;mf&#8221;, etc. attached to a note and by default placed under the note, on the space between the note staff and the next staff:</p>
 <pre class="bnf-rule">
-<strong id="grammar-token-dynamics">dynamics</strong> ::=  (dyn string [<a class="reference internal" href="fermata.html#grammar-token-placement"><code class="xref docutils literal"><span class="pre">placement</span></code></a>] <a class="reference internal" href="../music-data/note-rest.html#grammar-token-printOptions"><code class="xref docutils literal"><span class="pre">printOptions</span></code></a>* )
+<strong id="grammar-token-dynamics">dynamics</strong> ::=  (dyn string [<a class="reference internal" href="../pauses/pauses.html#grammar-token-placement"><code class="xref docutils literal"><span class="pre">placement</span></code></a>] <a class="reference internal" href="../music-data/note-rest.html#grammar-token-printOptions"><code class="xref docutils literal"><span class="pre">printOptions</span></code></a>* )
 </pre>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
@@ -64,12 +64,47 @@
     (n g4 q (dyn &quot;fff&quot; below))
     (n g4 q (dyn &quot;ppp&quot;))
     (n g4 q (dyn &quot;sfz&quot; above))
-    (n g4 q (dyn &quot;sfffz&quot; above (color #ff0000)))
+    (n g4 q (dyn &quot;p&quot; above (color #ff0000)))
     (barline end)
 )))
 </pre></div>
 </div>
 <img alt="../_images/dynamics-01.png" src="../_images/dynamics-01.png" />
+<p>The most usual dinamics marks are:</p>
+<div class="highlight-python"><div class="highlight"><pre>ppp - pianississimo
+pp  - painissimo
+p   - piano
+mp  - mezzo piano
+mf  - mezzo forte
+f   - forte
+ff  - fortissimo
+fff - fortississimo
+sfz - sforzando
+fp  - forte-piano
+</pre></div>
+</div>
+<p>In addition, in LDP the following strings are also supported:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">m</span>       <span class="o">-</span> <span class="n">mezzo</span>
+<span class="n">r</span>       <span class="o">-</span> <span class="n">rinforzando</span>
+<span class="n">s</span>       <span class="o">-</span> <span class="n">sforzando</span>
+<span class="n">z</span>
+<span class="n">n</span>       <span class="o">-</span> <span class="n">niente</span>
+<span class="n">fz</span>      <span class="o">-</span> <span class="n">forzando</span>
+<span class="n">sf</span>      <span class="o">-</span> <span class="n">sforzando</span>
+<span class="n">sfp</span>     <span class="o">-</span> <span class="n">sforzando</span><span class="o">-</span><span class="n">piano</span>
+<span class="n">sfpp</span>    <span class="o">-</span> <span class="n">sforzando</span><span class="o">-</span><span class="n">pianissimo</span>
+<span class="n">sfzp</span>    <span class="o">-</span> <span class="n">sforzato</span><span class="o">-</span><span class="n">piano</span>
+<span class="n">sffz</span>    <span class="o">-</span> <span class="n">sforzato</span><span class="o">-</span><span class="n">fortissimo</span>
+<span class="n">rf</span>      <span class="o">-</span> <span class="n">rinforzando</span>
+<span class="n">rfz</span>     <span class="o">-</span> <span class="n">rinforzando</span>
+<span class="n">pppppp</span>
+<span class="n">ppppp</span>
+<span class="n">pppp</span>
+<span class="n">ffff</span>
+<span class="n">fffff</span>
+<span class="n">ffffff</span>
+</pre></div>
+</div>
 </div>
 
 
@@ -84,15 +119,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../score/index.html">2. The score and its structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../music-data/index.html">3. Music description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../polyphony/index.html">4. Polyophony: chords and voices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../relobjs/index.html">5. Notations relating two or more objects</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Notations attached to one object</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="fermata.html">6.1. Fermatas</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">6.2. Dynamics marks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="graphical-objects.html">6.3. Lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relobjs/index.html">5. Note relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pauses/index.html">6. Pauses and breath marks</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">7. Notations attached to one object</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">7.1. Dynamics marks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphical-objects.html">7.2. Lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articulations.html">7.3. Accents and articulations</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../format/index.html">7. Format control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../common/index.html">8. Common elements widely used</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../format/index.html">8. Format control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common/index.html">9. Common elements widely used</a></li>
 </ul>
 
           <h3 style="margin-top: 1.5em;">Search</h3>
@@ -113,9 +149,9 @@
     <div class="footer-wrapper">
       <div class="footer">
         <div class="left">
-          <a href="fermata.html" title="6.1. Fermatas"
+          <a href="index.html" title="7. Notations attached to one object"
              >previous</a> |
-          <a href="graphical-objects.html" title="6.3. Lines"
+          <a href="graphical-objects.html" title="7.2. Lines"
              >next</a> |
           <a href="../genindex.html" title="General Index"
              >index</a>
@@ -124,7 +160,7 @@
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Jul-05.
+      Last updated on 2016-Jul-09.
     </div>
         </div>
         <div class="clearer"></div>

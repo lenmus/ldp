@@ -67,7 +67,7 @@ Rests can be considered as notes with no pitch, so in LDP notes and rests are in
 <strong id="grammar-token-noterestOptions">noterestOptions    </strong> ::=   { <a class="reference internal" href="../relobjs/beams.html#grammar-token-beam"><code class="xref docutils literal"><span class="pre">beam</span></code></a> | <a class="reference internal" href="../relobjs/tuplets.html#grammar-token-tuplet"><code class="xref docutils literal"><span class="pre">tuplet</span></code></a> | <a class="reference internal" href="../relobjs/tuplets.html#grammar-token-timeModification"><code class="xref docutils literal"><span class="pre">timeModification</span></code></a> | <a class="reference internal" href="../polyphony/voices.html#grammar-token-voice"><code class="xref docutils literal"><span class="pre">voice</span></code></a> }
 <strong id="grammar-token-staffObjOptions">staffObjOptions    </strong> ::=  { <a class="reference internal" href="#grammar-token-staffNumber"><code class="xref docutils literal"><span class="pre">staffNumber</span></code></a> | <a class="reference internal" href="#grammar-token-printOptions"><code class="xref docutils literal"><span class="pre">printOptions</span></code></a> }
 <strong id="grammar-token-printOptions">printOptions       </strong> ::=  { <a class="reference internal" href="../common/common.html#grammar-token-visible"><code class="xref docutils literal"><span class="pre">visible</span></code></a> | <a class="reference internal" href="../format/new-system.html#grammar-token-location"><code class="xref docutils literal"><span class="pre">location</span></code></a> | <a class="reference internal" href="../common/common.html#grammar-token-color"><code class="xref docutils literal"><span class="pre">color</span></code></a> }
-<strong id="grammar-token-attachments">attachments        </strong> ::=  { <code class="xref docutils literal"><span class="pre">text</span></code> | <code class="xref docutils literal"><span class="pre">textbox</span></code> | <a class="reference internal" href="../auxobjs/graphical-objects.html#grammar-token-line"><code class="xref docutils literal"><span class="pre">line</span></code></a> | <a class="reference internal" href="../auxobjs/fermata.html#grammar-token-fermata"><code class="xref docutils literal"><span class="pre">fermata</span></code></a> | <a class="reference internal" href="../auxobjs/dynamics.html#grammar-token-dynamics"><code class="xref docutils literal"><span class="pre">dynamics</span></code></a> }
+<strong id="grammar-token-attachments">attachments        </strong> ::=  { <code class="xref docutils literal"><span class="pre">text</span></code> | <code class="xref docutils literal"><span class="pre">textbox</span></code> | <a class="reference internal" href="../auxobjs/graphical-objects.html#grammar-token-line"><code class="xref docutils literal"><span class="pre">line</span></code></a> | <a class="reference internal" href="../pauses/pauses.html#grammar-token-fermata"><code class="xref docutils literal"><span class="pre">fermata</span></code></a> | <a class="reference internal" href="../auxobjs/dynamics.html#grammar-token-dynamics"><code class="xref docutils literal"><span class="pre">dynamics</span></code></a> }
 <strong id="grammar-token-pitch">pitch              </strong> ::=   label (see explanation)
 <strong id="grammar-token-duration">duration           </strong> ::=   label (see explanation)
 </pre>
@@ -257,10 +257,11 @@ inherits this.</p>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../polyphony/index.html">4. Polyophony: chords and voices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../relobjs/index.html">5. Notations relating two or more objects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../auxobjs/index.html">6. Notations attached to one object</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../format/index.html">7. Format control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../common/index.html">8. Common elements widely used</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relobjs/index.html">5. Note relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pauses/index.html">6. Pauses and breath marks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auxobjs/index.html">7. Notations attached to one object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../format/index.html">8. Format control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common/index.html">9. Common elements widely used</a></li>
 </ul>
 
           <h3 style="margin-top: 1.5em;">Search</h3>
@@ -292,7 +293,7 @@ inherits this.</p>
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Jul-05.
+      Last updated on 2016-Jul-09.
     </div>
         </div>
         <div class="clearer"></div>
