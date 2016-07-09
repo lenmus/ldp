@@ -6,15 +6,14 @@ Notations attached to one object
 
 .. toctree::
 
-    fermata.txt
     dynamics.txt
     graphical-objects.txt
+    articulations.txt
 
 .. AuxObjs
 
     Accents
-    Technical marks
-    Articulations
+    Technical marks  
     Fermatas
     Ornaments
     Text boxes

@@ -1,0 +1,8 @@
+(score (vers 2.0) (instrument (musicData
+    (clef G)
+    (n e4 q (accent))
+    (n c5 q (legato-duro))
+    (n e4 q (staccato))
+    (barline)
+)))
+

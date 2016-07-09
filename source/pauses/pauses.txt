@@ -1,0 +1,86 @@
+
+.. _element_fermata:
+
+Fermata
+----------
+
+Fermatas are defined attached to notes and rests, using the :token:`fermata` element:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    fermata : (fermata [`fermataSymbol`] [`placement`] `printOptions`* )
+    fermataSymbol : { normal | angle | square | short | long | very-short | 
+                  : very-long }     default 'normal'
+    placement : { above | below }
+
+Default placement is *above* if the stem goes down, and *below* if the stem goes up.
+
+Examples::
+
+    (score (vers 2.0) (instrument (musicData
+        (clef G)(key C)
+        (n g4  q (fermata above))
+        (n g4  q (fermata below))
+        (r q (fermata above))
+        (r q (fermata below))
+        (barline end)
+    )))
+
+.. image:: ../figures/fermata-01.png
+
+
+
+.. _element_caesura:
+
+Caesura
+----------
+
+Caesura marks, also known as the *railroad tracks*, are defined attached to notes, using the :token:`caesura` element. The *caesura* mark is displayed over staff after the note to which it is attached, and its function is to create a sudden pause in the performance, for a period of time at the discretion of the performer or conductor, with an equally sudden resumption of sound:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    caesura : (caesura [`caesuraSymbol`] `printOptions`* )
+    caesuraSymbol : { normal | thick | short | curved }     default 'normal'
+
+Example::
+
+    (score (vers 2.0) (instrument (musicData
+        (clef G)(key C)
+        (n c4 q (caesura))
+        (n f4 q (caesura thick))
+        (n g4 q (caesura short))
+        (n c4 q (caesura curved))
+        (barline end)
+    )))
+
+.. image:: ../figures/caesura-01.png
+
+
+
+
+.. _element_breath_mark:
+
+Breath mark
+------------
+
+The :token:`breathMark` element is displayed over staff before the note to which it is attached, and implies that the note duration is shortened slightly to allow for the short pause in the phrase. The :token:`breathMark` element may have a :token:`breathSymbol` element to indicate the symbol used for the breath mark:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    breathMark : (breathMark [`breathSymbol`] `printOptions`* )
+    breathSymbol : { comma | tick | V | salzedo }     default 'comma'
+
+Examples::
+
+    (score (vers 2.0) (instrument (musicData
+        (clef G)(key C)
+        (n g4  q (breathMark comma))
+        (n g4  q (breathMark tick))
+        (n g4  q (breathMark V))
+        (n g4  q (breathMark salzedo))
+        (barline end)
+    )))
+
+.. image:: ../figures/breath-01.png
+
+

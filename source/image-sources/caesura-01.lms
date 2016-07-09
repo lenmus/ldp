@@ -1,0 +1,9 @@
+(score (vers 2.0) (instrument (musicData
+    (clef G)(key C)
+    (n c4 q (caesura))
+    (n f4 q (caesura thick))
+    (n g4 q (caesura short))
+    (n c4 q (caesura curved))
+    (barline end)
+)))
+

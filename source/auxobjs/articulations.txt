@@ -1,0 +1,94 @@
+.. _element_articulations:
+
+Accents and articulations
+----------------------------
+
+In LDP articulations are represented by an :token:`articulation` element attached normally to a :token:`note` element. 
+The :token:`articulation` element defines symbols, such as accents, stress marks and other that are not specific for any particular instrument and that affects how the note should be played. 
+Instrument-specific notations are defined by the :token:`technical` element.
+
+The following articulation elements are currently supported in LDP:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    articulation : { `accentMark` | `stressMark` | `jazzPitch` }
+
+
+Accents
+...........
+
+Accents are normally displayed as a symbol above or below a note or chord:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    accentMark : (`accentType` [`placement`] `printOptions`* )
+    accentType : { accent | legato-duro | marccato | marccato-legato | 
+               :   marccato-staccato | mezzo-staccato | staccato | 
+               :   staccato-duro | staccatissimo | tenuto }
+
+Example::
+
+    (score (vers 2.0) (instrument (musicData
+        (clef G)
+        (n e4 q (accent))
+        (n c5 q (legato-duro))
+        (n e4 q (staccato))
+        (barline)
+    )))
+
+.. image:: ../figures/accent-01.png
+
+The following accents are currently available:
+
+.. image:: ../figures/accent-02.png
+
+
+Stress marks
+...............
+
+Stress marks refer to additional accents introduced by Schoenberg' *Suite for piano, Op.25* and other sources for filling the gaps in the traditional accents. They are also displayed as a symbol above or below a note or chord:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    stressMark : (`stressType` [`placement`] `printOptions`* )
+    stressType : { stress | unstress }
+
+Example::
+
+    (score (vers 2.0) (instrument (musicData
+        (clef G)
+        (n e4 q (stress))(n c5 q (stress))
+        (n e4 q (unstress))(n c5 q (unstress))
+        (barline)
+    )))
+
+.. image:: ../figures/stress-01.png
+
+
+
+Jazz pitch slide marks
+..........................
+
+This group is formed by articulations used in the jazz world for denoting an unspecified pitch slide when attacking or releasing a note:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    jazzPitch : (`jazzPitchType` `printOptions`* )
+    jazzPitchType : { scoop | plop | doit | fallOff }
+
+They are displayed as lines attached to a single note for indicating the direction and the start/end of the pitch slide:
+
+Example::
+
+    (score (vers 2.0) (instrument (musicData
+        (clef G)
+        (n e4 q (scoop))(n c5 q (scoop))
+        (n e4 q (plop))(n c5 q (plop))
+        (n e4 q (doit))(n c5 q (doit))
+        (n e4 q (fallOff))(n c5 q (fallOff))
+        (barline)
+    )))
+
+.. image:: ../figures/jazz-pitch-01.png
+
+

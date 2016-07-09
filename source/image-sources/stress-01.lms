@@ -1,0 +1,7 @@
+(score (vers 2.0) (instrument (musicData
+    (clef G)
+    (n e4 q (stress))(n c5 q (stress))
+    (n e4 q (unstress))(n c5 q (unstress))
+    (barline)
+)))
+

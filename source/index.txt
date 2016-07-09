@@ -26,6 +26,7 @@ Table of Contents
     music-data/index.txt
     polyphony/index.txt
     relobjs/index.txt
+    pauses/index.txt
     auxobjs/index.txt
     format/index.txt
     common/index.txt

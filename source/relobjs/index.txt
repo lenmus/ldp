@@ -1,7 +1,7 @@
 .. _ch_relobjs:
 
 ###########################################
-Notations relating two or more objects
+Note relationships
 ###########################################
 
 .. toctree::

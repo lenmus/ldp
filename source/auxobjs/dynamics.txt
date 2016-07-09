@@ -3,7 +3,7 @@
 Dynamics marks
 ---------------
 
-A dynamics mark is a string, such as "p", "pp", "sf", "ff", "fff", "sf", etc. attached to a note and normally placed under the note, on the space between the note staff and the next staff:
+A dynamics mark is a string, such as "p", "pp", "sfz", "mp", "fff", "mf", etc. attached to a note and by default placed under the note, on the space between the note staff and the next staff:
 
 .. rst-class:: bnf-rule
 .. productionlist:: *
@@ -16,10 +16,45 @@ Examples::
         (n g4 q (dyn "fff" below))
         (n g4 q (dyn "ppp"))
         (n g4 q (dyn "sfz" above))
-        (n g4 q (dyn "sfffz" above (color #ff0000)))
+        (n g4 q (dyn "p" above (color #ff0000)))
         (barline end)
     )))
 
 .. image:: ../figures/dynamics-01.png
+
+The most usual dinamics marks are::
+
+    ppp - pianississimo
+    pp  - painissimo
+    p   - piano
+    mp  - mezzo piano
+    mf  - mezzo forte
+    f   - forte
+    ff  - fortissimo
+    fff - fortississimo
+    sfz - sforzando
+    fp  - forte-piano
+
+In addition, in LDP the following strings are also supported::
+
+    m       - mezzo
+    r       - rinforzando
+    s       - sforzando
+    z
+    n       - niente
+    fz      - forzando
+    sf      - sforzando
+    sfp     - sforzando-piano
+    sfpp    - sforzando-pianissimo
+    sfzp    - sforzato-piano
+    sffz    - sforzato-fortissimo
+    rf      - rinforzando
+    rfz     - rinforzando
+    pppppp
+    ppppp
+    pppp
+    ffff
+    fffff
+    ffffff
 
 
