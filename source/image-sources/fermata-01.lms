@@ -1,8 +1,9 @@
 (score (vers 2.0) (instrument (musicData
     (clef G)(key C)
-    (n g4  q (fermata above))
-    (n g4  q (fermata below))
+    (n g4  q (fermata))
     (r q (fermata above))
     (r q (fermata below))
+    (n g4  q (fermata short))
     (barline end)
 )))
+

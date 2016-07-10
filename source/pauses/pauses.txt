@@ -9,8 +9,8 @@ Fermatas are defined attached to notes and rests, using the :token:`fermata` ele
 .. rst-class:: bnf-rule
 .. productionlist:: *
     fermata : (fermata [`fermataSymbol`] [`placement`] `printOptions`* )
-    fermataSymbol : { normal | angle | square | short | long | very-short | 
-                  : very-long }     default 'normal'
+    fermataSymbol : { normal | short | long | very-short | very-long |
+                  :   henze-short | henze-long }     default 'normal'
     placement : { above | below }
 
 Default placement is *above* if the stem goes down, and *below* if the stem goes up.
@@ -19,14 +19,18 @@ Examples::
 
     (score (vers 2.0) (instrument (musicData
         (clef G)(key C)
-        (n g4  q (fermata above))
-        (n g4  q (fermata below))
+        (n g4  q (fermata))
         (r q (fermata above))
         (r q (fermata below))
+        (n g4  q (fermata short))
         (barline end)
     )))
 
 .. image:: ../figures/fermata-01.png
+
+The following fermata symbols are currently available:
+
+.. image:: ../figures/fermata-02.png
 
 
 

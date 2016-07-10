@@ -3,7 +3,7 @@
 Lines
 ----------
 
-Lines cane be defined in any staff object, using the :token:`line` element:
+Lines can be defined in any staff object, using the :token:`line` element:
 
 .. rst-class:: bnf-rule
 .. productionlist:: *
