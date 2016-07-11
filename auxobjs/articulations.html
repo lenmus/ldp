@@ -59,7 +59,7 @@ The <a class="reference internal" href="#grammar-token-articulation"><code class
 Instrument-specific notations are defined by the <code class="xref std std-token docutils literal"><span class="pre">technical</span></code> element.</p>
 <p>The following articulation elements are currently supported in LDP:</p>
 <pre class="bnf-rule">
-<strong id="grammar-token-articulation">articulation</strong> ::=  { <a class="reference internal" href="#grammar-token-accentMark"><code class="xref docutils literal"><span class="pre">accentMark</span></code></a> | <a class="reference internal" href="#grammar-token-stressMark"><code class="xref docutils literal"><span class="pre">stressMark</span></code></a> | <a class="reference internal" href="#grammar-token-jazzPitch"><code class="xref docutils literal"><span class="pre">jazzPitch</span></code></a> }
+<strong id="grammar-token-articulation">articulation</strong> ::=  { <a class="reference internal" href="#grammar-token-accentMark"><code class="xref docutils literal"><span class="pre">accentMark</span></code></a> | <a class="reference internal" href="#grammar-token-stressMark"><code class="xref docutils literal"><span class="pre">stressMark</span></code></a> }
 </pre>
 <div class="section" id="accents">
 <h2>7.3.1. Accents</h2>
@@ -102,27 +102,6 @@ Instrument-specific notations are defined by the <code class="xref std std-token
 </div>
 <img alt="../_images/stress-01.png" src="../_images/stress-01.png" />
 </div>
-<div class="section" id="jazz-pitch-slide-marks">
-<h2>7.3.3. Jazz pitch slide marks</h2>
-<p>This group is formed by articulations used in the jazz world for denoting an unspecified pitch slide when attacking or releasing a note:</p>
-<pre class="bnf-rule">
-<strong id="grammar-token-jazzPitch">jazzPitch    </strong> ::=  (<a class="reference internal" href="#grammar-token-jazzPitchType"><code class="xref docutils literal"><span class="pre">jazzPitchType</span></code></a> <a class="reference internal" href="../music-data/note-rest.html#grammar-token-printOptions"><code class="xref docutils literal"><span class="pre">printOptions</span></code></a>* )
-<strong id="grammar-token-jazzPitchType">jazzPitchType</strong> ::=  { scoop | plop | doit | fallOff }
-</pre>
-<p>They are displayed as lines attached to a single note for indicating the direction and the start/end of the pitch slide:</p>
-<p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
-    (clef G)
-    (n e4 q (scoop))(n c5 q (scoop))
-    (n e4 q (plop))(n c5 q (plop))
-    (n e4 q (doit))(n c5 q (doit))
-    (n e4 q (fallOff))(n c5 q (fallOff))
-    (barline)
-)))
-</pre></div>
-</div>
-<img alt="auxobjs/../figures/jazz-pitch-01.png" src="auxobjs/../figures/jazz-pitch-01.png" />
-</div>
 </div>
 
 
@@ -145,7 +124,6 @@ Instrument-specific notations are defined by the <code class="xref std std-token
 <li class="toctree-l2 current"><a class="current reference internal" href="">7.3. Accents and articulations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#accents">7.3.1. Accents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#stress-marks">7.3.2. Stress marks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#jazz-pitch-slide-marks">7.3.3. Jazz pitch slide marks</a></li>
 </ul>
 </li>
 </ul>
@@ -183,7 +161,7 @@ Instrument-specific notations are defined by the <code class="xref std std-token
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Jul-09.
+      Last updated on 2016-Jul-11.
     </div>
         </div>
         <div class="clearer"></div>

@@ -57,23 +57,25 @@
 <p>Fermatas are defined attached to notes and rests, using the <a class="reference internal" href="#grammar-token-fermata"><code class="xref std std-token docutils literal"><span class="pre">fermata</span></code></a> element:</p>
 <pre class="bnf-rule">
 <strong id="grammar-token-fermata">fermata      </strong> ::=  (fermata [<a class="reference internal" href="#grammar-token-fermataSymbol"><code class="xref docutils literal"><span class="pre">fermataSymbol</span></code></a>] [<a class="reference internal" href="#grammar-token-placement"><code class="xref docutils literal"><span class="pre">placement</span></code></a>] <a class="reference internal" href="../music-data/note-rest.html#grammar-token-printOptions"><code class="xref docutils literal"><span class="pre">printOptions</span></code></a>* )
-<strong id="grammar-token-fermataSymbol">fermataSymbol</strong> ::=  { normal | angle | square | short | long | very-short |
-                   very-long }     default 'normal'
+<strong id="grammar-token-fermataSymbol">fermataSymbol</strong> ::=  { normal | short | long | very-short | very-long |
+                     henze-short | henze-long }     default 'normal'
 <strong id="grammar-token-placement">placement    </strong> ::=  { above | below }
 </pre>
 <p>Default placement is <em>above</em> if the stem goes down, and <em>below</em> if the stem goes up.</p>
 <p>Examples:</p>
 <div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
     (clef G)(key C)
-    (n g4  q (fermata above))
-    (n g4  q (fermata below))
+    (n g4  q (fermata))
     (r q (fermata above))
     (r q (fermata below))
+    (n g4  q (fermata short))
     (barline end)
 )))
 </pre></div>
 </div>
 <img alt="../_images/fermata-01.png" src="../_images/fermata-01.png" />
+<p>The following fermata symbols are currently available:</p>
+<img alt="../_images/fermata-02.png" src="../_images/fermata-02.png" />
 </div>
 <div class="section" id="caesura">
 <span id="element-caesura"></span><h1>6.2. Caesura</h1>
@@ -169,7 +171,7 @@
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Jul-09.
+      Last updated on 2016-Jul-11.
     </div>
         </div>
         <div class="clearer"></div>
