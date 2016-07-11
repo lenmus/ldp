@@ -21,7 +21,7 @@
     (n c5 q (fermata very-long))
     (barline)
 
-    (n e4 q (fermata henze-short) (text "henze_short" (dx -20)(dy -40)))
+    (n e4 q (fermata henze-short) (text "henze-short" (dx -20)(dy -40)))
     (n c5 q (fermata henze-short))
     (barline)
 
