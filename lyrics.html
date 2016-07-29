@@ -1,0 +1,208 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>8. Lyrics &mdash; LDP language manual. Vers. 2.0 (draft)</title>
+    
+    <link rel="stylesheet" href="_static/ldp.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="index.html" />
+    <link rel="next" title="9. Format control" href="format/index.html" />
+    <link rel="prev" title="7.3. Accents and articulations" href="auxobjs/articulations.html" /> 
+  </head>
+  <body role="document">
+    <div class="header-wrapper">
+      <div class="header">
+        <h1><a href="index.html">LDP language manual. Vers. 2.0</a></h1>
+        <div class="rel">
+          <a href="auxobjs/articulations.html" title="7.3. Accents and articulations"
+             accesskey="P">previous</a> |
+          <a href="format/index.html" title="9. Format control"
+             accesskey="N">next</a> |
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lyrics">
+<span id="element-lyric"></span><h1>8. Lyrics</h1>
+<p>Text underlays for lyrics are represented by <a class="reference internal" href="#grammar-token-lyric"><code class="xref std std-token docutils literal"><span class="pre">lyric</span></code></a> elements attached to notes:</p>
+<pre class="bnf-rule">
+<strong id="grammar-token-lyric">lyric    </strong> ::=  (lyric [<a class="reference internal" href="#grammar-token-lyricId"><code class="xref docutils literal"><span class="pre">lyricId</span></code></a>] <a class="reference internal" href="#grammar-token-lyricText"><code class="xref docutils literal"><span class="pre">lyricText</span></code></a> [<code class="xref docutils literal"><span class="pre">style</span></code>] [<a class="reference internal" href="pauses/pauses.html#grammar-token-placement"><code class="xref docutils literal"><span class="pre">placement</span></code></a>] <a class="reference internal" href="music-data/note-rest.html#grammar-token-printOptions"><code class="xref docutils literal"><span class="pre">printOptions</span></code></a>* )
+<strong id="grammar-token-lyricId">lyricId  </strong> ::=  num.  Default 1
+<strong id="grammar-token-lyricText">lyricText</strong> ::=  <code class="xref docutils literal"><span class="pre">string</span></code>+ [<a class="reference internal" href="#grammar-token-hyphen"><code class="xref docutils literal"><span class="pre">hyphen</span></code></a>][<a class="reference internal" href="#grammar-token-melisma"><code class="xref docutils literal"><span class="pre">melisma</span></code></a>]
+<strong id="grammar-token-hyphen">hyphen   </strong> ::=  &quot;-&quot;
+<strong id="grammar-token-melisma">melisma  </strong> ::=  (melisma)
+</pre>
+<p>The minimun content is just one syllable for the note:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
+    (clef G)
+    (n c4 q (lyric &quot;do&quot;))
+    (n d4 q (lyric &quot;re&quot;))
+    (n e4 q (lyric &quot;mi&quot;))
+    (n f4 q (lyric &quot;fa&quot;))
+    (n g4 q (lyric &quot;sol&quot;))
+    (n a4 q (lyric &quot;la&quot;))
+    (n b4 q (lyric &quot;si&quot;))
+    (n c5 q (lyric &quot;do&quot;))
+    (barline)
+)))
+</pre></div>
+</div>
+<img alt="_images/lyric-01.png" src="_images/lyric-01.png" />
+<p>The <a class="reference internal" href="#grammar-token-lyricId"><code class="xref std std-token docutils literal"><span class="pre">lyricId</span></code></a> element is used when there are multiple lyric lines, for identifying the line. If not specified, line 1 is assumed:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
+    (clef G)
+    (n c4 q (lyric 1 &quot;This&quot;)(lyric 2 &quot;A&quot;))
+    (n d4 q (lyric 1 &quot;is&quot;)(lyric 2 &quot;se&quot; -))
+    (n e4 q (lyric 1 &quot;line&quot;)(lyric 2 &quot;cond&quot;))
+    (n f4 q (lyric 1 &quot;one.&quot;)(lyric 2 &quot;line.&quot;))
+    (barline)
+)))
+</pre></div>
+</div>
+<img alt="_images/lyric-02.png" src="_images/lyric-02.png" />
+<p>The <a class="reference internal" href="#grammar-token-hyphen"><code class="xref std std-token docutils literal"><span class="pre">hyphen</span></code></a> element (a character &#8216;-&#8216; after the syllable text) indicates that this syllable is an intermediate one (a word-beginning syllable or a mid-word syllable) and thus a hyphenation symbol must be displayed between this and next syllable:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
+    (clef G)
+    (n c4 q (lyric &quot;hy&quot; -))
+    (n d4 q (lyric &quot;phe&quot; -))
+    (n e4 q (lyric &quot;na&quot; -))
+    (n f4 q (lyric &quot;ted&quot;))
+    (n g4 q (lyric &quot;words&quot;))
+    (n a4 q (lyric &quot;and&quot;))
+    (n b4 q (lyric &quot;more&quot;))
+    (n c5 q (lyric &quot;words&quot;))
+    (barline)
+)))
+</pre></div>
+</div>
+<img alt="_images/lyric-03.png" src="_images/lyric-03.png" />
+<p>The <a class="reference internal" href="#grammar-token-melisma"><code class="xref std std-token docutils literal"><span class="pre">melisma</span></code></a> element represent melisma lines:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
+    (clef G)
+    (n c4 q (lyric &quot;A&quot; (melisma)))
+    (n d4 q)
+    (n e4 q)
+    (n f4 q)
+    (n g4 q (lyric &quot;men&quot;))
+    (barline)
+)))
+</pre></div>
+</div>
+<img alt="_images/lyric-04.png" src="_images/lyric-04.png" />
+<p>Multiple syllables on a note are automatically separated by elision symbols (i.e. an undertie). Therefore, an additional character for the elision symbol must not be added to the syllable text:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
+    (clef G)
+    (n g5 e g+ (lyric &quot;con&quot; -))
+    (n c5 e (lyric &quot;sa&quot; (melisma)))
+    (n b4 e g-)
+    (barline)
+    (n c5 e g+)
+    (n b4 e (lyric &quot;cro&quot; &quot;a&quot;))
+    (n a4 e g- (lyric &quot;te&quot;))
+    (barline)
+)))
+</pre></div>
+</div>
+<img alt="_images/lyric-05.png" src="_images/lyric-05.png" />
+<p>The <a class="reference internal" href="pauses/pauses.html#grammar-token-placement"><code class="xref std std-token docutils literal"><span class="pre">placement</span></code></a> element is used to determine if the lyrics should be placed above the staff or below the staff. The specified value will be applied to the lyric element in wich it is defined and to all following lyric elements in the same line until a new placement is defined. By default, when no placement is defined, lyrics will be placed below:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
+    (clef G)
+    (n c6 q (lyric &quot;A&quot; - above))
+    (n e6 q (lyric &quot;bove&quot;))
+    (n a3 q (lyric &quot;Be&quot; - below))
+    (n f3 q (lyric &quot;low&quot;))
+    (barline)
+)))
+</pre></div>
+</div>
+<img alt="_images/lyric-06.png" src="_images/lyric-06.png" />
+<p>Style can be assigned to each lyric line by using the <code class="xref std std-token docutils literal"><span class="pre">style</span></code> element. It will be applied to the lyric element in wich it is defined and to all following lyric elements in the same line until a new style is defined. By default, when no style is defined, style &#8220;Default lyrics&#8221; is applied.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table Of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="score/index.html">2. The score and its structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="music-data/index.html">3. Music description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polyphony/index.html">4. Polyophony: chords and voices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="relobjs/index.html">5. Note relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pauses/index.html">6. Pauses and breath marks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auxobjs/index.html">7. Notations attached to one object</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">8. Lyrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="format/index.html">9. Format control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common/index.html">10. Common elements widely used</a></li>
+</ul>
+
+          <h3 style="margin-top: 1.5em;">Search</h3>
+          <form class="search" action="search.html" method="get">
+            <input type="text" name="q" size="18" />
+            <input type="submit" value="Go" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+          <p class="searchtip" style="font-size: 90%">
+            Enter search terms or a module, class or function name.
+          </p>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <a href="auxobjs/articulations.html" title="7.3. Accents and articulations"
+             >previous</a> |
+          <a href="format/index.html" title="9. Format control"
+             >next</a> |
+          <a href="genindex.html" title="General Index"
+             >index</a>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+      Last updated on 2016-Jul-29.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>
