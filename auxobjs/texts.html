@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>7.2. Lines &mdash; LDP language manual. Vers. 2.0 (draft)</title>
+    <title>7.4. Texts &mdash; LDP language manual. Vers. 2.0 (draft)</title>
     
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,17 +26,17 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
     <link rel="up" title="7. Notations attached to one object" href="index.html" />
-    <link rel="next" title="7.3. Accents and articulations" href="articulations.html" />
-    <link rel="prev" title="7.1. Dynamics marks" href="dynamics.html" /> 
+    <link rel="next" title="8. Lyrics" href="../lyrics.html" />
+    <link rel="prev" title="7.3. Accents and articulations" href="articulations.html" /> 
   </head>
   <body role="document">
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
         <div class="rel">
-          <a href="dynamics.html" title="7.1. Dynamics marks"
-             accesskey="P">previous</a> |
           <a href="articulations.html" title="7.3. Accents and articulations"
+             accesskey="P">previous</a> |
+          <a href="../lyrics.html" title="8. Lyrics"
              accesskey="N">next</a> |
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a>
@@ -52,38 +52,36 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lines">
-<span id="element-line"></span><h1>7.2. Lines</h1>
-<p>Lines can be defined in any staff object, using the <a class="reference internal" href="#grammar-token-line"><code class="xref std std-token docutils literal"><span class="pre">line</span></code></a> element:</p>
+  <div class="section" id="texts">
+<span id="element-text"></span><h1>7.4. Texts</h1>
+<p>Arbitrary strings of text on the score can be attached to most staff objects, using the <a class="reference internal" href="#grammar-token-text"><code class="xref std std-token docutils literal"><span class="pre">text</span></code></a> element:</p>
 <pre class="bnf-rule">
-<strong id="grammar-token-line">line        </strong> ::=  (line <a class="reference internal" href="#grammar-token-startPoint"><code class="xref docutils literal"><span class="pre">startPoint</span></code></a> <a class="reference internal" href="#grammar-token-endPoint"><code class="xref docutils literal"><span class="pre">endPoint</span></code></a> [<a class="reference internal" href="../format/spacer.html#grammar-token-width"><code class="xref docutils literal"><span class="pre">width</span></code></a>] [<a class="reference internal" href="#grammar-token-lineCapStart"><code class="xref docutils literal"><span class="pre">lineCapStart</span></code></a>] [<a class="reference internal" href="#grammar-token-lineCapEnd"><code class="xref docutils literal"><span class="pre">lineCapEnd</span></code></a>]
-                        [<a class="reference internal" href="#grammar-token-lineStyle"><code class="xref docutils literal"><span class="pre">lineStyle</span></code></a>] [<a class="reference internal" href="../common/common.html#grammar-token-color"><code class="xref docutils literal"><span class="pre">color</span></code></a>])
-<strong id="grammar-token-startPoint">startPoint  </strong> ::=  (startPoint <a class="reference internal" href="../format/new-system.html#grammar-token-location"><code class="xref docutils literal"><span class="pre">location</span></code></a>)
-<strong id="grammar-token-endPoint">endPoint    </strong> ::=  (endPoint <a class="reference internal" href="../format/new-system.html#grammar-token-location"><code class="xref docutils literal"><span class="pre">location</span></code></a>)
-<strong id="grammar-token-lineCapStart">lineCapStart</strong> ::=  (lineCapStart capValue)
-<strong id="grammar-token-lineCapEnd">lineCapEnd  </strong> ::=  (lineCapEnd capValue)
-<strong id="grammar-token-capValue">capValue    </strong> ::=  { none | dot | solid | longDash | shortDash | dotDash }
-<strong id="grammar-token-lineStyle">lineStyle   </strong> ::=  (lineStyle { none | arrowhead | arrowtail | circle | square | diamond } )
+<strong id="grammar-token-text">text</strong> ::=  (text string [<a class="reference internal" href="../common/common.html#grammar-token-style"><code class="xref docutils literal"><span class="pre">style</span></code></a>] [<a class="reference internal" href="../format/new-system.html#grammar-token-location"><code class="xref docutils literal"><span class="pre">location</span></code></a>])
 </pre>
-<p>Elements <a class="reference internal" href="#grammar-token-startPoint"><code class="xref std std-token docutils literal"><span class="pre">startPoint</span></code></a> and <a class="reference internal" href="#grammar-token-endPoint"><code class="xref std std-token docutils literal"><span class="pre">endPoint</span></code></a> are coordinates in tenths, relative to the position on which the parent object is placed.</p>
-<p>Example. A note with an attached arrow pointing to it:</p>
+<p>Example:</p>
 <div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
-    (clef G)(key C)(time 2 4)
+    (clef G)
+    (key C)
+    (spacer 50
+        (text &quot;spacer&quot; (dy -10)) )
     (n c4 q
-        (line (startPoint (dx 25.0) (dy 60.0))
-              (endPoint (dx 100) (dy 90.0))
-              (width 1.0)
-              (color #000000)
-              (lineStyle solid)
-              (lineCapStart arrowhead)
-              (lineCapEnd none)
-        )
-    )
+        (text &quot;note&quot; (dy 80)) )
+    (spacer 50)
+    (barline simple
+        (text &quot;barline&quot; (dx 15)(dy -20)) )
+    (spacer 50)
     (barline end)
 )))
 </pre></div>
 </div>
-<img alt="../_images/line-01.png" src="../_images/line-01.png" />
+<img alt="../_images/text-01.png" src="../_images/text-01.png" />
+<p>By default, the text is positioned so that the left edge of the first character is at the center of parent object and the text base line is on the the top line of the stave. The <a class="reference internal" href="../format/new-system.html#grammar-token-location"><code class="xref std std-token docutils literal"><span class="pre">location</span></code></a> element specifies a shift from the default position.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">The <a class="reference internal" href="#grammar-token-text"><code class="xref std std-token docutils literal"><span class="pre">text</span></code></a> element must not be used for lyrics nor for score titles, as for both
+of them there are specific LDP elements.</p>
+</div>
+<p>If no style is specified, style &#8220;Default style&#8221; is assigned.</p>
 </div>
 
 
@@ -102,9 +100,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../pauses/index.html">6. Pauses and breath marks</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">7. Notations attached to one object</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="dynamics.html">7.1. Dynamics marks</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">7.2. Lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphical-objects.html">7.2. Lines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="articulations.html">7.3. Accents and articulations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="texts.html">7.4. Texts</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">7.4. Texts</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../lyrics.html">8. Lyrics</a></li>
@@ -130,9 +128,9 @@
     <div class="footer-wrapper">
       <div class="footer">
         <div class="left">
-          <a href="dynamics.html" title="7.1. Dynamics marks"
-             >previous</a> |
           <a href="articulations.html" title="7.3. Accents and articulations"
+             >previous</a> |
+          <a href="../lyrics.html" title="8. Lyrics"
              >next</a> |
           <a href="../genindex.html" title="General Index"
              >index</a>

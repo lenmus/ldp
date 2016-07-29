@@ -26,14 +26,14 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="index.html" />
     <link rel="next" title="9. Format control" href="format/index.html" />
-    <link rel="prev" title="7.3. Accents and articulations" href="auxobjs/articulations.html" /> 
+    <link rel="prev" title="7.4. Texts" href="auxobjs/texts.html" /> 
   </head>
   <body role="document">
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="index.html">LDP language manual. Vers. 2.0</a></h1>
         <div class="rel">
-          <a href="auxobjs/articulations.html" title="7.3. Accents and articulations"
+          <a href="auxobjs/texts.html" title="7.4. Texts"
              accesskey="P">previous</a> |
           <a href="format/index.html" title="9. Format control"
              accesskey="N">next</a> |
@@ -55,7 +55,7 @@
 <span id="element-lyric"></span><h1>8. Lyrics</h1>
 <p>Text underlays for lyrics are represented by <a class="reference internal" href="#grammar-token-lyric"><code class="xref std std-token docutils literal"><span class="pre">lyric</span></code></a> elements attached to notes:</p>
 <pre class="bnf-rule">
-<strong id="grammar-token-lyric">lyric    </strong> ::=  (lyric [<a class="reference internal" href="#grammar-token-lyricId"><code class="xref docutils literal"><span class="pre">lyricId</span></code></a>] <a class="reference internal" href="#grammar-token-lyricText"><code class="xref docutils literal"><span class="pre">lyricText</span></code></a> [<code class="xref docutils literal"><span class="pre">style</span></code>] [<a class="reference internal" href="pauses/pauses.html#grammar-token-placement"><code class="xref docutils literal"><span class="pre">placement</span></code></a>] <a class="reference internal" href="music-data/note-rest.html#grammar-token-printOptions"><code class="xref docutils literal"><span class="pre">printOptions</span></code></a>* )
+<strong id="grammar-token-lyric">lyric    </strong> ::=  (lyric [<a class="reference internal" href="#grammar-token-lyricId"><code class="xref docutils literal"><span class="pre">lyricId</span></code></a>] <a class="reference internal" href="#grammar-token-lyricText"><code class="xref docutils literal"><span class="pre">lyricText</span></code></a> [<a class="reference internal" href="common/common.html#grammar-token-style"><code class="xref docutils literal"><span class="pre">style</span></code></a>] [<a class="reference internal" href="pauses/pauses.html#grammar-token-placement"><code class="xref docutils literal"><span class="pre">placement</span></code></a>] <a class="reference internal" href="music-data/note-rest.html#grammar-token-printOptions"><code class="xref docutils literal"><span class="pre">printOptions</span></code></a>* )
 <strong id="grammar-token-lyricId">lyricId  </strong> ::=  num.  Default 1
 <strong id="grammar-token-lyricText">lyricText</strong> ::=  <code class="xref docutils literal"><span class="pre">string</span></code>+ [<a class="reference internal" href="#grammar-token-hyphen"><code class="xref docutils literal"><span class="pre">hyphen</span></code></a>][<a class="reference internal" href="#grammar-token-melisma"><code class="xref docutils literal"><span class="pre">melisma</span></code></a>]
 <strong id="grammar-token-hyphen">hyphen   </strong> ::=  &quot;-&quot;
@@ -145,7 +145,7 @@
 </pre></div>
 </div>
 <img alt="_images/lyric-06.png" src="_images/lyric-06.png" />
-<p>Style can be assigned to each lyric line by using the <code class="xref std std-token docutils literal"><span class="pre">style</span></code> element. It will be applied to the lyric element in wich it is defined and to all following lyric elements in the same line until a new style is defined. By default, when no style is defined, style &#8220;Default lyrics&#8221; is applied.</p>
+<p>Style can be assigned to each lyric line by using the <a class="reference internal" href="common/common.html#grammar-token-style"><code class="xref std std-token docutils literal"><span class="pre">style</span></code></a> element. It will be applied to the lyric element in wich it is defined and to all following lyric elements in the same line until a new style is defined. By default, when no style is defined, style &#8220;Default lyrics&#8221; is applied.</p>
 </div>
 
 
@@ -186,7 +186,7 @@
     <div class="footer-wrapper">
       <div class="footer">
         <div class="left">
-          <a href="auxobjs/articulations.html" title="7.3. Accents and articulations"
+          <a href="auxobjs/texts.html" title="7.4. Texts"
              >previous</a> |
           <a href="format/index.html" title="9. Format control"
              >next</a> |

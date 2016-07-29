@@ -56,7 +56,7 @@
 <span id="element-spacer"></span><h1>9.3. Spacers</h1>
 <p>The <a class="reference internal" href="#grammar-token-spacer"><code class="xref std std-token docutils literal"><span class="pre">spacer</span></code></a> element is a special staff object that is rendered as blank space:</p>
 <pre class="bnf-rule">
-<strong id="grammar-token-spacer">spacer</strong> ::=  (spacer <a class="reference internal" href="#grammar-token-width"><code class="xref docutils literal"><span class="pre">width</span></code></a> [<code class="xref docutils literal"><span class="pre">staffobjOptions</span></code>*] [<a class="reference internal" href="../music-data/note-rest.html#grammar-token-attachments"><code class="xref docutils literal"><span class="pre">attachments</span></code></a>*] )
+<strong id="grammar-token-spacer">spacer</strong> ::=  (spacer <a class="reference internal" href="#grammar-token-width"><code class="xref docutils literal"><span class="pre">width</span></code></a> <code class="xref docutils literal"><span class="pre">staffobjOptions</span></code>* <a class="reference internal" href="../music-data/barlines.html#grammar-token-soAttachment"><code class="xref docutils literal"><span class="pre">soAttachment</span></code></a>* )
 <strong id="grammar-token-width">width </strong> ::=  space width, in tenths
 </pre>
 <p>The amount of blank space to insert is controlled by the <a class="reference internal" href="#grammar-token-width"><code class="xref std std-token docutils literal"><span class="pre">width</span></code></a> parameter. It can be 0 and thus, this element is also useful as an &#8216;anchor&#8217; element for objects that must go attached to an staff object.</p>

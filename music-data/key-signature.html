@@ -56,7 +56,7 @@
 <span id="element-key"></span><h1>3.3. Key signatures</h1>
 <p>Setting or changing the key signature is done with the <a class="reference internal" href="#grammar-token-key"><code class="xref std std-token docutils literal"><span class="pre">key</span></code></a> element:</p>
 <pre class="bnf-rule">
-<strong id="grammar-token-key">key    </strong> ::=  (key <a class="reference internal" href="#grammar-token-keyType"><code class="xref docutils literal"><span class="pre">keyType</span></code></a> [<code class="xref docutils literal"><span class="pre">staffobjOptions</span></code>*] )
+<strong id="grammar-token-key">key    </strong> ::=  (key <a class="reference internal" href="#grammar-token-keyType"><code class="xref docutils literal"><span class="pre">keyType</span></code></a> <code class="xref docutils literal"><span class="pre">staffobjOptions</span></code>* <a class="reference internal" href="barlines.html#grammar-token-soAttachment"><code class="xref docutils literal"><span class="pre">soAttachment</span></code></a>* )
 <strong id="grammar-token-keyType">keyType</strong> ::=   { C | G | D | A | E | B | F+ | C+ | C- | G- | D- | A- |
                           E- | B- | F | a | e | b | f+ | c+ | g+ | d+ | a+ | a- |
                           e- | b- | f | c | g | d }
