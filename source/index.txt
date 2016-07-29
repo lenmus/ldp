@@ -28,6 +28,7 @@ Table of Contents
     relobjs/index.txt
     pauses/index.txt
     auxobjs/index.txt
+    lyrics.txt
     format/index.txt
     common/index.txt
 

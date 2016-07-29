@@ -1,0 +1,13 @@
+(score (vers 2.0)(instrument (musicData 
+    (clef G)
+    (n c4 q (lyric "hy" -))
+    (n d4 q (lyric "phe" -))
+    (n e4 q (lyric "na" -))
+    (n f4 q (lyric "ted"))
+    (n g4 q (lyric "words"))
+    (n a4 q (lyric "and"))
+    (n b4 q (lyric "more"))
+    (n c5 q (lyric "words"))
+    (barline)
+)))
+

@@ -14,7 +14,7 @@ Rests can be considered as notes with no pitch, so in LDP notes and rests are in
         :     [`staffObjOptions`*] [`attachments`*])
     abbreviatedElements : abbreviated elements 'tie' (l), 'beam' (g), 'staffNumber' (p),
                         : 'tuplet' (t) and 'voice' (v)
-    noteOptions:  { `tie` | `stem` | `slur` }
+    noteOptions:  { `tie` | `stem` | `slur` | `lyric` }
     noterestOptions:  { `beam` | `tuplet` | `timeModification` | `voice` }
     staffObjOptions : { `staffNumber` | `printOptions` }
     printOptions : { `visible` | `location` | `color` }

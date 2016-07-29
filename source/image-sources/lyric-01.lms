@@ -1,0 +1,13 @@
+(score (vers 2.0)(instrument (musicData 
+    (clef G)
+    (n c4 q (lyric "do"))
+    (n d4 q (lyric "re"))
+    (n e4 q (lyric "mi"))
+    (n f4 q (lyric "fa"))
+    (n g4 q (lyric "sol"))
+    (n a4 q (lyric "la"))
+    (n b4 q (lyric "si"))
+    (n c5 q (lyric "do"))
+    (barline)
+)))
+

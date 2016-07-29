@@ -1,0 +1,9 @@
+(score (vers 2.0)(instrument (musicData 
+    (clef G)
+    (n c4 q (lyric 1 "This")(lyric 2 "A"))
+    (n d4 q (lyric 1 "is")(lyric 2 "se" -))
+    (n e4 q (lyric 1 "line")(lyric 2 "cond"))
+    (n f4 q (lyric 1 "one.")(lyric 2 "line."))
+    (barline)
+)))
+

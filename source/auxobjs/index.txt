@@ -12,11 +12,9 @@ Notations attached to one object
 
 .. AuxObjs
 
-    Accents
-    Technical marks  
-    Fermatas
     Ornaments
     Text boxes
     Texts
+    technical.txt
 
 

@@ -1,0 +1,9 @@
+(score (vers 2.0)(instrument (musicData 
+    (clef G)
+    (n c6 q (lyric "A" - above))
+    (n e6 q (lyric "bove"))
+    (n a3 q (lyric "Be" - below))
+    (n f3 q (lyric "low"))
+    (barline)
+)))
+

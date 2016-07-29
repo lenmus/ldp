@@ -1,0 +1,164 @@
+.. _element_lyric:
+
+Lyrics
+~~~~~~~~~~~~~~~~~~~~~
+
+Text underlays for lyrics are represented by :token:`lyric` elements attached to notes:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    lyric : (lyric [`lyricId`] `lyricText` [`style`] [`placement`] `printOptions`* )
+    lyricId : num.  Default 1
+    lyricText : `string`+ [`hyphen`][`melisma`]
+    hyphen : "-"
+    melisma : (melisma)
+
+
+
+The minimun content is just one syllable for the note::
+
+    (score (vers 2.0)(instrument (musicData 
+        (clef G)
+        (n c4 q (lyric "do"))
+        (n d4 q (lyric "re"))
+        (n e4 q (lyric "mi"))
+        (n f4 q (lyric "fa"))
+        (n g4 q (lyric "sol"))
+        (n a4 q (lyric "la"))
+        (n b4 q (lyric "si"))
+        (n c5 q (lyric "do"))
+        (barline)
+    )))
+
+.. image:: ./figures/lyric-01.png
+
+
+The :token:`lyricId` element is used when there are multiple lyric lines, for identifying the line. If not specified, line 1 is assumed::
+
+    (score (vers 2.0)(instrument (musicData 
+        (clef G)
+        (n c4 q (lyric 1 "This")(lyric 2 "A"))
+        (n d4 q (lyric 1 "is")(lyric 2 "se" -))
+        (n e4 q (lyric 1 "line")(lyric 2 "cond"))
+        (n f4 q (lyric 1 "one.")(lyric 2 "line."))
+        (barline)
+    )))
+
+.. image:: ./figures/lyric-02.png
+
+The :token:`hyphen` element (a character '-' after the syllable text) indicates that this syllable is an intermediate one (a word-beginning syllable or a mid-word syllable) and thus a hyphenation symbol must be displayed between this and next syllable::
+
+    (score (vers 2.0)(instrument (musicData 
+        (clef G)
+        (n c4 q (lyric "hy" -))
+        (n d4 q (lyric "phe" -))
+        (n e4 q (lyric "na" -))
+        (n f4 q (lyric "ted"))
+        (n g4 q (lyric "words"))
+        (n a4 q (lyric "and"))
+        (n b4 q (lyric "more"))
+        (n c5 q (lyric "words"))
+        (barline)
+    )))
+
+.. image:: ./figures/lyric-03.png
+
+
+The :token:`melisma` element represent melisma lines::
+
+    (score (vers 2.0)(instrument (musicData 
+        (clef G)
+        (n c4 q (lyric "A" (melisma)))
+        (n d4 q)
+        (n e4 q)
+        (n f4 q)
+        (n g4 q (lyric "men"))
+        (barline)
+    )))
+
+.. image:: ./figures/lyric-04.png
+
+
+Multiple syllables on a note are automatically separated by elision symbols (i.e. an undertie). Therefore, an additional character for the elision symbol must not be added to the syllable text::
+
+    (score (vers 2.0)(instrument (musicData 
+        (clef G)
+        (n g5 e g+ (lyric "con" -))
+        (n c5 e (lyric "sa" (melisma)))
+        (n b4 e g-)
+        (barline)
+        (n c5 e g+)
+        (n b4 e (lyric "cro" "a"))
+        (n a4 e g- (lyric "te"))
+        (barline)
+    )))
+
+.. image:: ./figures/lyric-05.png
+
+
+The :token:`placement` element is used to determine if the lyrics should be placed above the staff or below the staff. The specified value will be applied to the lyric element in wich it is defined and to all following lyric elements in the same line until a new placement is defined. By default, when no placement is defined, lyrics will be placed below::
+
+    (score (vers 2.0)(instrument (musicData 
+        (clef G)
+        (n c6 q (lyric "A" - above))
+        (n e6 q (lyric "bove"))
+        (n a3 q (lyric "Be" - below))
+        (n f3 q (lyric "low"))
+        (barline)
+    )))
+
+.. image:: ./figures/lyric-06.png
+
+
+Style can be assigned to each lyric line by using the :token:`style` element. It will be applied to the lyric element in wich it is defined and to all following lyric elements in the same line until a new style is defined. By default, when no style is defined, style "Default lyrics" is applied.
+
+
+.. comented out
+    
+    Currently, elision is implicit when more than a syllable. In the MusicXML model, it is possible
+    to define the elision symbol to use in each syllable. In future this feature could be implemented
+    by using the following LDP grammar rules (backwards compatible):
+
+        lyricText : `syllable` [ [`elision`] `syllable` ]* [`melisma`]
+        elision : (elision char [`font`] [`color`])
+
+    Currently, [`hyphen`] is only possible at the last syllable in the note, 
+    and [`language`][`style`] are common to all syllables in the note. In the MusicXML model, it is possible
+    to define [`hyphen`]  in each syllable by creating an specific element. By using it, it will also be 
+    posible to specify [`language`][`style`] for each syllable. This could be implemented in future
+    if necessary:
+
+        lyricText : `syllable`+ [`melisma`]
+        syllable : (syl string [`hyphen`][`language`][`style`])
+
+    Example:
+
+        com - sa______ cro.a   te
+        http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-elision.htm
+
+        (lyric (syl "con" -))
+        (lyric (syl "sa" -)(melisma))
+        (lyric (syl "cro")(elision ".")(syl "a"))
+        (lyric (syl "te"))
+
+
+.. commented out 
+
+    No hay melisma. Dibuja línea de guiones espaciados (SchbAvMaSample)::
+
+    (lyric "1" (dy -82) (syl "A" -))
+    (lyric "2" (dy -104) (syl "A" -))
+    (lyric "3" (dy -127) (syl "A" -))
+
+    (lyric "1" (dy -82) (syl "ve"))
+    (lyric "2" (dy -104) (syl "ve"))
+    (lyric "3" (dy -127) (syl "ve"))
+
+    The syllable type can be automatically computed:
+        prev == NULL && this !hyphen ==> single
+        prev == NULL && this hyphen ==> begin
+        prev !hyphen && this !hyphen ==> single
+        prev !hyphen && this hyphen ==> begin
+        prev hyphen && this !hyphen ==> end
+        prev hyphen && this hyphen ==> middle
+
