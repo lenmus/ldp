@@ -18,7 +18,9 @@ Rests can be considered as notes with no pitch, so in LDP notes and rests are in
     noterestOptions:  { `beam` | `tuplet` | `timeModification` | `voice` }
     staffObjOptions : { `staffNumber` | `printOptions` }
     printOptions : { `visible` | `location` | `color` }
-    attachments : { `text` | `textbox` | `line` | `fermata` | `dynamics` }
+    attachment : { `text` | `textbox` | `line` | `fermata` | `dynamics` |
+               :   `accent` | `articulation` | `caesura` | `breathMark` |
+               :   `technical` | `ornament` }
     pitch:  label (see explanation)
     duration:  label (see explanation)
 

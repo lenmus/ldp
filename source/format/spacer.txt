@@ -7,7 +7,7 @@ The :token:`spacer` element is a special staff object that is rendered as blank 
 
 .. rst-class:: bnf-rule
 .. productionlist:: *
-    spacer : (spacer `width` [`staffobjOptions`*] [`attachments`*] )
+    spacer : (spacer `width` `staffobjOptions`* `soAttachment`* )
     width : space width, in tenths
 
 The amount of blank space to insert is controlled by the :token:`width` parameter. It can be 0 and thus, this element is also useful as an 'anchor' element for objects that must go attached to an staff object.

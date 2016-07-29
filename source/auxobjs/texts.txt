@@ -1,0 +1,42 @@
+.. _element_text:
+
+Texts
+----------
+
+Arbitrary strings of text on the score can be attached to most staff objects, using the :token:`text` element:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+	text : (text string [`style`] [`location`])
+
+Example::
+
+    (score (vers 2.0) (instrument (musicData 
+        (clef G)
+        (key C)
+        (spacer 50
+            (text "spacer" (dy -10)) )
+        (n c4 q
+            (text "note" (dy 80)) )
+        (spacer 50)
+        (barline simple
+            (text "barline" (dx 15)(dy -20)) )
+        (spacer 50)
+        (barline end)
+    )))
+
+.. image:: ../figures/text-01.png
+
+
+By default, the text is positioned so that the left edge of the first character is at the center of parent object and the text base line is on the the top line of the stave. The :token:`location` element specifies a shift from the default position.
+
+.. important::
+
+    The :token:`text` element must not be used for lyrics nor for score titles, as for both
+    of them there are specific LDP elements.
+
+
+If no style is specified, style "Default style" is assigned.
+
+
+

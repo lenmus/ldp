@@ -7,9 +7,10 @@ Element :token:`barline` is used to specify a barline at the end of a measure. I
 
 .. rst-class:: bnf-rule
 .. productionlist:: *
-    barline : (barline) | (barline `type` [`visible`] [`location`])
+    barline : (barline) | (barline `type` [`visible`] [`location`] `soAttachment`* )
     type : { start | end | double | simple | startRepetition |
          :   endRepetition | doubleRepetition }
+    soAttachment : { `text` | `textbox` | `line` }
 
 
 Example::

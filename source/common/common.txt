@@ -50,4 +50,14 @@ Hide /show objects
     visible : (visible {yes | no}) | noVisible
 
 
+Style
+-------------------
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+	style : (style name)
+
+The *name* parameter must be the name of an style defined with :token:`defineStyle` element, or must be the name of a default styles (see :ref:`element_defineStyle` for a list of default styles).
+
+
 

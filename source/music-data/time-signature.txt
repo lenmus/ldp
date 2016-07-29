@@ -18,9 +18,9 @@ There are several alternatives to represent a time signature, but currently LDP 
 
 .. rst-class:: bnf-rule
 .. productionlist:: *
-    time: {   (time [normal] `topNum` `bottomNum` [`visible`] [`location`])
-        :   | (time common [`visible`] [`location`])
-        :   | (time cut [`visible`] [`location`]) }
+    time: {   (time [normal] `topNum` `bottomNum` [`visible`] [`location`] `soAttachment`*)
+        :   | (time common [`visible`] [`location`] `soAttachment`*)
+        :   | (time cut [`visible`] [`location`] `soAttachment`*) }
     topNum: integer number
     bottomNum: integer number
 

@@ -8,7 +8,8 @@ Setting or changing the clef is done with the :token:`clef` element:
 
 .. rst-class:: bnf-rule
 .. productionlist:: *
-    clef: (clef `clefType` [`symbolSize`] [`staffNumber`] [`visible`] [`location`] )
+    clef : (clef `clefType` [`symbolSize`] [`staffNumber`] [`visible`] [`location`]
+         :       `soAttachment`* )
     clefType: { G | F4 | F3 | C1 | C2 | C3 | C4 | percussion |
             :   C5 | F5 | G1 | 8_G | G_8 | 8_F4 | F4_8 |
             :   15_G | G_15 | 15_F4 | F4_15 }

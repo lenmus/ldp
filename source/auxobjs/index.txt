@@ -9,12 +9,12 @@ Notations attached to one object
     dynamics.txt
     graphical-objects.txt
     articulations.txt
+    texts.txt
 
 .. AuxObjs
 
-    Ornaments
-    Text boxes
-    Texts
+    ornaments.txt
+    text-boxes.txt
     technical.txt
 
 
