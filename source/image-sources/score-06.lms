@@ -1,0 +1,20 @@
+(score (vers 2.0)
+
+   (defineStyle "Small-blue" (font "Times New Roman" 10pt italic)(color #0000FF))
+   (defineStyle "Medium-grey" (font "Bernard MT Condensed" 14pt bold)(color #606060))
+   (defineStyle "Big-red" (font "Times New Roman" 20pt bold)(color #FF0000))
+   (defineStyle "Style3" (font "Times New Roman" 12pt normal))
+
+   (title center "Title for this great opus" (style "Big-red")(dx 270)(dy 30))
+   (title center "Pianoworks Op.114, No.7" (style "Medium-grey")(dx 340)(dy 30))
+   (title right "Words: P.Copypaste" (style "Small-blue")(dy 70))
+   (title left "Music: G.H.MendItAll" (style "Medium-grey")(dx 747)(dy 55))
+   (title right "The famous artist" (style "Medium-grey")(dx 805)(dy 60))
+
+    (instrument (musicData
+        (clef G)
+        (n c4 q)
+        (barline)
+    ))
+)
+

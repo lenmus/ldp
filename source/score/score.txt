@@ -255,7 +255,7 @@ An style is defined by using the 'defineStyle' element:
 
 .. rst-class:: bnf-rule
 .. productionlist:: *
-    defineStyle : (defineStyle  `styleName` { `styleProperty`* | `font` `color` } )
+    defineStyle : (defineStyle  `styleName` { `styleProperty`* | `font` [`color`] } )
     styleProperty : (property value)
 
 Property names are normally taken from CSS. Currently, the following properties are supported by the LDP
@@ -326,67 +326,78 @@ Examples::
 
 
 
-.. commented out ------------------------------------------------------
 
-    .. _element_title:
+.. _element_title:
 
-    Score titles
-    ~~~~~~~~~~~~~~~~~~~~~
+Score titles
+~~~~~~~~~~~~~~~~~~~~~
 
-    .. rst-class:: bnf-rule
-    .. productionlist:: *
-        title : (title `h-alignment` string [`style`] [`location`])
-        h-alignment : { left | center | right }
-        style : (style name)
-        name : string.  Must be a style name defined with defineStyle
+Score titles are optional. In some most cases, it is more powerfull and flexible to embed an score without titles in a document, and then define the titles using paragraphs, headings and all other elements available at document level. Nevertheless, defining titles at score level could be useful is some cases. For this, the :token:`title` element is available:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    title : (title string [`style`] [`location`])
 
 
-    The 'h-alignment' parameter overrides :token:`style` but doesn't modify it.
+Examples::
+
+    (title center "Prelude" (style "Title"))
+    (title center "Op. 28, No. 20" (style "Subtitle"))
+    (title right "F. Chopin" (style "Composer")(dy 30))
 
 
-    Examples::
+The reference point for displaying the first title is the top-left corner of the score margins. This means that the base line of the first title will be the top margin line of the score and thus, will be above the margin (in following image the score margin is drawn in orange)::
 
-        (title center "Prelude" (style "Title")
-        (title center "Op. 28, No. 20" (style "Subtitle")
-        (title right "F. Chopin" (style "Composer"(dy 30))
+    (score (vers 2.0)
+        (defineStyle "Big-red" (font "Times New Roman" 20pt bold)(color #FF0000))
+        (title "The title for this score" (style "Big-red"))
+        (instrument (musicData
+            (clef G)
+            (n c4 q)
+            (barline)
+        ))
+    )
 
-    h-alignment 'center' forces to center the string in current
-    line, without taking into
-    account the space consumed by any possible existing left title. That is,
-    'center' always
-    means 'centered in the line'.
+.. image:: ../figures/score-04.png
 
-    The font settings are stored as new default settings for
-    coming <command>title</command> elements.
+The reference point for positioning following title elements is previous the title reference point incremented by previous title height::
 
-    The title text string will be printed at current location; therefore, the
-    location tag is not normally required. A new line is
-    forced only if not enough space in current line for the text-string.
+    (score (vers 2.0)
+        (defineStyle "Big" (font "Times New Roman" 20pt bold))
+        (defineStyle "Medium" (font "Times New Roman" 16pt))
+        (title "The title for this score" (style "Big"))
+        (title "A subtitle" (style "Medium"))
+        (instrument (musicData
+            (clef G)
+            (n c4 q)
+            (barline)
+        ))
+    )
 
-    If a location is specified, the text will be positioned so that the lower
-    edge of the
-    text is located at the specified y location. And alignment
-    takes place relative to the given x location. For example::
-
-        (title right "Franz Schubert" x:40mm y:30mm)
-
-    The y location given is 30mm. Since this is an absolute location
-    the lower edge of the text will be at 30 millimeters
-    from the top margin of the page. As the x location given is 40mm and, again, this is an
-    absolute location, the current horizontal position will be 40 millimeters
-    from the left edge of the page. Since right justification is indicated,
-    the string "Franz Schubert" will be placed such that the right edge of the
-    final "t" will be 40 millimeters from the left margin of the page.
-    If "center" had been specified, the middle of the string "Franz Schubert" would
-    be at 40 millimeters from the left margin of the page.
-
-    If a relative location is specified (dx or dy) they will refer always to
-    current location. It, normally, will be the right bottom corner of rectangle
-    bounding the previous title.
-
-    As titles are not positioned on staves, relative location units (tenths) are
-    not possible as no staff is involved. You must always use absolute units, such as
-    inches or millimeters.
+.. image:: ../figures/score-05.png
 
 
+The :token:`location` element should be used for properly positioning the title at the desired location. The displacement indicated by the :token:`location` element is measured in tenths, referred to first staff of first instrument::
+
+    (score (vers 2.0)
+
+       (defineStyle "Small-blue" (font "Times New Roman" 10pt italic)(color #0000FF))
+       (defineStyle "Medium-grey" (font "Bernard MT Condensed" 14pt bold)(color #606060))
+       (defineStyle "Big-red" (font "Times New Roman" 20pt bold)(color #FF0000))
+       (defineStyle "Style3" (font "Times New Roman" 12pt normal))
+
+       (title center "Title for this great opus" (style "Big-red")(dx 270)(dy 30))
+       (title center "Pianoworks Op.114, No.7" (style "Medium-grey")(dx 340)(dy 30))
+       (title right "Words: P.Copypaste" (style "Small-blue")(dy 70))
+       (title left "Music: G.H.MendItAll" (style "Medium-grey")(dx 747)(dy 55))
+       (title right "The famous artist" (style "Medium-grey")(dx 805)(dy 60))
+
+        (instrument (musicData
+            (clef G)
+            (n c4 q)
+            (barline)
+        ))
+    )
+
+.. image:: ../figures/score-06.png
 

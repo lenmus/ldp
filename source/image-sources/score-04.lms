@@ -1,0 +1,10 @@
+(score (vers 2.0)
+    (defineStyle "Big" (font "Times New Roman" 20pt bold))
+    (title center "The title for this score" (style "Big"))
+    (instrument (musicData
+        (clef G)
+        (n c4 q)
+        (barline)
+    ))
+)
+
