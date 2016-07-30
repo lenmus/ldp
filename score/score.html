@@ -63,7 +63,7 @@
 </div></blockquote>
 <p>In LDP the concept of &#8216;score part&#8217; is named &#8216;instrument&#8217; and a score is, basically, a collection of instruments and some optional information:</p>
 <pre class="bnf-rule">
-<strong id="grammar-token-score">score</strong> ::=  (score <a class="reference internal" href="#grammar-token-version"><code class="xref docutils literal"><span class="pre">version</span></code></a> [<a class="reference internal" href="#grammar-token-defineStyle"><code class="xref docutils literal"><span class="pre">defineStyle</span></code></a>*] [<code class="xref docutils literal"><span class="pre">title</span></code>*] [<a class="reference internal" href="#grammar-token-pageLayout"><code class="xref docutils literal"><span class="pre">pageLayout</span></code></a>*]
+<strong id="grammar-token-score">score</strong> ::=  (score <a class="reference internal" href="#grammar-token-version"><code class="xref docutils literal"><span class="pre">version</span></code></a> [<a class="reference internal" href="#grammar-token-defineStyle"><code class="xref docutils literal"><span class="pre">defineStyle</span></code></a>*] [<a class="reference internal" href="#grammar-token-title"><code class="xref docutils literal"><span class="pre">title</span></code></a>*] [<a class="reference internal" href="#grammar-token-pageLayout"><code class="xref docutils literal"><span class="pre">pageLayout</span></code></a>*]
                   [<a class="reference internal" href="#grammar-token-systemLayout"><code class="xref docutils literal"><span class="pre">systemLayout</span></code></a>*] [<a class="reference internal" href="#grammar-token-option"><code class="xref docutils literal"><span class="pre">option</span></code></a>*] [<a class="reference internal" href="#grammar-token-parts"><code class="xref docutils literal"><span class="pre">parts</span></code></a>]
                   <a class="reference internal" href="instrument.html#grammar-token-instrument"><code class="xref docutils literal"><span class="pre">instrument</span></code></a>+ )
 </pre>
@@ -253,7 +253,7 @@ For instance, if intended page size DIN A4 (210mm X 297mm) the pageSize element 
 </ul>
 <p>An style is defined by using the &#8216;defineStyle&#8217; element:</p>
 <pre class="bnf-rule">
-<strong id="grammar-token-defineStyle">defineStyle  </strong> ::=  (defineStyle  <code class="xref docutils literal"><span class="pre">styleName</span></code> { <a class="reference internal" href="#grammar-token-styleProperty"><code class="xref docutils literal"><span class="pre">styleProperty</span></code></a>* | <code class="xref docutils literal"><span class="pre">font</span></code> <a class="reference internal" href="../common/common.html#grammar-token-color"><code class="xref docutils literal"><span class="pre">color</span></code></a> } )
+<strong id="grammar-token-defineStyle">defineStyle  </strong> ::=  (defineStyle  <code class="xref docutils literal"><span class="pre">styleName</span></code> { <a class="reference internal" href="#grammar-token-styleProperty"><code class="xref docutils literal"><span class="pre">styleProperty</span></code></a>* | <code class="xref docutils literal"><span class="pre">font</span></code> [<a class="reference internal" href="../common/common.html#grammar-token-color"><code class="xref docutils literal"><span class="pre">color</span></code></a>] } )
 <strong id="grammar-token-styleProperty">styleProperty</strong> ::=  (property value)
 </pre>
 <p>Property names are normally taken from CSS. Currently, the following properties are supported by the LDP
@@ -338,6 +338,70 @@ language:</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="score-titles">
+<span id="element-title"></span><h2>2.1.6. Score titles</h2>
+<p>Score titles are optional. In some most cases, it is more powerfull and flexible to embed an score without titles in a document, and then define the titles using paragraphs, headings and all other elements available at document level. Nevertheless, defining titles at score level could be useful is some cases. For this, the <a class="reference internal" href="#grammar-token-title"><code class="xref std std-token docutils literal"><span class="pre">title</span></code></a> element is available:</p>
+<pre class="bnf-rule">
+<strong id="grammar-token-title">title</strong> ::=  (title string [<a class="reference internal" href="../common/common.html#grammar-token-style"><code class="xref docutils literal"><span class="pre">style</span></code></a>] [<a class="reference internal" href="../format/new-system.html#grammar-token-location"><code class="xref docutils literal"><span class="pre">location</span></code></a>])
+</pre>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre>(title center &quot;Prelude&quot; (style &quot;Title&quot;))
+(title center &quot;Op. 28, No. 20&quot; (style &quot;Subtitle&quot;))
+(title right &quot;F. Chopin&quot; (style &quot;Composer&quot;)(dy 30))
+</pre></div>
+</div>
+<p>The reference point for displaying the first title is the top-left corner of the score margins. This means that the base line of the first title will be the top margin line of the score and thus, will be above the margin (in following image the score margin is drawn in orange):</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)
+    (defineStyle &quot;Big-red&quot; (font &quot;Times New Roman&quot; 20pt bold)(color #FF0000))
+    (title &quot;The title for this score&quot; (style &quot;Big-red&quot;))
+    (instrument (musicData
+        (clef G)
+        (n c4 q)
+        (barline)
+    ))
+)
+</pre></div>
+</div>
+<img alt="../_images/score-04.png" src="../_images/score-04.png" />
+<p>The reference point for positioning following title elements is previous the title reference point incremented by previous title height:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)
+    (defineStyle &quot;Big&quot; (font &quot;Times New Roman&quot; 20pt bold))
+    (defineStyle &quot;Medium&quot; (font &quot;Times New Roman&quot; 16pt))
+    (title &quot;The title for this score&quot; (style &quot;Big&quot;))
+    (title &quot;A subtitle&quot; (style &quot;Medium&quot;))
+    (instrument (musicData
+        (clef G)
+        (n c4 q)
+        (barline)
+    ))
+)
+</pre></div>
+</div>
+<img alt="../_images/score-05.png" src="../_images/score-05.png" />
+<p>The <a class="reference internal" href="../format/new-system.html#grammar-token-location"><code class="xref std std-token docutils literal"><span class="pre">location</span></code></a> element should be used for properly positioning the title at the desired location. The displacement indicated by the <a class="reference internal" href="../format/new-system.html#grammar-token-location"><code class="xref std std-token docutils literal"><span class="pre">location</span></code></a> element is measured in tenths, referred to first staff of first instrument:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)
+
+   (defineStyle &quot;Small-blue&quot; (font &quot;Times New Roman&quot; 10pt italic)(color #0000FF))
+   (defineStyle &quot;Medium-grey&quot; (font &quot;Bernard MT Condensed&quot; 14pt bold)(color #606060))
+   (defineStyle &quot;Big-red&quot; (font &quot;Times New Roman&quot; 20pt bold)(color #FF0000))
+   (defineStyle &quot;Style3&quot; (font &quot;Times New Roman&quot; 12pt normal))
+
+   (title center &quot;Title for this great opus&quot; (style &quot;Big-red&quot;)(dx 270)(dy 30))
+   (title center &quot;Pianoworks Op.114, No.7&quot; (style &quot;Medium-grey&quot;)(dx 340)(dy 30))
+   (title right &quot;Words: P.Copypaste&quot; (style &quot;Small-blue&quot;)(dy 70))
+   (title left &quot;Music: G.H.MendItAll&quot; (style &quot;Medium-grey&quot;)(dx 747)(dy 55))
+   (title right &quot;The famous artist&quot; (style &quot;Medium-grey&quot;)(dx 805)(dy 60))
+
+    (instrument (musicData
+        (clef G)
+        (n c4 q)
+        (barline)
+    ))
+)
+</pre></div>
+</div>
+<img alt="../_images/score-06.png" src="../_images/score-06.png" />
+</div>
 </div>
 
 
@@ -356,6 +420,7 @@ language:</p>
 <li class="toctree-l3"><a class="reference internal" href="#page-layout">2.1.3. Page layout</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#system-layout">2.1.4. System layout</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#defining-styles">2.1.5. Defining styles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#score-titles">2.1.6. Score titles</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="instrument.html">2.2. The Instrument element</a></li>
@@ -400,7 +465,7 @@ language:</p>
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Jul-29.
+      Last updated on 2016-Jul-30.
     </div>
         </div>
         <div class="clearer"></div>
