@@ -340,14 +340,14 @@ language:</p>
 </div>
 <div class="section" id="score-titles">
 <span id="element-title"></span><h2>2.1.6. Score titles</h2>
-<p>Score titles are optional. In some most cases, it is more powerfull and flexible to embed an score without titles in a document, and then define the titles using paragraphs, headings and all other elements available at document level. Nevertheless, defining titles at score level could be useful is some cases. For this, the <a class="reference internal" href="#grammar-token-title"><code class="xref std std-token docutils literal"><span class="pre">title</span></code></a> element is available:</p>
+<p>Score titles are optional. In most cases, it is more powerfull and flexible to embed an score without titles in a document, and then define the titles using paragraphs, headings and all other elements available at document level. Nevertheless, defining titles at score level could be useful is some cases. For this, the <a class="reference internal" href="#grammar-token-title"><code class="xref std std-token docutils literal"><span class="pre">title</span></code></a> element is available:</p>
 <pre class="bnf-rule">
 <strong id="grammar-token-title">title</strong> ::=  (title string [<a class="reference internal" href="../common/common.html#grammar-token-style"><code class="xref docutils literal"><span class="pre">style</span></code></a>] [<a class="reference internal" href="../format/new-system.html#grammar-token-location"><code class="xref docutils literal"><span class="pre">location</span></code></a>])
 </pre>
 <p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre>(title center &quot;Prelude&quot; (style &quot;Title&quot;))
-(title center &quot;Op. 28, No. 20&quot; (style &quot;Subtitle&quot;))
-(title right &quot;F. Chopin&quot; (style &quot;Composer&quot;)(dy 30))
+<div class="highlight-python"><div class="highlight"><pre>(title &quot;Prelude&quot; (style &quot;Title&quot;))
+(title &quot;Op. 28, No. 20&quot; (style &quot;Subtitle&quot;))
+(title &quot;F. Chopin&quot; (style &quot;Composer&quot;)(dy 30))
 </pre></div>
 </div>
 <p>The reference point for displaying the first title is the top-left corner of the score margins. This means that the base line of the first title will be the top margin line of the score and thus, will be above the margin (in following image the score margin is drawn in orange):</p>
