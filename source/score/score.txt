@@ -332,7 +332,7 @@ Examples::
 Score titles
 ~~~~~~~~~~~~~~~~~~~~~
 
-Score titles are optional. In some most cases, it is more powerfull and flexible to embed an score without titles in a document, and then define the titles using paragraphs, headings and all other elements available at document level. Nevertheless, defining titles at score level could be useful is some cases. For this, the :token:`title` element is available:
+Score titles are optional. In most cases, it is more powerfull and flexible to embed an score without titles in a document, and then define the titles using paragraphs, headings and all other elements available at document level. Nevertheless, defining titles at score level could be useful is some cases. For this, the :token:`title` element is available:
 
 .. rst-class:: bnf-rule
 .. productionlist:: *
@@ -341,9 +341,9 @@ Score titles are optional. In some most cases, it is more powerfull and flexible
 
 Examples::
 
-    (title center "Prelude" (style "Title"))
-    (title center "Op. 28, No. 20" (style "Subtitle"))
-    (title right "F. Chopin" (style "Composer")(dy 30))
+    (title "Prelude" (style "Title"))
+    (title "Op. 28, No. 20" (style "Subtitle"))
+    (title "F. Chopin" (style "Composer")(dy 30))
 
 
 The reference point for displaying the first title is the top-left corner of the score margins. This means that the base line of the first title will be the top margin line of the score and thus, will be above the margin (in following image the score margin is drawn in orange)::

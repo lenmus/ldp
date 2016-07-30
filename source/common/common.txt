@@ -50,6 +50,8 @@ Hide /show objects
     visible : (visible {yes | no}) | noVisible
 
 
+.. _element_style:
+
 Style
 -------------------
 

@@ -6,6 +6,7 @@ Notations attached to one object
 
 .. toctree::
 
+    intro.txt
     dynamics.txt
     graphical-objects.txt
     articulations.txt

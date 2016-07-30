@@ -1,0 +1,21 @@
+
+introduction
+-------------------
+
+Most staff objects accept auxiliary objects, such as lines or texts, attached to them. 
+
+The following attachments for notes and rests are currently supported:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    attachment : { `text` | `textbox` | `line` | `fermata` | `dynamics` |
+               :   `articulation` | `caesura` | `breathMark` |
+               :   `technical` | `ornament` }
+
+
+For other staff objects, the following attachments are currently supported:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    soAttachment : { `text` | `textbox` | `line` }
+
