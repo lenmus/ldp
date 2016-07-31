@@ -1,5 +1,6 @@
 # LDP Music representation language. Reference manual
 
+This repo contains the source files. The manual, once built, is at https://lenmus.github.io/ldp/
 
 ## The LDP language
 
