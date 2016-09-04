@@ -73,50 +73,58 @@
 mainly to distinguish nested tuplets.</p>
 <p>The tuplet type is a plus sign (+) or a minus sign (-) to indicate, respectively, that it is the start or the end of a tuplet.</p>
 <p>The <a class="reference internal" href="#grammar-token-displayNumber"><code class="xref std std-token docutils literal"><span class="pre">displayNumber</span></code></a> option is used to display the number of normal notes. By default, only the actual notes number is displayed.</p>
-<p>The <a class="reference internal" href="#grammar-token-displayBracket"><code class="xref std std-token docutils literal"><span class="pre">displayBracket</span></code></a> option is used for controllin whether to display or not the tuplet bracket. If unspecified, the default behaviour follows the usual engraving rules: the bracket is not displayed if the tuplet notes form a beamed group.</p>
+<p>The <a class="reference internal" href="#grammar-token-displayBracket"><code class="xref std std-token docutils literal"><span class="pre">displayBracket</span></code></a> option is used for controlling whether to display or not the tuplet bracket. If unspecified, the default behaviour follows the usual engraving rules: the bracket is not displayed if the tuplet notes form a beamed group.</p>
 <p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre>(n c4 e (t 1 +)(tm 2 3)) (n d4 e (tm 2 3)) (n e4 e (t 1 -)(tm 2 3))
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
+    (clef G)
+    (time 2 4)
+    (n c4 e (t 1 + 3 2)(tm 2 3))
+    (n d4 e (tm 2 3))
+    (n e4 e (t 1 -)(tm 2 3))
+)))
 </pre></div>
 </div>
-<p>This example is a triplet of eighth notes, that is, the three notes must be played
-in the time normally allotted for two eight notes.</p>
-<p>For specifying notes&#8217; duration modification, a <a class="reference internal" href="#grammar-token-timeModification"><code class="xref std std-token docutils literal"><span class="pre">timeModification</span></code></a> element must be included in all the notes in the tuplet:</p>
+<img alt="../_images/tuplet-01.png" src="../_images/tuplet-01.png" />
+<p>This example is a triplet of eighth notes. Element <cite>(t 1 + 3 2)</cite> in first note
+declares the triplet: it is tuplet number 1; the plus sign says that this note is the start of the tuplet; and
+numbers &#8216;3 2&#8217; declare that three notes must be played in the time alloted for two notes. The end of the tuplet
+is declared in last note: <cite>(t 1 -)</cite>. The <a class="reference internal" href="#grammar-token-tuplet"><code class="xref std std-token docutils literal"><span class="pre">tuplet</span></code></a> element is just used for defining the graphic elements: the bracket and the 3 number. But has no any effect on the notes duration. For that, a <a class="reference internal" href="#grammar-token-timeModification"><code class="xref std std-token docutils literal"><span class="pre">timeModification</span></code></a> element <cite>(tm 2 3)</cite> must be included in each note:</p>
 <pre class="bnf-rule">
 <strong id="grammar-token-timeModification">timeModification</strong> ::=  (tm <a class="reference internal" href="#grammar-token-numerator"><code class="xref docutils literal"><span class="pre">numerator</span></code></a> <a class="reference internal" href="#grammar-token-denominator"><code class="xref docutils literal"><span class="pre">denominator</span></code></a>)
 <strong id="grammar-token-numerator">numerator       </strong> ::=  integer number
 <strong id="grammar-token-denominator">denominator     </strong> ::=  integer number
 </pre>
-<p>The <a class="reference internal" href="#grammar-token-timeModification"><code class="xref std std-token docutils literal"><span class="pre">timeModification</span></code></a> element must be included in all the notes that form the tuplet. The time modificaction information is a multiplication factor to be applied to normal note/rest duration. This factor is defined, as a fraction, by its <a class="reference internal" href="#grammar-token-numerator"><code class="xref std std-token docutils literal"><span class="pre">numerator</span></code></a> and <a class="reference internal" href="#grammar-token-denominator"><code class="xref std std-token docutils literal"><span class="pre">denominator</span></code></a>.</p>
-<p>The tuplet element does not implies neither beaming nor time modification. Therefore elements <a class="reference internal" href="#grammar-token-tuplet"><code class="xref std std-token docutils literal"><span class="pre">tuplet</span></code></a>, <code class="xref std std-token docutils literal"><span class="pre">tm</span></code> and <a class="reference internal" href="beams.html#grammar-token-beam"><code class="xref std std-token docutils literal"><span class="pre">beam</span></code></a> must be combined as needed. Remember that tuplet must be specified before beam. Examples:</p>
+<p>The <a class="reference internal" href="#grammar-token-timeModification"><code class="xref std std-token docutils literal"><span class="pre">timeModification</span></code></a> element must be included in all the notes that form the tuplet. The time modificaction information is a multiplication factor to be applied to normal note/rest duration. This factor is defined, as a fraction, by its <a class="reference internal" href="#grammar-token-numerator"><code class="xref std std-token docutils literal"><span class="pre">numerator</span></code></a> and <a class="reference internal" href="#grammar-token-denominator"><code class="xref std std-token docutils literal"><span class="pre">denominator</span></code></a>. The <a class="reference internal" href="#grammar-token-timeModification"><code class="xref std std-token docutils literal"><span class="pre">timeModification</span></code></a> element is independent of the tuplet and can be of utility in other situations. For instance, in jazz scores, to alter notes duration when they must be played with swing.</p>
+<p>The tuplet element does not implies neither beaming nor time modification. Therefore elements <a class="reference internal" href="#grammar-token-tuplet"><code class="xref std std-token docutils literal"><span class="pre">tuplet</span></code></a>, <a class="reference internal" href="#grammar-token-timeModification"><code class="xref std std-token docutils literal"><span class="pre">timeModification</span></code></a> and <a class="reference internal" href="beams.html#grammar-token-beam"><code class="xref std std-token docutils literal"><span class="pre">beam</span></code></a> must be combined as needed.</p>
+<p>Example 1:</p>
 <div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
-    (n c4 e (t 1 + 2 3)(tm 2 3)(beam 1 +))
-    (n d4 s (tm 2 3)(beam 1 =+))
-    (n c4 s (tm 2 3)(beam 1 ==))
-    (n b3 s (t 1 -)(tm 2 3)(beam 1 --))
-    (barline)
-
-    (n c4 s (t 1 + 2 3)(tm 2 3)(beam 2 ++))
-    (n d4 s (tm 2 3)(beam 2 ==))
-    (n b3 s (t 1 -)(tm 2 3)(beam 2 --))
-    (barline)
-
-    (n f4 s (t 2 + 2 3)(tm 2 3)(beam 3 ++))
-    (n g4 s (tm 2 3)(beam 3 ==))
-    (n a4 s (t 2 -)(tm 2 3)(beam 3 --))
+    (clef G)
+    (time 2 4)
+    (n c4 e (t 1 + 3 2)(tm 2 3)(beam 1 +))
+    (n d4 e (tm 2 3)(beam 1 =))
+    (n e4 e (t 1 -)(tm 2 3)(beam 1 -))
+)))
+</pre></div>
+</div>
+<img alt="../_images/tuplet-02.png" src="../_images/tuplet-02.png" />
+<p>Example 2:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
+    (clef G)
+    (key A)
+    (time 6 8)
+    (n f5 q. (tie 1 start))
+    (n f5 s (tie 1 stop)(tm 6 7)(t + 7 6)(beam 1 ++))
+    (n e5 s (tm 6 7)(beam 1 ==))
+    (n +d5 s (tm 6 7)(beam 1 ==))
+    (n e5 s (tm 6 7)(beam 1 ==))
+    (n +e5 s (tm 6 7)(beam 1 ==))
+    (n g5 s (tm 6 7)(beam 1 ==))
+    (n f5 s (tm 6 7)(t -)(beam 1 --))
     (barline)
 )))
 </pre></div>
 </div>
-<img alt="relobjs/../figures/tuplet-01.png" src="relobjs/../figures/tuplet-01.png" />
-<div class="section" id="abbreviated-notation-deprecated">
-<h2>5.4.1. Abbreviated notation (deprecated)</h2>
-<p>Deprecated since version 1.6</p>
-<div class="highlight-python"><div class="highlight"><pre>(t -)     --&gt; t-
-(t + n)   --&gt; tn
-(t + n m) --&gt; tn/m
-</pre></div>
-</div>
-</div>
+<img alt="../_images/tuplet-03.png" src="../_images/tuplet-03.png" />
 </div>
 
 
@@ -135,10 +143,7 @@ in the time normally allotted for two eight notes.</p>
 <li class="toctree-l2"><a class="reference internal" href="tie-slur.html">5.1. Ties</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tie-slur.html#slurs">5.2. Slurs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="beams.html">5.3. Beams</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">5.4. Tuplets</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#abbreviated-notation-deprecated">5.4.1. Abbreviated notation (deprecated)</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">5.4. Tuplets</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../pauses/index.html">6. Pauses and breath marks</a></li>
@@ -177,7 +182,7 @@ in the time normally allotted for two eight notes.</p>
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Jul-30.
+      Last updated on 2016-Sep-04.
     </div>
         </div>
         <div class="clearer"></div>
