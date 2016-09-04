@@ -34,16 +34,24 @@ The tuplet type is a plus sign (+) or a minus sign (-) to indicate, respectively
 
 The :token:`displayNumber` option is used to display the number of normal notes. By default, only the actual notes number is displayed.
 
-The :token:`displayBracket` option is used for controllin whether to display or not the tuplet bracket. If unspecified, the default behaviour follows the usual engraving rules: the bracket is not displayed if the tuplet notes form a beamed group.
+The :token:`displayBracket` option is used for controlling whether to display or not the tuplet bracket. If unspecified, the default behaviour follows the usual engraving rules: the bracket is not displayed if the tuplet notes form a beamed group.
 
 Examples::
 
-    (n c4 e (t 1 +)(tm 2 3)) (n d4 e (tm 2 3)) (n e4 e (t 1 -)(tm 2 3))
+    (score (vers 2.0) (instrument (musicData
+        (clef G)
+        (time 2 4)
+        (n c4 e (t 1 + 3 2)(tm 2 3))
+        (n d4 e (tm 2 3))
+        (n e4 e (t 1 -)(tm 2 3))
+    )))
 
-This example is a triplet of eighth notes, that is, the three notes must be played
-in the time normally allotted for two eight notes.
+.. image:: ../figures/tuplet-01.png
 
-For specifying notes' duration modification, a :token:`timeModification` element must be included in all the notes in the tuplet:
+This example is a triplet of eighth notes. Element `(t 1 + 3 2)` in first note
+declares the triplet: it is tuplet number 1; the plus sign says that this note is the start of the tuplet; and 
+numbers '3 2' declare that three notes must be played in the time alloted for two notes. The end of the tuplet 
+is declared in last note: `(t 1 -)`. The :token:`tuplet` element is just used for defining the graphic elements: the bracket and the 3 number. But has no any effect on the notes duration. For that, a :token:`timeModification` element `(tm 2 3)` must be included in each note:
 
 .. rst-class:: bnf-rule
 .. productionlist:: *
@@ -51,40 +59,43 @@ For specifying notes' duration modification, a :token:`timeModification` element
     numerator : integer number
     denominator : integer number
 
-The :token:`timeModification` element must be included in all the notes that form the tuplet. The time modificaction information is a multiplication factor to be applied to normal note/rest duration. This factor is defined, as a fraction, by its :token:`numerator` and :token:`denominator`.
+The :token:`timeModification` element must be included in all the notes that form the tuplet. The time modificaction information is a multiplication factor to be applied to normal note/rest duration. This factor is defined, as a fraction, by its :token:`numerator` and :token:`denominator`. The :token:`timeModification` element is independent of the tuplet and can be of utility in other situations. For instance, in jazz scores, to alter notes duration when they must be played with swing.
 
-The tuplet element does not implies neither beaming nor time modification. Therefore elements :token:`tuplet`, :token:`tm` and :token:`beam` must be combined as needed. Remember that tuplet must be specified before beam. Examples::
+The tuplet element does not implies neither beaming nor time modification. Therefore elements :token:`tuplet`, :token:`timeModification` and :token:`beam` must be combined as needed.
+
+Example 1::
 
     (score (vers 2.0) (instrument (musicData
-        (n c4 e (t 1 + 2 3)(tm 2 3)(beam 1 +))
-        (n d4 s (tm 2 3)(beam 1 =+))
-        (n c4 s (tm 2 3)(beam 1 ==))
-        (n b3 s (t 1 -)(tm 2 3)(beam 1 --))
-        (barline)
+        (clef G)
+        (time 2 4)
+        (n c4 e (t 1 + 3 2)(tm 2 3)(beam 1 +))
+        (n d4 e (tm 2 3)(beam 1 =))
+        (n e4 e (t 1 -)(tm 2 3)(beam 1 -))
+    )))
 
-        (n c4 s (t 1 + 2 3)(tm 2 3)(beam 2 ++))
-        (n d4 s (tm 2 3)(beam 2 ==))
-        (n b3 s (t 1 -)(tm 2 3)(beam 2 --))
-        (barline)
+.. image:: ../figures/tuplet-02.png
 
-        (n f4 s (t 2 + 2 3)(tm 2 3)(beam 3 ++))
-        (n g4 s (tm 2 3)(beam 3 ==))
-        (n a4 s (t 2 -)(tm 2 3)(beam 3 --))
+Example 2::
+
+    (score (vers 2.0) (instrument (musicData
+        (clef G)
+        (key A)
+        (time 6 8)
+        (n f5 q. (tie 1 start))
+        (n f5 s (tie 1 stop)(tm 6 7)(t + 7 6)(beam 1 ++))
+        (n e5 s (tm 6 7)(beam 1 ==))
+        (n +d5 s (tm 6 7)(beam 1 ==))
+        (n e5 s (tm 6 7)(beam 1 ==))
+        (n +e5 s (tm 6 7)(beam 1 ==))
+        (n g5 s (tm 6 7)(beam 1 ==))
+        (n f5 s (tm 6 7)(t -)(beam 1 --))
         (barline)
     )))
 
-.. image:: ../figures/tuplet-01.png
+
+.. image:: ../figures/tuplet-03.png
 
 
-
-Abbreviated notation (deprecated)
-.......................................
-
-Deprecated since version 1.6 ::
-
-     (t -)     --> t-
-     (t + n)   --> tn
-     (t + n m) --> tn/m
 
 
 

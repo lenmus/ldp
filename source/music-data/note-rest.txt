@@ -9,9 +9,9 @@ Rests can be considered as notes with no pitch, so in LDP notes and rests are in
 .. rst-class:: bnf-rule
 .. productionlist:: *
     note:  (n `pitch` `duration` [`abbreviatedElements`*] [`noteOptions`*]
-        :     [`noterestOptions`*] [`staffObjOptions`*] [`attachments`*])
+        :     [`noterestOptions`*] [`staffObjOptions`*] [`attachment`*])
     rest:  (r `duration` [`abbreviatedElements`*] [`noterestOptions`*]
-        :     [`staffObjOptions`*] [`attachments`*])
+        :     [`staffObjOptions`*] [`attachment`*])
     abbreviatedElements : abbreviated elements 'tie' (l), 'beam' (g), 'staffNumber' (p),
                         : 'tuplet' (t) and 'voice' (v)
     noteOptions:  { `tie` | `stem` | `slur` | `lyric` }

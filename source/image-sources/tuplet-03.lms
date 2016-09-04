@@ -1,0 +1,16 @@
+    (score (vers 2.0) (instrument (musicData
+        (clef G)
+        (key A)
+        (time 6 8)
+        (n f5 q. (tie 1 start))
+        (n f5 s (tie 1 stop)(tm 6 7)(t + 7 6)(beam 1 ++))
+        (n e5 s (tm 6 7)(beam 1 ==))
+        (n +d5 s (tm 6 7)(beam 1 ==))
+        (n e5 s (tm 6 7)(beam 1 ==))
+        (n +e5 s (tm 6 7)(beam 1 ==))
+        (n g5 s (tm 6 7)(beam 1 ==))
+        (n f5 s (tm 6 7)(t -)(beam 1 --))
+        (barline)
+    )))
+
+
