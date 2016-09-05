@@ -11,7 +11,7 @@ The text of and illustrations in the *LDP language. Reference manual* are licens
 
 
 .. important::
-    This document is a draft, still in development. It should be accurate but it is not yet finished and some details could change from one day to the next, as the text is being reviewed and completed.
+    This document is a finished, complete and definitive document. It should be accurate and totally uptated. If you find errors, things that need clarification or have any suggestion, please go to the `LDP issues page <https://github.com/lenmus/ldp/issues>`_ and create a new issue. Thank you!
 
 
 Table of Contents

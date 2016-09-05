@@ -1,0 +1,117 @@
+.. _element_defineStyle:
+
+Defining styles
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To provide flexibility, information about the styles is separated from content. 
+
+Most score elements are rendered in predefined styles (font to use, size, color, margins, etc.). For instance, numbers for tuplets are rendered in a different style than numbers for metronome marks.
+
+But it is also possible to define additional styles for other elements. In LDP, styles are defined globally, assigning a name to each style. Later, elements can refer to the style to use by its style name. For instance::
+
+    (text (style "my text style") ... )
+
+Also, the default styles can be redefined. The following default styles are currently defined:
+
+- **Default style** - The style to use by default when no other style is applicable.
+- **Tuplet numbers** - The style to use for tuplets numbers.
+- **Instrument names** - The style to use for instrument and group names and abbreviations.
+- **Metronome marks** - The style to use for texts and numbers in metronome marks.
+- **Lyrics** - The style to use for texts in lyric lines.
+
+An style is defined by using the 'defineStyle' element:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    defineStyle : (defineStyle  `styleName` { `styleProperty`* | `font` [`color`] } )
+    styleProperty : (property value)
+
+Property names are normally taken from CSS. Currently, the following properties are supported by the LDP
+language:
+
+color and background:
+    - color
+    - background-color
+
+font
+    - font-file
+    - font-name
+    - font-size : (an integer or a real number followed by the characters "pt")
+    - font-style : { normal | italic }  default: normal
+    - font-weight : { normal | bold }   default: normal
+
+
+border width (all values are an integer or a real number in tenths, default 0.0)
+    - border-width
+    - border-width-top
+    - border-width-right
+    - border-width-bottom
+    - border-width-left
+
+margin (all values are an integer or a real number in tenths, default 0.0)
+    - margin
+    - margin-top
+    - margin-right
+    - margin-bottom
+    - margin-left
+
+padding (all values are an integer or a real number in tenths, default 0.0)
+    - padding
+    - padding-top
+    - padding-right
+    - padding-bottom
+    - padding-left
+
+text
+    - text-align : { left | right | center | justify } default: left
+    - text-decoration : { none | underline | overline | line-through } default: none
+    - vertical-align : { baseline | sub | super | top | text-top | middle | bottom | text-bottom } default: baseline
+    - line-height (an integer or a real number in tenths, default 0.0)
+
+size (all values are an integer or a real number in tenths, default 0.0)
+    - min-height
+    - min-width
+    - max-height
+    - max-width
+    - height
+    - width
+
+table (all values are an integer or a real number in tenths, default 0.0)
+    - table-col-width
+
+
+Examples::
+
+     (defineStyle "para"
+         (font-name "Times New Roman")
+         (font-size 12pt)
+         (font-style normal)
+         (color #ff0000)
+         (margin-bottom 2em)
+     )
+
+
+.. _element_font:
+
+Fonts
+~~~~~~~~~~~~~~~~~~~~~
+
+The :token:`font` element simplifies defining font properties by grouping all the properties
+in a single element:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    font : (font name-string size-string style-string)
+    name-string :  i.e. "Times New Roman", "Trebuchet"
+    size-string :  is a number, in points (i.e. "12"). Optionally, can 
+                :  be followed by 'pt'. i.e. "12pt"
+    style-string : { "bold" | "normal" | "italic" | "bold-italic" }
+
+
+Examples::
+
+    (defineStyle "Composer" (font "Times New Roman" 12pt normal) (color #000000))
+    (defineStyle "Instruments" (font "Times New Roman" 14 bold))
+
+
+

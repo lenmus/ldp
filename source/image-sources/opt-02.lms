@@ -1,0 +1,15 @@
+(score (vers 2.0)
+   (opt Render.SpacingMethod 1)
+   (instrument (musicData
+        (clef G)
+        (n g4 w)
+        (n g4 h)
+        (n g4 q)
+        (n g4 e)
+        (n g4 s)
+        (n g4 t)
+        (n g4 i)
+        (n g4 o)
+        (n g4 f)
+)))
+
