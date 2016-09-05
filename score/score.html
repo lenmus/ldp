@@ -63,7 +63,7 @@
 </div></blockquote>
 <p>In LDP the concept of &#8216;score part&#8217; is named &#8216;instrument&#8217; and a score is, basically, a collection of instruments and some optional information:</p>
 <pre class="bnf-rule">
-<strong id="grammar-token-score">score</strong> ::=  (score <a class="reference internal" href="#grammar-token-version"><code class="xref docutils literal"><span class="pre">version</span></code></a> [<a class="reference internal" href="#grammar-token-defineStyle"><code class="xref docutils literal"><span class="pre">defineStyle</span></code></a>*] [<a class="reference internal" href="#grammar-token-title"><code class="xref docutils literal"><span class="pre">title</span></code></a>*] [<a class="reference internal" href="#grammar-token-pageLayout"><code class="xref docutils literal"><span class="pre">pageLayout</span></code></a>*]
+<strong id="grammar-token-score">score</strong> ::=  (score <a class="reference internal" href="#grammar-token-version"><code class="xref docutils literal"><span class="pre">version</span></code></a> [<a class="reference internal" href="../format/styles.html#grammar-token-defineStyle"><code class="xref docutils literal"><span class="pre">defineStyle</span></code></a>*] [<a class="reference internal" href="#grammar-token-title"><code class="xref docutils literal"><span class="pre">title</span></code></a>*] [<a class="reference internal" href="#grammar-token-pageLayout"><code class="xref docutils literal"><span class="pre">pageLayout</span></code></a>*]
                   [<a class="reference internal" href="#grammar-token-systemLayout"><code class="xref docutils literal"><span class="pre">systemLayout</span></code></a>*] [<a class="reference internal" href="#grammar-token-option"><code class="xref docutils literal"><span class="pre">option</span></code></a>*] [<a class="reference internal" href="#grammar-token-parts"><code class="xref docutils literal"><span class="pre">parts</span></code></a>]
                   <a class="reference internal" href="instrument.html#grammar-token-instrument"><code class="xref docutils literal"><span class="pre">instrument</span></code></a>+ )
 </pre>
@@ -134,52 +134,179 @@ the following code:</p>
 <strong id="grammar-token-option">option</strong> ::=  (opt <code class="xref docutils literal"><span class="pre">option_name</span></code> [<code class="xref docutils literal"><span class="pre">option_value</span></code>] )
 </pre>
 <p>Depending on the option, its value must be an integer number, a float number or a
-boolean { yes | no | true | false }. Currently, the following options are available:</p>
-<dl class="docutils">
-<dt>Boolean options:</dt>
-<dd><ul class="first last simple">
-<li>StaffLines.StopAtFinalBarline</li>
-<li>StaffLines.Hide</li>
-<li>Staff.DrawLeftBarline</li>
-<li>Score.FillPageWithEmptyStaves</li>
-<li>Score.JustifyFinalBarline</li>
-</ul>
-</dd>
-<dt>Integer number options:</dt>
-<dd><ul class="first last simple">
-<li>Staff.UpperLegerLines.Displacement</li>
-<li>Render.SpacingMethod   (values: 1 = fixed spacing, 2 = proportional spacing)</li>
-<li>Render.SpacingValue</li>
-</ul>
-</dd>
-<dt>Real number options:</dt>
-<dd><ul class="first last simple">
-<li>Render.SpacingFactor</li>
-</ul>
-</dd>
-</dl>
+boolean { yes | no | true | false }.</p>
+<p>These options are intended to control different aspects of the score renderization process.
+Normally they should not be used. Most of these options were created for solving an ad hoc
+need. In future the could be removed and replaced by specific parameters, in the affected
+elements, for controlling appearance in score renderization.</p>
+<p>Currently, the following options are available:</p>
+<ul>
+<li><p class="first"><strong>StaffLines.Hide</strong></p>
+<blockquote>
+<div><p>It is a boolean option for supressing drawing the staff lines. Default value is &#8216;false&#8217;.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Staff.DrawLeftBarline</strong></p>
+<blockquote>
+<div><p>It is a boolean option for removing the left barline that connect all staves in one system.
+Default value is &#8216;true&#8217;.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Staff.UpperLegerLines.Displacement</strong></p>
+<blockquote>
+<div><p>This option accepts an integer number, in tenths units. It specifies an increment (or decrement) in
+the distance between the fifth line and the first top ledger line. Default value is 0. This option was
+created as a trick for displaying an scale across two staves, for forcing the first ledger line to
+be placed between both staves, as in following example:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)
+   (opt Staff.UpperLegerLines.Displacement 15)
+   (instrument (staves 2) (musicData
+        (clef G p1)
+        (clef F p2)
+        (key C)
+        (n c3 q p2)
+        (n d3 q p2)
+        (n e3 q p2)
+        (n f3 q p2)
+        (n g3 q p2)
+        (n a3 q p2)
+        (n b3 q p2)
+        (n c4 q p2)
+        (n d4 q p1)
+        (n e4 q p1)
+        (n f4 q p1)
+        (n g4 q p1)
+        (n a4 q p1)
+        (n b4 q p1)
+        (n c5 q p1)
+        (barline end)
+)))
+</pre></div>
+</div>
+<img alt="../_images/opt-01.png" src="../_images/opt-01.png" />
+<p>Appart of this very specific example, I cannot see other uses of this option.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>StaffLines.Truncate</strong></p>
+<blockquote>
+<div><p>Staff lines truncation only can occur when system is not justified.
+Staff lines always run until right margin unless requesting truncation.
+Option &#8220;StaffLines.Truncate&#8221; defines the behaviour:</p>
+<div class="highlight-python"><div class="highlight"><pre>0 - never truncate. Staff lines will always run to right margin.
+1 - truncate only if last object is barline of type final.
+2 - truncate only if last object is barline (any type).
+3 - truncate always after last object.
+</pre></div>
+</div>
+<p>Option 1 is the default behaviour and it can be useful for score
+editors: staff lines will run always to right margin until a barline
+of type final is entered.</p>
+<p>Option 3 truncates staff lines after last staff object. It can be
+useful for creating score samples (i.e. for ebooks).</p>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Score.JustifyLastSystem</strong></p>
+<blockquote>
+<div><p>Justification of last system is controlled by option &#8220;Score.JustifyLastSystem&#8221;,
+accepting the following values:</p>
+<div class="highlight-python"><div class="highlight"><pre>0 - never justify last system
+1 - justify it only if ends in barline of type final
+2 - justify it only if ends in barline of any type
+3 - justify it in any case
+</pre></div>
+</div>
+<p>Option 1 is the default value, and is convenient for score editors as
+never justifies the last system as it is being written and emulates
+the behaviour of writing scores with pen and paper. Once the score
+is finished, the user should change to option 3.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Score.FillPageWithEmptyStaves</strong></p>
+<blockquote>
+<div><p>It is a boolean option for forcing to fill the rest of the page with empty systems, when the score
+does not fills the page. Default value is &#8216;false&#8217;. Using value &#8216;true&#8217; in an empty score or an score
+with just empty instruments with clefs, key and time signatures is a convenient
+way of producing manuscript paper.</p>
 <p>For example, the following LDP code:</p>
 <div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)
     (opt Score.FillPageWithEmptyStaves yes)
-    (opt StaffLines.StopAtFinalBarline no)
+    (opt StaffLines.Truncate no)
     (instrument (musicData))
 )
 </pre></div>
 </div>
 <p>Will generate a blank page with staves (a manuscript paper page). It will be rendered as:</p>
 <img alt="../_images/score-03.png" src="../_images/score-03.png" />
-<p>When no options are defined the following will be assumed:</p>
-<div class="highlight-python"><div class="highlight"><pre>(opt Score.FillPageWithEmptyStaves false )
-(opt StaffLines.StopAtFinalBarline true )
-(opt Score.JustifyFinalBarline false )
-(opt StaffLines.Hide false )
-(opt Staff.DrawLeftBarline true )
-(opt Render.SpacingFactor 0.547 )
-(opt Staff.UpperLegerLines.Displacement 0 )
-(opt Render.SpacingMethod 2 )    //proportional spacing
-(opt Render.SpacingValue 35 )    // 15 tenths (1.5 lines) [add 20 to desired value]
+</div></blockquote>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Render.SpacingMethod</strong></dt>
+<dd><p class="first">This option specifies the desired spacing between notes:</p>
+<div class="highlight-python"><div class="highlight"><pre>1 = fixed spacing
+2 = proportional spacing
 </pre></div>
 </div>
+<p>Default value is 2. Fixed spacing can be convenient in some cases, when preparing examples
+for text books, for instance for displaying different note values:</p>
+<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)
+   (opt Render.SpacingMethod 1)
+   (instrument (musicData
+        (clef G)
+        (n g4 w)
+        (n g4 h)
+        (n g4 q)
+        (n g4 e)
+        (n g4 s)
+        (n g4 t)
+        (n g4 i)
+        (n g4 o)
+        (n g4 f)
+)))
+</pre></div>
+</div>
+<img alt="../_images/opt-02.png" class="last" src="../_images/opt-02.png" />
+</dd>
+</dl>
+</li>
+<li><p class="first"><strong>Render.SpacingValue</strong></p>
+<blockquote>
+<div><p>When using fixed spacing (Render.SpacingMethod = 1), this option defines the amount of space
+between notes. It must be a real number, in tenths. Default value is 35.0.</p>
+</div></blockquote>
+</li>
+</ul>
+<p>Two additional options are used for controlling some parameters of the spacing algorithm, when proportional spacing is used.
+Normally you should not use these parameters:</p>
+<ul>
+<li><dl class="first docutils">
+<dt><strong>Render.SpacingFactor</strong></dt>
+<dd><p class="first last">It is areal number, normally in the range 0.2 to 2.0. Default value is 0.547.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Render.SpacingFopt</strong></dt>
+<dd><p class="first last">It is areal number, normally in the range 0.7 to 4.0. Default value is 1.5.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p><strong>Deprecated options</strong></p>
+<p>They are accepted but will be removed in future:</p>
+<ul>
+<li><dl class="first docutils">
+<dt><strong>StaffLines.StopAtFinalBarline</strong></dt>
+<dd><p class="first last">This is a yes/no option. It is deprecated and you should use <em>StaffLines.Truncate</em> instead.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Score.JustifyFinalBarline</strong></dt>
+<dd><p class="first last">This is a yes/no option. It is deprecated and you should use <em>Score.JustifyLastSystem</em> instead.</p>
+</dd>
+</dl>
+</li>
+</ul>
 </div>
 <div class="section" id="units-for-measurements">
 <span id="score-units"></span><h2>2.1.2. Units for measurements</h2>
@@ -235,111 +362,8 @@ For instance, if intended page size DIN A4 (210mm X 297mm) the pageSize element 
 </pre></div>
 </div>
 </div>
-<div class="section" id="defining-styles">
-<span id="element-definestyle"></span><h2>2.1.5. Defining styles</h2>
-<p>To provide flexibility, information about the styles is separated from content.</p>
-<p>Most score elements are rendered in predefined styles (font to use, size, color, margins, etc.). For instance, numbers for tuplets are rendered in a different style than numbers for metronome marks.</p>
-<p>But it is also possible to define additional styles for other elements. In LDP, styles are defined globally, assigning a name to each style. Later, elements can refer to the style to use by its style name. For instance:</p>
-<div class="highlight-python"><div class="highlight"><pre>(text (style &quot;my text style&quot;) ... )
-</pre></div>
-</div>
-<p>Also, the default styles can be redefined. The following default styles are currently defined:</p>
-<ul class="simple">
-<li><strong>Default style</strong> - The style to use by default when no other style is applicable.</li>
-<li><strong>Tuplet numbers</strong> - The style to use for tuplets numbers.</li>
-<li><strong>Instrument names</strong> - The style to use for instrument and group names and abbreviations.</li>
-<li><strong>Metronome marks</strong> - The style to use for texts and numbers in metronome marks.</li>
-<li><strong>Lyrics</strong> - The style to use for texts in lyric lines.</li>
-</ul>
-<p>An style is defined by using the &#8216;defineStyle&#8217; element:</p>
-<pre class="bnf-rule">
-<strong id="grammar-token-defineStyle">defineStyle  </strong> ::=  (defineStyle  <code class="xref docutils literal"><span class="pre">styleName</span></code> { <a class="reference internal" href="#grammar-token-styleProperty"><code class="xref docutils literal"><span class="pre">styleProperty</span></code></a>* | <code class="xref docutils literal"><span class="pre">font</span></code> [<a class="reference internal" href="../common/common.html#grammar-token-color"><code class="xref docutils literal"><span class="pre">color</span></code></a>] } )
-<strong id="grammar-token-styleProperty">styleProperty</strong> ::=  (property value)
-</pre>
-<p>Property names are normally taken from CSS. Currently, the following properties are supported by the LDP
-language:</p>
-<dl class="docutils">
-<dt>color and background:</dt>
-<dd><ul class="first last simple">
-<li>color</li>
-<li>background-color</li>
-</ul>
-</dd>
-<dt>font</dt>
-<dd><ul class="first last simple">
-<li>font-file</li>
-<li>font-name</li>
-<li>font-size : (an integer or a real number followed by the characters &#8220;pt&#8221;)</li>
-<li>font-style : { normal | italic }  default: normal</li>
-<li>font-weight : { normal | bold }   default: normal</li>
-</ul>
-</dd>
-<dt>border width (all values are an integer or a real number in tenths, default 0.0)</dt>
-<dd><ul class="first last simple">
-<li>border-width</li>
-<li>border-width-top</li>
-<li>border-width-right</li>
-<li>border-width-bottom</li>
-<li>border-width-left</li>
-</ul>
-</dd>
-<dt>margin (all values are an integer or a real number in tenths, default 0.0)</dt>
-<dd><ul class="first last simple">
-<li>margin</li>
-<li>margin-top</li>
-<li>margin-right</li>
-<li>margin-bottom</li>
-<li>margin-left</li>
-</ul>
-</dd>
-<dt>padding (all values are an integer or a real number in tenths, default 0.0)</dt>
-<dd><ul class="first last simple">
-<li>padding</li>
-<li>padding-top</li>
-<li>padding-right</li>
-<li>padding-bottom</li>
-<li>padding-left</li>
-</ul>
-</dd>
-<dt>text</dt>
-<dd><ul class="first last simple">
-<li>text-align : { left | right | center | justify } default: left</li>
-<li>text-decoration : { none | underline | overline | line-through } default: none</li>
-<li>vertical-align : { baseline | sub | super | top | text-top | middle | bottom | text-bottom } default: baseline</li>
-<li>line-height (an integer or a real number in tenths, default 0.0)</li>
-</ul>
-</dd>
-<dt>size (all values are an integer or a real number in tenths, default 0.0)</dt>
-<dd><ul class="first last simple">
-<li>min-height</li>
-<li>min-width</li>
-<li>max-height</li>
-<li>max-width</li>
-<li>height</li>
-<li>width</li>
-</ul>
-</dd>
-<dt>table (all values are an integer or a real number in tenths, default 0.0)</dt>
-<dd><ul class="first last simple">
-<li>table-col-width</li>
-</ul>
-</dd>
-</dl>
-<p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre>(defineStyle &quot;Composer&quot; (font &quot;Times New Roman&quot; 12pt normal) (color #000000))
-(defineStyle &quot;Instruments&quot; (font &quot;Times New Roman&quot; 14pt bold) (color #000000))
-(defineStyle &quot;para&quot;
-    (font-name &quot;Times New Roman&quot;)
-    (font-size 12pt)
-    (font-style normal)
-    (color #ff0000)
-    (margin-bottom 2em)
-)
-</pre></div>
-</div>
-</div>
 <div class="section" id="score-titles">
-<span id="element-title"></span><h2>2.1.6. Score titles</h2>
+<span id="element-title"></span><h2>2.1.5. Score titles</h2>
 <p>Score titles are optional. In most cases, it is more powerfull and flexible to embed an score without titles in a document, and then define the titles using paragraphs, headings and all other elements available at document level. Nevertheless, defining titles at score level could be useful is some cases. For this, the <a class="reference internal" href="#grammar-token-title"><code class="xref std std-token docutils literal"><span class="pre">title</span></code></a> element is available:</p>
 <pre class="bnf-rule">
 <strong id="grammar-token-title">title</strong> ::=  (title string [<a class="reference internal" href="../common/common.html#grammar-token-style"><code class="xref docutils literal"><span class="pre">style</span></code></a>] [<a class="reference internal" href="../format/new-system.html#grammar-token-location"><code class="xref docutils literal"><span class="pre">location</span></code></a>])
@@ -419,8 +443,7 @@ language:</p>
 <li class="toctree-l3"><a class="reference internal" href="#units-for-measurements">2.1.2. Units for measurements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#page-layout">2.1.3. Page layout</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#system-layout">2.1.4. System layout</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#defining-styles">2.1.5. Defining styles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#score-titles">2.1.6. Score titles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#score-titles">2.1.5. Score titles</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="instrument.html">2.2. The Instrument element</a></li>
@@ -465,7 +488,7 @@ language:</p>
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Sep-04.
+      Last updated on 2016-Sep-05.
     </div>
         </div>
         <div class="clearer"></div>
