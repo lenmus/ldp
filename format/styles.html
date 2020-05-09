@@ -1,35 +1,33 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>9.4. Defining styles &mdash; LDP language manual. Vers. 2.0 (draft)</title>
-    
+    <title>9.4. Defining styles &#8212; LDP language manual. Vers. 2.0 (draft)</title>
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  false
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
-    <link rel="up" title="9. Format control" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="10. Common elements widely used" href="../common/index.html" />
     <link rel="prev" title="9.3. Spacers" href="spacer.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
@@ -57,7 +55,7 @@
 <p>To provide flexibility, information about the styles is separated from content.</p>
 <p>Most score elements are rendered in predefined styles (font to use, size, color, margins, etc.). For instance, numbers for tuplets are rendered in a different style than numbers for metronome marks.</p>
 <p>But it is also possible to define additional styles for other elements. In LDP, styles are defined globally, assigning a name to each style. Later, elements can refer to the style to use by its style name. For instance:</p>
-<div class="highlight-python"><div class="highlight"><pre>(text (style &quot;my text style&quot;) ... )
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">text</span> <span class="p">(</span><span class="n">style</span> <span class="s2">&quot;my text style&quot;</span><span class="p">)</span> <span class="o">...</span> <span class="p">)</span>
 </pre></div>
 </div>
 <p>Also, the default styles can be redefined. The following default styles are currently defined:</p>
@@ -68,7 +66,7 @@
 <li><strong>Metronome marks</strong> - The style to use for texts and numbers in metronome marks.</li>
 <li><strong>Lyrics</strong> - The style to use for texts in lyric lines.</li>
 </ul>
-<p>An style is defined by using the &#8216;defineStyle&#8217; element:</p>
+<p>An style is defined by using the ‘defineStyle’ element:</p>
 <pre class="bnf-rule">
 <strong id="grammar-token-defineStyle">defineStyle  </strong> ::=  (defineStyle  <code class="xref docutils literal"><span class="pre">styleName</span></code> { <a class="reference internal" href="#grammar-token-styleProperty"><code class="xref docutils literal"><span class="pre">styleProperty</span></code></a>* | <a class="reference internal" href="#grammar-token-font"><code class="xref docutils literal"><span class="pre">font</span></code></a> [<a class="reference internal" href="../common/common.html#grammar-token-color"><code class="xref docutils literal"><span class="pre">color</span></code></a>] } )
 <strong id="grammar-token-styleProperty">styleProperty</strong> ::=  (property value)
@@ -86,7 +84,7 @@ language:</p>
 <dd><ul class="first last simple">
 <li>font-file</li>
 <li>font-name</li>
-<li>font-size : (an integer or a real number followed by the characters &#8220;pt&#8221;)</li>
+<li>font-size : (an integer or a real number followed by the characters “pt”)</li>
 <li>font-style : { normal | italic }  default: normal</li>
 <li>font-weight : { normal | bold }   default: normal</li>
 </ul>
@@ -143,13 +141,13 @@ language:</p>
 </dd>
 </dl>
 <p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre>(defineStyle &quot;para&quot;
-    (font-name &quot;Times New Roman&quot;)
-    (font-size 12pt)
-    (font-style normal)
-    (color #ff0000)
-    (margin-bottom 2em)
-)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">defineStyle</span> <span class="s2">&quot;para&quot;</span>
+    <span class="p">(</span><span class="n">font</span><span class="o">-</span><span class="n">name</span> <span class="s2">&quot;Times New Roman&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">font</span><span class="o">-</span><span class="n">size</span> <span class="mi">12</span><span class="n">pt</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">font</span><span class="o">-</span><span class="n">style</span> <span class="n">normal</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">color</span> <span class="c1">#ff0000)</span>
+    <span class="p">(</span><span class="n">margin</span><span class="o">-</span><span class="n">bottom</span> <span class="mi">2</span><span class="n">em</span><span class="p">)</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -165,8 +163,8 @@ in a single element:</p>
 <strong id="grammar-token-style-string">style-string</strong> ::=  { &quot;bold&quot; | &quot;normal&quot; | &quot;italic&quot; | &quot;bold-italic&quot; }
 </pre>
 <p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre>(defineStyle &quot;Composer&quot; (font &quot;Times New Roman&quot; 12pt normal) (color #000000))
-(defineStyle &quot;Instruments&quot; (font &quot;Times New Roman&quot; 14 bold))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">defineStyle</span> <span class="s2">&quot;Composer&quot;</span> <span class="p">(</span><span class="n">font</span> <span class="s2">&quot;Times New Roman&quot;</span> <span class="mi">12</span><span class="n">pt</span> <span class="n">normal</span><span class="p">)</span> <span class="p">(</span><span class="n">color</span> <span class="c1">#000000))</span>
+<span class="p">(</span><span class="n">defineStyle</span> <span class="s2">&quot;Instruments&quot;</span> <span class="p">(</span><span class="n">font</span> <span class="s2">&quot;Times New Roman&quot;</span> <span class="mi">14</span> <span class="n">bold</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -191,7 +189,7 @@ in a single element:</p>
 <li class="toctree-l2"><a class="reference internal" href="new-system.html">9.1. Forcing a new system</a></li>
 <li class="toctree-l2"><a class="reference internal" href="new-system.html#the-location-element">9.2. The Location element</a></li>
 <li class="toctree-l2"><a class="reference internal" href="spacer.html">9.3. Spacers</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">9.4. Defining styles</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">9.4. Defining styles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fonts">9.5. Fonts</a></li>
 </ul>
 </li>
@@ -227,7 +225,7 @@ in a single element:</p>
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Sep-05.
+      Last updated on 2020-May-09.
     </div>
         </div>
         <div class="clearer"></div>

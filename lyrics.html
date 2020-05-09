@@ -1,34 +1,33 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>8. Lyrics &mdash; LDP language manual. Vers. 2.0 (draft)</title>
-    
+    <title>8. Lyrics &#8212; LDP language manual. Vers. 2.0 (draft)</title>
     <link rel="stylesheet" href="_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '0.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  false
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="9. Format control" href="format/index.html" />
     <link rel="prev" title="7.5. Texts" href="auxobjs/texts.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="index.html">LDP language manual. Vers. 2.0</a></h1>
@@ -62,90 +61,90 @@
 <strong id="grammar-token-melisma">melisma  </strong> ::=  (melisma)
 </pre>
 <p>The minimun content is just one syllable for the note:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
-    (clef G)
-    (n c4 q (lyric &quot;do&quot;))
-    (n d4 q (lyric &quot;re&quot;))
-    (n e4 q (lyric &quot;mi&quot;))
-    (n f4 q (lyric &quot;fa&quot;))
-    (n g4 q (lyric &quot;sol&quot;))
-    (n a4 q (lyric &quot;la&quot;))
-    (n b4 q (lyric &quot;si&quot;))
-    (n c5 q (lyric &quot;do&quot;))
-    (barline)
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;do&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;re&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;mi&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">f4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;fa&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;sol&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">a4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;la&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">b4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;si&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c5</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;do&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">barline</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="_images/lyric-01.png" src="_images/lyric-01.png" />
 <p>The <a class="reference internal" href="#grammar-token-lyricId"><code class="xref std std-token docutils literal"><span class="pre">lyricId</span></code></a> element is used when there are multiple lyric lines, for identifying the line. If not specified, line 1 is assumed:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
-    (clef G)
-    (n c4 q (lyric 1 &quot;This&quot;)(lyric 2 &quot;A&quot;))
-    (n d4 q (lyric 1 &quot;is&quot;)(lyric 2 &quot;se&quot; -))
-    (n e4 q (lyric 1 &quot;line&quot;)(lyric 2 &quot;cond&quot;))
-    (n f4 q (lyric 1 &quot;one.&quot;)(lyric 2 &quot;line.&quot;))
-    (barline)
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="mi">1</span> <span class="s2">&quot;This&quot;</span><span class="p">)(</span><span class="n">lyric</span> <span class="mi">2</span> <span class="s2">&quot;A&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="mi">1</span> <span class="s2">&quot;is&quot;</span><span class="p">)(</span><span class="n">lyric</span> <span class="mi">2</span> <span class="s2">&quot;se&quot;</span> <span class="o">-</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="mi">1</span> <span class="s2">&quot;line&quot;</span><span class="p">)(</span><span class="n">lyric</span> <span class="mi">2</span> <span class="s2">&quot;cond&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">f4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="mi">1</span> <span class="s2">&quot;one.&quot;</span><span class="p">)(</span><span class="n">lyric</span> <span class="mi">2</span> <span class="s2">&quot;line.&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">barline</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="_images/lyric-02.png" src="_images/lyric-02.png" />
-<p>The <a class="reference internal" href="#grammar-token-hyphen"><code class="xref std std-token docutils literal"><span class="pre">hyphen</span></code></a> element (a character &#8216;-&#8216; after the syllable text) indicates that this syllable is an intermediate one (a word-beginning syllable or a mid-word syllable) and thus a hyphenation symbol must be displayed between this and next syllable:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
-    (clef G)
-    (n c4 q (lyric &quot;hy&quot; -))
-    (n d4 q (lyric &quot;phe&quot; -))
-    (n e4 q (lyric &quot;na&quot; -))
-    (n f4 q (lyric &quot;ted&quot;))
-    (n g4 q (lyric &quot;words&quot;))
-    (n a4 q (lyric &quot;and&quot;))
-    (n b4 q (lyric &quot;more&quot;))
-    (n c5 q (lyric &quot;words&quot;))
-    (barline)
-)))
+<p>The <a class="reference internal" href="#grammar-token-hyphen"><code class="xref std std-token docutils literal"><span class="pre">hyphen</span></code></a> element (a character ‘-‘ after the syllable text) indicates that this syllable is an intermediate one (a word-beginning syllable or a mid-word syllable) and thus a hyphenation symbol must be displayed between this and next syllable:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;hy&quot;</span> <span class="o">-</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;phe&quot;</span> <span class="o">-</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;na&quot;</span> <span class="o">-</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">f4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;ted&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;words&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">a4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;and&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">b4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;more&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c5</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;words&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">barline</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="_images/lyric-03.png" src="_images/lyric-03.png" />
 <p>The <a class="reference internal" href="#grammar-token-melisma"><code class="xref std std-token docutils literal"><span class="pre">melisma</span></code></a> element represent melisma lines:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
-    (clef G)
-    (n c4 q (lyric &quot;A&quot; (melisma)))
-    (n d4 q)
-    (n e4 q)
-    (n f4 q)
-    (n g4 q (lyric &quot;men&quot;))
-    (barline)
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;A&quot;</span> <span class="p">(</span><span class="n">melisma</span><span class="p">)))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">q</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">q</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">f4</span> <span class="n">q</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;men&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">barline</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="_images/lyric-04.png" src="_images/lyric-04.png" />
 <p>Multiple syllables on a note are automatically separated by elision symbols (i.e. an undertie). Therefore, an additional character for the elision symbol must not be added to the syllable text:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
-    (clef G)
-    (n g5 e g+ (lyric &quot;con&quot; -))
-    (n c5 e (lyric &quot;sa&quot; (melisma)))
-    (n b4 e g-)
-    (barline)
-    (n c5 e g+)
-    (n b4 e (lyric &quot;cro&quot; &quot;a&quot;))
-    (n a4 e g- (lyric &quot;te&quot;))
-    (barline)
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">g5</span> <span class="n">e</span> <span class="n">g</span><span class="o">+</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;con&quot;</span> <span class="o">-</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c5</span> <span class="n">e</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;sa&quot;</span> <span class="p">(</span><span class="n">melisma</span><span class="p">)))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">b4</span> <span class="n">e</span> <span class="n">g</span><span class="o">-</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">barline</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c5</span> <span class="n">e</span> <span class="n">g</span><span class="o">+</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">b4</span> <span class="n">e</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;cro&quot;</span> <span class="s2">&quot;a&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">a4</span> <span class="n">e</span> <span class="n">g</span><span class="o">-</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;te&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">barline</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="_images/lyric-05.png" src="_images/lyric-05.png" />
 <p>The <a class="reference internal" href="pauses/pauses.html#grammar-token-placement"><code class="xref std std-token docutils literal"><span class="pre">placement</span></code></a> element is used to determine if the lyrics should be placed above the staff or below the staff. The specified value will be applied to the lyric element in wich it is defined and to all following lyric elements in the same line until a new placement is defined. By default, when no placement is defined, lyrics will be placed below:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
-    (clef G)
-    (n c6 q (lyric &quot;A&quot; - above))
-    (n e6 q (lyric &quot;bove&quot;))
-    (n a3 q (lyric &quot;Be&quot; - below))
-    (n f3 q (lyric &quot;low&quot;))
-    (barline)
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c6</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;A&quot;</span> <span class="o">-</span> <span class="n">above</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">e6</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;bove&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">a3</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;Be&quot;</span> <span class="o">-</span> <span class="n">below</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">f3</span> <span class="n">q</span> <span class="p">(</span><span class="n">lyric</span> <span class="s2">&quot;low&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">barline</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="_images/lyric-06.png" src="_images/lyric-06.png" />
-<p>Style can be assigned to each lyric line by using the <a class="reference internal" href="common/common.html#grammar-token-style"><code class="xref std std-token docutils literal"><span class="pre">style</span></code></a> element. It will be applied to the lyric element in wich it is defined and to all following lyric elements in the same line until a new style is defined. By default, when no style is defined, style &#8220;Default lyrics&#8221; is applied.</p>
+<p>Style can be assigned to each lyric line by using the <a class="reference internal" href="common/common.html#grammar-token-style"><code class="xref std std-token docutils literal"><span class="pre">style</span></code></a> element. It will be applied to the lyric element in wich it is defined and to all following lyric elements in the same line until a new style is defined. By default, when no style is defined, style “Default lyrics” is applied.</p>
 </div>
 
 
@@ -163,7 +162,7 @@
 <li class="toctree-l1"><a class="reference internal" href="relobjs/index.html">5. Note relationships</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pauses/index.html">6. Pauses and breath marks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="auxobjs/index.html">7. Notations attached to one object</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">8. Lyrics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8. Lyrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="format/index.html">9. Format control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="common/index.html">10. Common elements widely used</a></li>
 </ul>
@@ -197,7 +196,7 @@
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Sep-05.
+      Last updated on 2020-May-09.
     </div>
         </div>
         <div class="clearer"></div>

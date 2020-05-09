@@ -1,35 +1,33 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>5.3. Beams &mdash; LDP language manual. Vers. 2.0 (draft)</title>
-    
+    <title>5.3. Beams &#8212; LDP language manual. Vers. 2.0 (draft)</title>
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  false
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
-    <link rel="up" title="5. Note relationships" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="5.4. Tuplets" href="tuplets.html" />
     <link rel="prev" title="5.1. Ties" href="tie-slur.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
@@ -62,109 +60,109 @@
 <p>Beam segments are represented by a string, encoded in the <a class="reference internal" href="#grammar-token-beamtype"><code class="xref std std-token docutils literal"><span class="pre">beamtype</span></code></a> element. The string is formed by concatenation of 1 to 6 characters from the set { + | - | = | f | b }. Each caracter is associated to a beam level: the first character to the first level, the second character to the second level, etc. An the caracters have the following meaning:</p>
 <blockquote>
 <div><ul class="simple">
-<li>&#8216;+&#8217; for <em>start beam</em>. It starts a new beam and must be paired with a &#8216;-&#8216; in another note.</li>
-<li>&#8216;=&#8217; for <em>continue beam</em>. Must be included in intermediate notes.</li>
-<li>&#8216;-&#8216; for <em>end beam</em>. It stops a beam started in another note.</li>
-<li>&#8216;f&#8217; for <em>forward hook</em>. For specifying a single beam forward hook that only affects the note in which it is defined.</li>
-<li>&#8216;b&#8217; for <em>backward hook</em> For specifying a single beam backward hook that only affects the note in which it is defined.</li>
+<li>‘+’ for <em>start beam</em>. It starts a new beam and must be paired with a ‘-‘ in another note.</li>
+<li>‘=’ for <em>continue beam</em>. Must be included in intermediate notes.</li>
+<li>‘-‘ for <em>end beam</em>. It stops a beam started in another note.</li>
+<li>‘f’ for <em>forward hook</em>. For specifying a single beam forward hook that only affects the note in which it is defined.</li>
+<li>‘b’ for <em>backward hook</em> For specifying a single beam backward hook that only affects the note in which it is defined.</li>
 </ul>
 </div></blockquote>
 <p>For instance, lets define the beam for the group in following image:</p>
 <img alt="../_images/beams-03.png" src="../_images/beams-03.png" />
 <p>The beam will be assigned, arbitrarily, the ID 31. In first note one beam line starts; this is encoded as <code class="docutils literal"><span class="pre">(beam</span> <span class="pre">31</span> <span class="pre">+)</span></code>.
-In second note the first beam line continues (&#8216;=&#8217;), a second line starts (&#8216;+&#8217;) and has a forward hook (&#8216;f&#8217;); therefore, the beam in second note will be encoded as <code class="docutils literal"><span class="pre">(beam</span> <span class="pre">31</span> <span class="pre">=+f)</span></code>. The third note has two beam lines that continue from previous note; therefore the beam is encoded as
+In second note the first beam line continues (‘=’), a second line starts (‘+’) and has a forward hook (‘f’); therefore, the beam in second note will be encoded as <code class="docutils literal"><span class="pre">(beam</span> <span class="pre">31</span> <span class="pre">=+f)</span></code>. The third note has two beam lines that continue from previous note; therefore the beam is encoded as
 <code class="docutils literal"><span class="pre">(beam</span> <span class="pre">31</span> <span class="pre">==)</span></code>. Finally, in the last note the two beams end and there is a backwards hook; therefore <code class="docutils literal"><span class="pre">(beam</span> <span class="pre">31</span> <span class="pre">--b)</span></code>. This is the score:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
-    (clef G)
-    (n e4 e (beam 31 +))
-    (n g4 t (beam 31 =+f))
-    (n d4 s (beam 31 ==))
-    (n f4 t (beam 31 --b))
-    (spacer 30)
-    (barline)
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span> <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">e</span> <span class="p">(</span><span class="n">beam</span> <span class="mi">31</span> <span class="o">+</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">t</span> <span class="p">(</span><span class="n">beam</span> <span class="mi">31</span> <span class="o">=+</span><span class="n">f</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">s</span> <span class="p">(</span><span class="n">beam</span> <span class="mi">31</span> <span class="o">==</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">f4</span> <span class="n">t</span> <span class="p">(</span><span class="n">beam</span> <span class="mi">31</span> <span class="o">--</span><span class="n">b</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">spacer</span> <span class="mi">30</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">barline</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <p>Some more examples:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
-    (clef G)
-    //first group
-    (n c4 e (beam 17 +))
-    (n d4 e (beam 17 =))
-    (n e4 e (beam 17 =))
-    (n g4 e (beam 17 -))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span> <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+    <span class="o">//</span><span class="n">first</span> <span class="n">group</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">e</span> <span class="p">(</span><span class="n">beam</span> <span class="mi">17</span> <span class="o">+</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">e</span> <span class="p">(</span><span class="n">beam</span> <span class="mi">17</span> <span class="o">=</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">e</span> <span class="p">(</span><span class="n">beam</span> <span class="mi">17</span> <span class="o">=</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">e</span> <span class="p">(</span><span class="n">beam</span> <span class="mi">17</span> <span class="o">-</span><span class="p">))</span>
 
-    //second group
-    (n c4 s (beam 18 +f))
-    (n d4 e (beam 18 =))
-    (n f4 s (beam 18 -b))
+    <span class="o">//</span><span class="n">second</span> <span class="n">group</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">s</span> <span class="p">(</span><span class="n">beam</span> <span class="mi">18</span> <span class="o">+</span><span class="n">f</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">e</span> <span class="p">(</span><span class="n">beam</span> <span class="mi">18</span> <span class="o">=</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">f4</span> <span class="n">s</span> <span class="p">(</span><span class="n">beam</span> <span class="mi">18</span> <span class="o">-</span><span class="n">b</span><span class="p">))</span>
 
-    //third group
-    (n c4 t (beam 19 ++))
-    (n d4 t (beam 19 ==))
-    (n e4 t (beam 19 ==))
-    (n f4 t (beam 19 --))
-)))
+    <span class="o">//</span><span class="n">third</span> <span class="n">group</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">t</span> <span class="p">(</span><span class="n">beam</span> <span class="mi">19</span> <span class="o">++</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">t</span> <span class="p">(</span><span class="n">beam</span> <span class="mi">19</span> <span class="o">==</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">t</span> <span class="p">(</span><span class="n">beam</span> <span class="mi">19</span> <span class="o">==</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">f4</span> <span class="n">t</span> <span class="p">(</span><span class="n">beam</span> <span class="mi">19</span> <span class="o">--</span><span class="p">))</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/beams-01.png" src="../_images/beams-01.png" />
 <p>For beams in chords the <a class="reference internal" href="#grammar-token-beam"><code class="xref std std-token docutils literal"><span class="pre">beam</span></code></a> element must be placed only in the first note of each chord included in the beam.
 Example, two beamed chords:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
-    (clef G)
-    (chord (n e4 e. (beam 31 +)) (n g4 e.) (n c5 e.))
-    (chord (n d4 s (beam 31 -b)) (n f4 s) (n a4 s))
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span> <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">chord</span> <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">e</span><span class="o">.</span> <span class="p">(</span><span class="n">beam</span> <span class="mi">31</span> <span class="o">+</span><span class="p">))</span> <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">e</span><span class="o">.</span><span class="p">)</span> <span class="p">(</span><span class="n">n</span> <span class="n">c5</span> <span class="n">e</span><span class="o">.</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">chord</span> <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">s</span> <span class="p">(</span><span class="n">beam</span> <span class="mi">31</span> <span class="o">-</span><span class="n">b</span><span class="p">))</span> <span class="p">(</span><span class="n">n</span> <span class="n">f4</span> <span class="n">s</span><span class="p">)</span> <span class="p">(</span><span class="n">n</span> <span class="n">a4</span> <span class="n">s</span><span class="p">))</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/beams-02.png" src="../_images/beams-02.png" />
 <div class="section" id="abbreviated-notation-deprecated">
 <h2>5.3.1. Abbreviated notation (deprecated)</h2>
 <p>LDP also supports an abbreviated syntax for beams in simple lines of music. It consists on marking only the first note of the beamed group with a <code class="docutils literal"><span class="pre">g+</span></code> notation and the last note of the group with a <code class="docutils literal"><span class="pre">g-</span></code> notation. All notes defined between these two will be automatically included in the beam, and the beam segments will be automatically computed based on notes duration. Example:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
-    (clef G)
-    (key C)
-    (time 2 4)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span> <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">key</span> <span class="n">C</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">time</span> <span class="mi">2</span> <span class="mi">4</span><span class="p">)</span>
 
-    //Measure 1
-    (n c4 e. g+ v1)
-    (n d4 s v1)
-    (n e4 e g- v1)
-    (n c4 s g+ v1)
-    (n d4 s v1)
-    (n e4 e g- v1)
-    (barline simple)
+    <span class="o">//</span><span class="n">Measure</span> <span class="mi">1</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">e</span><span class="o">.</span> <span class="n">g</span><span class="o">+</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">s</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">e</span> <span class="n">g</span><span class="o">-</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">s</span> <span class="n">g</span><span class="o">+</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">s</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">e</span> <span class="n">g</span><span class="o">-</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">barline</span> <span class="n">simple</span><span class="p">)</span>
 
-    //Measure 2
-    (n c4 s g+ v1)
-    (n d4 e v1)
-    (n e4 s g- v1)
-    (n c4 s g+ v1)
-    (n d4 s v1)
-    (n d4 s v1)
-    (n e4 s g- v1)
-    (barline simple)
+    <span class="o">//</span><span class="n">Measure</span> <span class="mi">2</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">s</span> <span class="n">g</span><span class="o">+</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">e</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">s</span> <span class="n">g</span><span class="o">-</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">s</span> <span class="n">g</span><span class="o">+</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">s</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">s</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">s</span> <span class="n">g</span><span class="o">-</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">barline</span> <span class="n">simple</span><span class="p">)</span>
 
-    //Measure 3
-    (n c4 s g+ v1)
-    (n d4 e. g- v1)
-    (n c4 t g+ v1)
-    (n d4 e v1)
-    (n d4 t v1)
-    (n e4 s g- v1)
-    (barline simple)
+    <span class="o">//</span><span class="n">Measure</span> <span class="mi">3</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">s</span> <span class="n">g</span><span class="o">+</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">e</span><span class="o">.</span> <span class="n">g</span><span class="o">-</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">t</span> <span class="n">g</span><span class="o">+</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">e</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">t</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">s</span> <span class="n">g</span><span class="o">-</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">barline</span> <span class="n">simple</span><span class="p">)</span>
 
-    //Measure 4
-    (n c4 s g+ v1)
-    (n d4 t v1)
-    (n d4 t v1)
-    (n e4 e g- v1)
-    (n c4 s g+ v1)
-    (n d4 t v1)
-    (n d4 e v1)
-    (n e4 t g- v1)
-    (barline simple)
-)))
+    <span class="o">//</span><span class="n">Measure</span> <span class="mi">4</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">s</span> <span class="n">g</span><span class="o">+</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">t</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">t</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">e</span> <span class="n">g</span><span class="o">-</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">s</span> <span class="n">g</span><span class="o">+</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">t</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">e</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">t</span> <span class="n">g</span><span class="o">-</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">barline</span> <span class="n">simple</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/beams-04.png" src="../_images/beams-04.png" />
@@ -186,7 +184,7 @@ Example, two beamed chords:</p>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">5. Note relationships</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="tie-slur.html">5.1. Ties</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tie-slur.html#slurs">5.2. Slurs</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">5.3. Beams</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.3. Beams</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#abbreviated-notation-deprecated">5.3.1. Abbreviated notation (deprecated)</a></li>
 </ul>
 </li>
@@ -229,7 +227,7 @@ Example, two beamed chords:</p>
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Sep-05.
+      Last updated on 2020-May-09.
     </div>
         </div>
         <div class="clearer"></div>

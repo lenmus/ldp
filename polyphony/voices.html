@@ -1,35 +1,33 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>4.1. Voices &mdash; LDP language manual. Vers. 2.0 (draft)</title>
-    
+    <title>4.1. Voices &#8212; LDP language manual. Vers. 2.0 (draft)</title>
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  false
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
-    <link rel="up" title="4. Polyophony: chords and voices" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4.3. Chords" href="chords.html" />
     <link rel="prev" title="4. Polyophony: chords and voices" href="index.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
@@ -59,49 +57,49 @@
 <strong id="grammar-token-voice">voice</strong> ::=  (voice num)
 </pre>
 <p>The <a class="reference internal" href="#grammar-token-voice"><code class="xref std std-token docutils literal"><span class="pre">voice</span></code></a> element can be abbreviated by omitting the parenthesis and concatenating
-a &#8220;v&#8221; letter with the voice number. For instance <code class="docutils literal"><span class="pre">(voice</span> <span class="pre">3)</span></code> can be replaced by <code class="docutils literal"><span class="pre">v3</span></code>.</p>
+a “v” letter with the voice number. For instance <code class="docutils literal"><span class="pre">(voice</span> <span class="pre">3)</span></code> can be replaced by <code class="docutils literal"><span class="pre">v3</span></code>.</p>
 <p>By default, when voice is not specified, all notes and rest inherit the voice from the last note/rest in which the voice element was defined. When no voice defined, voice 1 is assumed.</p>
 <p>When using voices, notes and rest in each measure must be entered by voice lines, that is, one voice must be entered before entering the music for the next voice:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
-    (clef G)
-    (key C)
-    (time 4 4)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">key</span> <span class="n">C</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">time</span> <span class="mi">4</span> <span class="mi">4</span><span class="p">)</span>
 
-    //first voice in this measure
-    (n g4 q v1)(n e4 e.)(n g4 s (stem up))(n c5 q (stem up))
+    <span class="o">//</span><span class="n">first</span> <span class="n">voice</span> <span class="ow">in</span> <span class="n">this</span> <span class="n">measure</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">q</span> <span class="n">v1</span><span class="p">)(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">e</span><span class="o">.</span><span class="p">)(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">s</span> <span class="p">(</span><span class="n">stem</span> <span class="n">up</span><span class="p">))(</span><span class="n">n</span> <span class="n">c5</span> <span class="n">q</span> <span class="p">(</span><span class="n">stem</span> <span class="n">up</span><span class="p">))</span>
 
-    //second voice
-    (n c4 h v2 (stem down))(n e4 h (stem down))
+    <span class="o">//</span><span class="n">second</span> <span class="n">voice</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">h</span> <span class="n">v2</span> <span class="p">(</span><span class="n">stem</span> <span class="n">down</span><span class="p">))(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">h</span> <span class="p">(</span><span class="n">stem</span> <span class="n">down</span><span class="p">))</span>
 
-    (barline)
-)))
+    <span class="p">(</span><span class="n">barline</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/voice-01.png" src="../_images/voice-01.png" />
 </div>
 <div class="section" id="gaps-in-a-voice">
 <span id="element-gofwd"></span><h1>4.2. Gaps in a voice</h1>
-<p>In polyphonic instruments, such as piano, for legibility reasons, it is normal not to write rests for secondary voices. In many music notation editors this is achieved by inserting rests and changing their appearance to &#8216;invisible&#8217;. In LDP this is also possible, but for semantic reasons it has been preferred not to use tricks and define a &#8216;voice gap&#8217; element, the <a class="reference internal" href="#grammar-token-goFwd"><code class="xref std std-token docutils literal"><span class="pre">goFwd</span></code></a> element:</p>
+<p>In polyphonic instruments, such as piano, for legibility reasons, it is normal not to write rests for secondary voices. In many music notation editors this is achieved by inserting rests and changing their appearance to ‘invisible’. In LDP this is also possible, but for semantic reasons it has been preferred not to use tricks and define a ‘voice gap’ element, the <a class="reference internal" href="#grammar-token-goFwd"><code class="xref std std-token docutils literal"><span class="pre">goFwd</span></code></a> element:</p>
 <pre class="bnf-rule">
 <strong id="grammar-token-goFwd">goFwd   </strong> ::=  (goFwd <a class="reference internal" href="#grammar-token-duration"><code class="xref docutils literal"><span class="pre">duration</span></code></a> [<a class="reference internal" href="#grammar-token-voice"><code class="xref docutils literal"><span class="pre">voice</span></code></a>] )
 <strong id="grammar-token-duration">duration</strong> ::=  letter plus dots, as for notes/rests
 </pre>
 <p>The <a class="reference internal" href="#grammar-token-goFwd"><code class="xref std std-token docutils literal"><span class="pre">goFwd</span></code></a> can be considered as an invisible rest but allows to distinguish between real rests and gaps in a voice. Example:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
-    (clef G)
-    (key c)
-    (time 4 4)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">key</span> <span class="n">c</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">time</span> <span class="mi">4</span> <span class="mi">4</span><span class="p">)</span>
 
-    //first voice
-    (n c4 q v1 (stem down))(n e4 q (stem down))
-    (n c4 q (stem down))(n g3 q (stem down))
+    <span class="o">//</span><span class="n">first</span> <span class="n">voice</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">q</span> <span class="n">v1</span> <span class="p">(</span><span class="n">stem</span> <span class="n">down</span><span class="p">))(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">q</span> <span class="p">(</span><span class="n">stem</span> <span class="n">down</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">q</span> <span class="p">(</span><span class="n">stem</span> <span class="n">down</span><span class="p">))(</span><span class="n">n</span> <span class="n">g3</span> <span class="n">q</span> <span class="p">(</span><span class="n">stem</span> <span class="n">down</span><span class="p">))</span>
 
-    //second voice
-    (goFwd h v2)    //advance voice 2 a half note
-    (n g4 e. v2)(n d4 s)
+    <span class="o">//</span><span class="n">second</span> <span class="n">voice</span>
+    <span class="p">(</span><span class="n">goFwd</span> <span class="n">h</span> <span class="n">v2</span><span class="p">)</span>    <span class="o">//</span><span class="n">advance</span> <span class="n">voice</span> <span class="mi">2</span> <span class="n">a</span> <span class="n">half</span> <span class="n">note</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">e</span><span class="o">.</span> <span class="n">v2</span><span class="p">)(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">s</span><span class="p">)</span>
 
-    (barline)
-)))
+    <span class="p">(</span><span class="n">barline</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/gofwd-01.png" src="../_images/gofwd-01.png" />
@@ -119,7 +117,7 @@ a &#8220;v&#8221; letter with the voice number. For instance <code class="docuti
 <li class="toctree-l1"><a class="reference internal" href="../score/index.html">2. The score and its structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../music-data/index.html">3. Music description</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">4. Polyophony: chords and voices</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">4.1. Voices</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.1. Voices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gaps-in-a-voice">4.2. Gaps in a voice</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chords.html">4.3. Chords</a></li>
 </ul>
@@ -161,7 +159,7 @@ a &#8220;v&#8221; letter with the voice number. For instance <code class="docuti
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Sep-05.
+      Last updated on 2020-May-09.
     </div>
         </div>
         <div class="clearer"></div>

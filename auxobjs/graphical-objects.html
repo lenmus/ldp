@@ -1,35 +1,33 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>7.3. Lines &mdash; LDP language manual. Vers. 2.0 (draft)</title>
-    
+    <title>7.3. Lines &#8212; LDP language manual. Vers. 2.0 (draft)</title>
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  false
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
-    <link rel="up" title="7. Notations attached to one object" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="7.4. Accents and articulations" href="articulations.html" />
     <link rel="prev" title="7.2. Dynamics marks" href="dynamics.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
@@ -67,20 +65,20 @@
 </pre>
 <p>Elements <a class="reference internal" href="#grammar-token-startPoint"><code class="xref std std-token docutils literal"><span class="pre">startPoint</span></code></a> and <a class="reference internal" href="#grammar-token-endPoint"><code class="xref std std-token docutils literal"><span class="pre">endPoint</span></code></a> are coordinates in tenths, relative to the position on which the parent object is placed.</p>
 <p>Example. A note with an attached arrow pointing to it:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
-    (clef G)(key C)(time 2 4)
-    (n c4 q
-        (line (startPoint (dx 25.0) (dy 60.0))
-              (endPoint (dx 100) (dy 90.0))
-              (width 1.0)
-              (color #000000)
-              (lineStyle solid)
-              (lineCapStart arrowhead)
-              (lineCapEnd none)
-        )
-    )
-    (barline end)
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span> <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)(</span><span class="n">key</span> <span class="n">C</span><span class="p">)(</span><span class="n">time</span> <span class="mi">2</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">q</span>
+        <span class="p">(</span><span class="n">line</span> <span class="p">(</span><span class="n">startPoint</span> <span class="p">(</span><span class="n">dx</span> <span class="mf">25.0</span><span class="p">)</span> <span class="p">(</span><span class="n">dy</span> <span class="mf">60.0</span><span class="p">))</span>
+              <span class="p">(</span><span class="n">endPoint</span> <span class="p">(</span><span class="n">dx</span> <span class="mi">100</span><span class="p">)</span> <span class="p">(</span><span class="n">dy</span> <span class="mf">90.0</span><span class="p">))</span>
+              <span class="p">(</span><span class="n">width</span> <span class="mf">1.0</span><span class="p">)</span>
+              <span class="p">(</span><span class="n">color</span> <span class="c1">#000000)</span>
+              <span class="p">(</span><span class="n">lineStyle</span> <span class="n">solid</span><span class="p">)</span>
+              <span class="p">(</span><span class="n">lineCapStart</span> <span class="n">arrowhead</span><span class="p">)</span>
+              <span class="p">(</span><span class="n">lineCapEnd</span> <span class="n">none</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="p">(</span><span class="n">barline</span> <span class="n">end</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/line-01.png" src="../_images/line-01.png" />
@@ -103,7 +101,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">7. Notations attached to one object</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="intro.html">7.1. introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dynamics.html">7.2. Dynamics marks</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">7.3. Lines</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7.3. Lines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="articulations.html">7.4. Accents and articulations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="texts.html">7.5. Texts</a></li>
 </ul>
@@ -142,7 +140,7 @@
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Sep-05.
+      Last updated on 2020-May-09.
     </div>
         </div>
         <div class="clearer"></div>

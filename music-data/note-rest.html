@@ -1,35 +1,33 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>3.6. Notes and rests &mdash; LDP language manual. Vers. 2.0 (draft)</title>
-    
+    <title>3.6. Notes and rests &#8212; LDP language manual. Vers. 2.0 (draft)</title>
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  false
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
-    <link rel="up" title="3. Music description" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3.8. Metronome marks" href="metronome.html" />
     <link rel="prev" title="3.5. Barlines" href="barlines.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
@@ -71,12 +69,12 @@ Rests can be considered as notes with no pitch, so in LDP notes and rests are in
 <strong id="grammar-token-duration">duration           </strong> ::=   label (see explanation)
 </pre>
 <p>The minimum information required to represent a note is its pitch and its duration. For rests only their duration is needed:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
-    (clef G)
-    (n c4 q)    //a C4 quarter note (C of octave 4, the central C)
-    (r q)       //a quarter rest
-    (barline)
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">q</span><span class="p">)</span>    <span class="o">//</span><span class="n">a</span> <span class="n">C4</span> <span class="n">quarter</span> <span class="n">note</span> <span class="p">(</span><span class="n">C</span> <span class="n">of</span> <span class="n">octave</span> <span class="mi">4</span><span class="p">,</span> <span class="n">the</span> <span class="n">central</span> <span class="n">C</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">r</span> <span class="n">q</span><span class="p">)</span>       <span class="o">//</span><span class="n">a</span> <span class="n">quarter</span> <span class="n">rest</span>
+    <span class="p">(</span><span class="n">barline</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/note-03.png" src="../_images/note-03.png" />
@@ -134,9 +132,9 @@ Rests can be considered as notes with no pitch, so in LDP notes and rests are in
 </table>
 </div></blockquote>
 <p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre>e..     double dotted eighth note
-o       128th note
-q.      dotted quarter note
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">e</span><span class="o">..</span>     <span class="n">double</span> <span class="n">dotted</span> <span class="n">eighth</span> <span class="n">note</span>
+<span class="n">o</span>       <span class="mi">128</span><span class="n">th</span> <span class="n">note</span>
+<span class="n">q</span><span class="o">.</span>      <span class="n">dotted</span> <span class="n">quarter</span> <span class="n">note</span>
 </pre></div>
 </div>
 </div>
@@ -153,12 +151,12 @@ q.      dotted quarter note
 <p>The <em>octave</em> is an integer number indicating the octave of the note, where octave 4 is the central one (a4 = 440Hz). All octaves start with note name c and ends in note name b, so note c4 is the c note just below the a4 note. Octaves range is 0 to 9.</p>
 <p><em>Accidentals</em> are represented by combinations of the signs plus (+), minus (-), equal (=) and the letter x (x). They represent, respectively, sharps, flats, naturals and the double sharp symbol. So, for example, ++ represents two sharps, x a double sharp, and =- represents  a natural flat.</p>
 <p>With all this, the pitch is just the combination of the previous signs. Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
-    (clef G)
-    (n +c4 q)   //a sharp C4 quarter note (C of octave 4, the central C)
-    (n --b3 h)  //a double flat B3 half note (B of octave 3, the B immediately below C4)
-    (n xe4 e)   //a double sharp E4 eighth note
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="o">+</span><span class="n">c4</span> <span class="n">q</span><span class="p">)</span>   <span class="o">//</span><span class="n">a</span> <span class="n">sharp</span> <span class="n">C4</span> <span class="n">quarter</span> <span class="n">note</span> <span class="p">(</span><span class="n">C</span> <span class="n">of</span> <span class="n">octave</span> <span class="mi">4</span><span class="p">,</span> <span class="n">the</span> <span class="n">central</span> <span class="n">C</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="o">--</span><span class="n">b3</span> <span class="n">h</span><span class="p">)</span>  <span class="o">//</span><span class="n">a</span> <span class="n">double</span> <span class="n">flat</span> <span class="n">B3</span> <span class="n">half</span> <span class="n">note</span> <span class="p">(</span><span class="n">B</span> <span class="n">of</span> <span class="n">octave</span> <span class="mi">3</span><span class="p">,</span> <span class="n">the</span> <span class="n">B</span> <span class="n">immediately</span> <span class="n">below</span> <span class="n">C4</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">xe4</span> <span class="n">e</span><span class="p">)</span>   <span class="o">//</span><span class="n">a</span> <span class="n">double</span> <span class="n">sharp</span> <span class="n">E4</span> <span class="n">eighth</span> <span class="n">note</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/note-01.png" src="../_images/note-01.png" />
@@ -167,9 +165,9 @@ q.      dotted quarter note
 <p class="last">Accidentals are relative to the context. That is, you have to write only those accidentals that are not implied by the key signature or that are not implied by a previous accidental in the same measure. This is as if you were writing the notes on manuscript paper.</p>
 </div>
 <p>Therefore, in the following example:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
-    (clef G)(key F)(n f4 q)(n b4 q)(barline)
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)(</span><span class="n">key</span> <span class="n">F</span><span class="p">)(</span><span class="n">n</span> <span class="n">f4</span> <span class="n">q</span><span class="p">)(</span><span class="n">n</span> <span class="n">b4</span> <span class="n">q</span><span class="p">)(</span><span class="n">barline</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/note-02.png" src="../_images/note-02.png" />
@@ -179,19 +177,21 @@ q.      dotted quarter note
 <span id="element-stem"></span><h2>3.6.3. Stem</h2>
 <p>Stem direction and size will be automatically computed by the rendering program,
 according to usual engraving rules. Nevertheless, the stem of a note can
-be fully specified by using the <a class="reference internal" href="#grammar-token-stem"><code class="xref std std-token docutils literal"><span class="pre">stem</span></code></a> element. It forces stem direction.</p>
+be fully specified by using the <a class="reference internal" href="#grammar-token-stem"><code class="xref std std-token docutils literal"><span class="pre">stem</span></code></a> element. It forces stem direction
+(values ‘up’, ‘down’) or suppresses the stem (value ‘none’); in this case, also
+the flag will be supressed and only the notehead will be rendered.</p>
 <pre class="bnf-rule">
-<strong id="grammar-token-stem">stem</strong> ::=  (stem { up | down })
+<strong id="grammar-token-stem">stem</strong> ::=  (stem { up | down | none })
 </pre>
 <p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
-    (clef G)
-    (n c4 q)
-    (n c4 q (stem down))
-    (n c5 q)
-    (n c5 q (stem up))
-    (barline)
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span> <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">q</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">q</span> <span class="p">(</span><span class="n">stem</span> <span class="n">down</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c5</span> <span class="n">q</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c5</span> <span class="n">q</span> <span class="p">(</span><span class="n">stem</span> <span class="n">up</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">barline</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/stem-01.png" src="../_images/stem-01.png" />
@@ -210,15 +210,15 @@ the <code class="xref std std-token docutils literal"><span class="pre">p</span>
 <p>The staves for each instrument are numbered from top to bottom, starting at staff 1. The staff number
 is inherited by all coming elements until a new <code class="xref std std-token docutils literal"><span class="pre">p</span></code> notation is found.</p>
 <p>Example: a scale across two staves:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)
-    (instrument (staves 2)
-        (musicData
-            (clef G p1)(clef F p2)(key C)
-            (n g3 w p2)(n a3 w)(n b3 w)(n c4 w)(n d4 w p1)(n e4 w)(n f4 w)(n g4 w)
-            (barline end)
-        )
-    )
-)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">staves</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">musicData</span>
+            <span class="p">(</span><span class="n">clef</span> <span class="n">G</span> <span class="n">p1</span><span class="p">)(</span><span class="n">clef</span> <span class="n">F</span> <span class="n">p2</span><span class="p">)(</span><span class="n">key</span> <span class="n">C</span><span class="p">)</span>
+            <span class="p">(</span><span class="n">n</span> <span class="n">g3</span> <span class="n">w</span> <span class="n">p2</span><span class="p">)(</span><span class="n">n</span> <span class="n">a3</span> <span class="n">w</span><span class="p">)(</span><span class="n">n</span> <span class="n">b3</span> <span class="n">w</span><span class="p">)(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">w</span><span class="p">)(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">w</span> <span class="n">p1</span><span class="p">)(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">w</span><span class="p">)(</span><span class="n">n</span> <span class="n">f4</span> <span class="n">w</span><span class="p">)(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">w</span><span class="p">)</span>
+            <span class="p">(</span><span class="n">barline</span> <span class="n">end</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/music-data-01.png" src="../_images/music-data-01.png" />
@@ -245,7 +245,7 @@ inherits this.</p>
 <li class="toctree-l2"><a class="reference internal" href="key-signature.html">3.3. Key signatures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="time-signature.html">3.4. Time signatures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="barlines.html">3.5. Barlines</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">3.6. Notes and rests</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.6. Notes and rests</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#duration">3.6.1. Duration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pitch">3.6.2. Pitch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#stem">3.6.3. Stem</a></li>
@@ -293,7 +293,7 @@ inherits this.</p>
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Sep-05.
+      Last updated on 2020-May-09.
     </div>
         </div>
         <div class="clearer"></div>

@@ -1,35 +1,33 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>3.4. Time signatures &mdash; LDP language manual. Vers. 2.0 (draft)</title>
-    
+    <title>3.4. Time signatures &#8212; LDP language manual. Vers. 2.0 (draft)</title>
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  false
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
-    <link rel="up" title="3. Music description" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3.5. Barlines" href="barlines.html" />
     <link rel="prev" title="3.3. Key signatures" href="key-signature.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
@@ -71,14 +69,14 @@ the number of notes to make a beat.</li>
 <strong id="grammar-token-bottomNum">bottomNum</strong> ::=  integer number
 </pre>
 <p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
-    (time 2 4)(barline)
-    (time 6 8)(barline)
-    (time 12 8)(barline)
-    (time 3 8)(barline)
-    (time common)(barline)
-    (time cut)(barline)
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span> <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">time</span> <span class="mi">2</span> <span class="mi">4</span><span class="p">)(</span><span class="n">barline</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">time</span> <span class="mi">6</span> <span class="mi">8</span><span class="p">)(</span><span class="n">barline</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">time</span> <span class="mi">12</span> <span class="mi">8</span><span class="p">)(</span><span class="n">barline</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">time</span> <span class="mi">3</span> <span class="mi">8</span><span class="p">)(</span><span class="n">barline</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">time</span> <span class="n">common</span><span class="p">)(</span><span class="n">barline</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">time</span> <span class="n">cut</span><span class="p">)(</span><span class="n">barline</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/time-signature-01.png" src="../_images/time-signature-01.png" />
@@ -98,7 +96,7 @@ the number of notes to make a beat.</li>
 <li class="toctree-l2"><a class="reference internal" href="music-data.html">3.1. The musicData element</a></li>
 <li class="toctree-l2"><a class="reference internal" href="clef.html">3.2. Clefs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="key-signature.html">3.3. Key signatures</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">3.4. Time signatures</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.4. Time signatures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="barlines.html">3.5. Barlines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="note-rest.html">3.6. Notes and rests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="note-rest.html#selecting-the-staff">3.7. Selecting the staff</a></li>
@@ -143,7 +141,7 @@ the number of notes to make a beat.</li>
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Sep-05.
+      Last updated on 2020-May-09.
     </div>
         </div>
         <div class="clearer"></div>

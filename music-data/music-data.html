@@ -1,35 +1,33 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>3.1. The musicData element &mdash; LDP language manual. Vers. 2.0 (draft)</title>
-    
+    <title>3.1. The musicData element &#8212; LDP language manual. Vers. 2.0 (draft)</title>
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  false
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
-    <link rel="up" title="3. Music description" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3.2. Clefs" href="clef.html" />
     <link rel="prev" title="3. Music description" href="index.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
@@ -58,17 +56,18 @@
 <pre class="bnf-rule">
 <strong id="grammar-token-musicData">musicData</strong> ::=  (musicData { <a class="reference internal" href="note-rest.html#grammar-token-note"><code class="xref docutils literal"><span class="pre">note</span></code></a> | <a class="reference internal" href="note-rest.html#grammar-token-rest"><code class="xref docutils literal"><span class="pre">rest</span></code></a> | <a class="reference internal" href="../polyphony/chords.html#grammar-token-chord"><code class="xref docutils literal"><span class="pre">chord</span></code></a> | <a class="reference internal" href="clef.html#grammar-token-clef"><code class="xref docutils literal"><span class="pre">clef</span></code></a> | <a class="reference internal" href="key-signature.html#grammar-token-key"><code class="xref docutils literal"><span class="pre">key</span></code></a> | <a class="reference internal" href="time-signature.html#grammar-token-time"><code class="xref docutils literal"><span class="pre">time</span></code></a> |
                             <a class="reference internal" href="barlines.html#grammar-token-barline"><code class="xref docutils literal"><span class="pre">barline</span></code></a> | <a class="reference internal" href="metronome.html#grammar-token-metronome"><code class="xref docutils literal"><span class="pre">metronome</span></code></a> | <a class="reference internal" href="../format/new-system.html#grammar-token-newSystem"><code class="xref docutils literal"><span class="pre">newSystem</span></code></a> | <a class="reference internal" href="../format/spacer.html#grammar-token-spacer"><code class="xref docutils literal"><span class="pre">spacer</span></code></a> |
-                            <code class="xref docutils literal"><span class="pre">figuredBass</span></code> | <a class="reference internal" href="../polyphony/voices.html#grammar-token-goFwd"><code class="xref docutils literal"><span class="pre">goFwd</span></code></a> }* )
+                            <a class="reference internal" href="direction.html#grammar-token-direction"><code class="xref docutils literal"><span class="pre">direction</span></code></a> | <code class="xref docutils literal"><span class="pre">figuredBass</span></code> | <a class="reference internal" href="../polyphony/voices.html#grammar-token-goFwd"><code class="xref docutils literal"><span class="pre">goFwd</span></code></a> }* )
 </pre>
+<p>The <a class="reference internal" href="metronome.html#grammar-token-metronome"><code class="xref std std-token docutils literal"><span class="pre">metronome</span></code></a> element is accepted for backwards compatibility with 2.0. But in future this element will not be possible here and must go as an attachement to a <a class="reference internal" href="direction.html#grammar-token-direction"><code class="xref std std-token docutils literal"><span class="pre">direction</span></code></a> element.</p>
 <p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre>//single note
-(musicData (n c4 q))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">single</span> <span class="n">note</span>
+<span class="p">(</span><span class="n">musicData</span> <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">q</span><span class="p">))</span>
 
-//C major scale:
-(musicData (n c4 q)(n d4 q)(n e4 q)(n f4 q)(n g4 q)(n a4 q)(n b4 q)(n c5 q))
+<span class="o">//</span><span class="n">C</span> <span class="n">major</span> <span class="n">scale</span><span class="p">:</span>
+<span class="p">(</span><span class="n">musicData</span> <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">q</span><span class="p">)(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">q</span><span class="p">)(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">q</span><span class="p">)(</span><span class="n">n</span> <span class="n">f4</span> <span class="n">q</span><span class="p">)(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">q</span><span class="p">)(</span><span class="n">n</span> <span class="n">a4</span> <span class="n">q</span><span class="p">)(</span><span class="n">n</span> <span class="n">b4</span> <span class="n">q</span><span class="p">)(</span><span class="n">n</span> <span class="n">c5</span> <span class="n">q</span><span class="p">))</span>
 
-//Short fragment with a measure:
-(musicData (clef G)(key C)(time 2 4)(n c4 q)(n e4 q)(n g4 q)(n c5 q)(barline))
+<span class="o">//</span><span class="n">Short</span> <span class="n">fragment</span> <span class="k">with</span> <span class="n">a</span> <span class="n">measure</span><span class="p">:</span>
+<span class="p">(</span><span class="n">musicData</span> <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)(</span><span class="n">key</span> <span class="n">C</span><span class="p">)(</span><span class="n">time</span> <span class="mi">2</span> <span class="mi">4</span><span class="p">)(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">q</span><span class="p">)(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">q</span><span class="p">)(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">q</span><span class="p">)(</span><span class="n">n</span> <span class="n">c5</span> <span class="n">q</span><span class="p">)(</span><span class="n">barline</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -84,7 +83,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../score/index.html">2. The score and its structure</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Music description</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">3.1. The musicData element</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.1. The musicData element</a></li>
 <li class="toctree-l2"><a class="reference internal" href="clef.html">3.2. Clefs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="key-signature.html">3.3. Key signatures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="time-signature.html">3.4. Time signatures</a></li>
@@ -132,7 +131,7 @@
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Sep-05.
+      Last updated on 2020-May-09.
     </div>
         </div>
         <div class="clearer"></div>

@@ -1,35 +1,33 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>3.2. Clefs &mdash; LDP language manual. Vers. 2.0 (draft)</title>
-    
+    <title>3.2. Clefs &#8212; LDP language manual. Vers. 2.0 (draft)</title>
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  false
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
-    <link rel="up" title="3. Music description" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3.3. Key signatures" href="key-signature.html" />
     <link rel="prev" title="3.1. The musicData element" href="music-data.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
@@ -65,12 +63,12 @@
 </pre>
 <p>The tessitura implied by a clef can be modified by adding a tessitura prefix { 8_ | 15_ } or suffix { _8 | _15 } to the clef name. This will draw, respectively, a 8va or 15ma symbol above or below the clef, and force the corresponding octave shift.</p>
 <p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)(instrument (musicData
-    (clef G)            // G clef on 2nd line
-    (clef F4)           // F clef on 4th line
-    (clef 8_G)          // G clef with 8va symbol above
-    (clef F4_15)        // F clef on 4th line with 15ma symbol below
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>            <span class="o">//</span> <span class="n">G</span> <span class="n">clef</span> <span class="n">on</span> <span class="mi">2</span><span class="n">nd</span> <span class="n">line</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">F4</span><span class="p">)</span>           <span class="o">//</span> <span class="n">F</span> <span class="n">clef</span> <span class="n">on</span> <span class="mi">4</span><span class="n">th</span> <span class="n">line</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="mi">8</span><span class="n">_G</span><span class="p">)</span>          <span class="o">//</span> <span class="n">G</span> <span class="n">clef</span> <span class="k">with</span> <span class="mi">8</span><span class="n">va</span> <span class="n">symbol</span> <span class="n">above</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">F4_15</span><span class="p">)</span>        <span class="o">//</span> <span class="n">F</span> <span class="n">clef</span> <span class="n">on</span> <span class="mi">4</span><span class="n">th</span> <span class="n">line</span> <span class="k">with</span> <span class="mi">15</span><span class="n">ma</span> <span class="n">symbol</span> <span class="n">below</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/clef-01.png" src="../_images/clef-01.png" />
@@ -93,7 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../score/index.html">2. The score and its structure</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Music description</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="music-data.html">3.1. The musicData element</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">3.2. Clefs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.2. Clefs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="key-signature.html">3.3. Key signatures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="time-signature.html">3.4. Time signatures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="barlines.html">3.5. Barlines</a></li>
@@ -140,7 +138,7 @@
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Sep-05.
+      Last updated on 2020-May-09.
     </div>
         </div>
         <div class="clearer"></div>

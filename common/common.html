@@ -1,34 +1,32 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>10.1. Color &mdash; LDP language manual. Vers. 2.0 (draft)</title>
-    
+    <title>10.1. Color &#8212; LDP language manual. Vers. 2.0 (draft)</title>
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  false
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
-    <link rel="up" title="10. Common elements widely used" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="10. Common elements widely used" href="index.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
@@ -55,11 +53,11 @@
 <pre class="bnf-rule">
 <strong id="grammar-token-color">color</strong> ::=  (color { #rrggbb | #rrggbbaa } )
 </pre>
-<p>The color is written as a hash character, &#8220;#&#8221;, followed by some number of hexadecimal characters (digits 0-9 and letters a-f, the case of the letters doesn’t matter:  #00ff00 is identical to #00FF00). In the RGB format, the first two hex digits are for the red channel (rr), the next two for the green channel (gg) and the last two for the blue channel (bb). In RGBA format, two additional hex digits (aa) for the alpha channel (opacity) must be provided, where a value of &#8216;00&#8217; is full transparent and a value of &#8216;ff&#8217; is full opaque.</p>
+<p>The color is written as a hash character, “#”, followed by some number of hexadecimal characters (digits 0-9 and letters a-f, the case of the letters doesn’t matter:  #00ff00 is identical to #00FF00). In the RGB format, the first two hex digits are for the red channel (rr), the next two for the green channel (gg) and the last two for the blue channel (bb). In RGBA format, two additional hex digits (aa) for the alpha channel (opacity) must be provided, where a value of ‘00’ is full transparent and a value of ‘ff’ is full opaque.</p>
 <p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre>(color #ff0000)     //red (opaque)
-(color #ffff0000)   //transparent yellow
-(color #4bc11fc0)   //bright green, 25% transparent
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">color</span> <span class="c1">#ff0000)     //red (opaque)</span>
+<span class="p">(</span><span class="n">color</span> <span class="c1">#ffff0000)   //transparent yellow</span>
+<span class="p">(</span><span class="n">color</span> <span class="c1">#4bc11fc0)   //bright green, 25% transparent</span>
 </pre></div>
 </div>
 </div>
@@ -72,8 +70,8 @@
 </pre>
 <p>The units depend on were the <a class="reference internal" href="../format/spacer.html#grammar-token-width"><code class="xref std std-token docutils literal"><span class="pre">width</span></code></a> and <a class="reference internal" href="#grammar-token-height"><code class="xref std std-token docutils literal"><span class="pre">height</span></code></a> elements are used. Normally values are expresed in tenths but in certain elements, width and height are expresed in absolute units (cents of a millimeter). See details in each element using the <a class="reference internal" href="../format/spacer.html#grammar-token-width"><code class="xref std std-token docutils literal"><span class="pre">width</span></code></a> and <a class="reference internal" href="#grammar-token-height"><code class="xref std std-token docutils literal"><span class="pre">height</span></code></a> elements.</p>
 <p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre>(width 77.0)
-(height 50)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">width</span> <span class="mf">77.0</span><span class="p">)</span>
+<span class="p">(</span><span class="n">height</span> <span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -88,7 +86,7 @@
 <pre class="bnf-rule">
 <strong id="grammar-token-style">style</strong> ::=  (style name)
 </pre>
-<p>The <em>name</em> parameter must be the name of an style defined with <a class="reference internal" href="../format/styles.html#grammar-token-defineStyle"><code class="xref std std-token docutils literal"><span class="pre">defineStyle</span></code></a> element, or must be the name of a default styles (see <a class="reference internal" href="../format/styles.html#element-definestyle"><span>Defining styles</span></a> for a list of default styles).</p>
+<p>The <em>name</em> parameter must be the name of an style defined with <a class="reference internal" href="../format/styles.html#grammar-token-defineStyle"><code class="xref std std-token docutils literal"><span class="pre">defineStyle</span></code></a> element, or must be the name of a default styles (see <a class="reference internal" href="../format/styles.html#element-definestyle"><span class="std std-ref">Defining styles</span></a> for a list of default styles).</p>
 </div>
 
 
@@ -109,7 +107,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../lyrics.html">8. Lyrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../format/index.html">9. Format control</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">10. Common elements widely used</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">10.1. Color</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">10.1. Color</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#width-and-height">10.2. Width and height</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#hide-show-objects">10.3. Hide /show objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#style">10.4. Style</a></li>
@@ -144,7 +142,7 @@
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Sep-05.
+      Last updated on 2020-May-09.
     </div>
         </div>
         <div class="clearer"></div>

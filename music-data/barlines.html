@@ -1,35 +1,33 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>3.5. Barlines &mdash; LDP language manual. Vers. 2.0 (draft)</title>
-    
+    <title>3.5. Barlines &#8212; LDP language manual. Vers. 2.0 (draft)</title>
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  false
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
-    <link rel="up" title="3. Music description" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3.6. Notes and rests" href="note-rest.html" />
     <link rel="prev" title="3.4. Time signatures" href="time-signature.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
@@ -61,23 +59,23 @@
                endRepetition | doubleRepetition }
 </pre>
 <p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre>(n c4 e)(n e4 e)(barline end)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">e</span><span class="p">)(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">e</span><span class="p">)(</span><span class="n">barline</span> <span class="n">end</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The following score will render all barline types:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)
-   (instrument
-      (musicData
-         (spacer 30)(barline simple)
-         (spacer 30)(barline double)
-         (spacer 30)(barline startRepetition)
-         (spacer 30)(barline endRepetition)
-         (spacer 30)(barline doubleRepetition)
-         (spacer 30)(barline start)
-         (spacer 30)(barline end)
-      )
-   )
-)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span>
+   <span class="p">(</span><span class="n">instrument</span>
+      <span class="p">(</span><span class="n">musicData</span>
+         <span class="p">(</span><span class="n">spacer</span> <span class="mi">30</span><span class="p">)(</span><span class="n">barline</span> <span class="n">simple</span><span class="p">)</span>
+         <span class="p">(</span><span class="n">spacer</span> <span class="mi">30</span><span class="p">)(</span><span class="n">barline</span> <span class="n">double</span><span class="p">)</span>
+         <span class="p">(</span><span class="n">spacer</span> <span class="mi">30</span><span class="p">)(</span><span class="n">barline</span> <span class="n">startRepetition</span><span class="p">)</span>
+         <span class="p">(</span><span class="n">spacer</span> <span class="mi">30</span><span class="p">)(</span><span class="n">barline</span> <span class="n">endRepetition</span><span class="p">)</span>
+         <span class="p">(</span><span class="n">spacer</span> <span class="mi">30</span><span class="p">)(</span><span class="n">barline</span> <span class="n">doubleRepetition</span><span class="p">)</span>
+         <span class="p">(</span><span class="n">spacer</span> <span class="mi">30</span><span class="p">)(</span><span class="n">barline</span> <span class="n">start</span><span class="p">)</span>
+         <span class="p">(</span><span class="n">spacer</span> <span class="mi">30</span><span class="p">)(</span><span class="n">barline</span> <span class="n">end</span><span class="p">)</span>
+      <span class="p">)</span>
+   <span class="p">)</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <p>and will render as:</p>
@@ -99,7 +97,7 @@
 <li class="toctree-l2"><a class="reference internal" href="clef.html">3.2. Clefs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="key-signature.html">3.3. Key signatures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="time-signature.html">3.4. Time signatures</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">3.5. Barlines</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.5. Barlines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="note-rest.html">3.6. Notes and rests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="note-rest.html#selecting-the-staff">3.7. Selecting the staff</a></li>
 <li class="toctree-l2"><a class="reference internal" href="metronome.html">3.8. Metronome marks</a></li>
@@ -143,7 +141,7 @@
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Sep-05.
+      Last updated on 2020-May-09.
     </div>
         </div>
         <div class="clearer"></div>

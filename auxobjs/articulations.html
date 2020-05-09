@@ -1,35 +1,33 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>7.4. Accents and articulations &mdash; LDP language manual. Vers. 2.0 (draft)</title>
-    
+    <title>7.4. Accents and articulations &#8212; LDP language manual. Vers. 2.0 (draft)</title>
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  false
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
-    <link rel="up" title="7. Notations attached to one object" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="7.5. Texts" href="texts.html" />
     <link rel="prev" title="7.3. Lines" href="graphical-objects.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
@@ -71,13 +69,13 @@ Instrument-specific notations are defined by the <code class="xref std std-token
                   staccato-duro | staccatissimo | tenuto }
 </pre>
 <p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
-    (clef G)
-    (n e4 q (accent))
-    (n c5 q (legato-duro))
-    (n e4 q (staccato))
-    (barline)
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span> <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">q</span> <span class="p">(</span><span class="n">accent</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c5</span> <span class="n">q</span> <span class="p">(</span><span class="n">legato</span><span class="o">-</span><span class="n">duro</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">q</span> <span class="p">(</span><span class="n">staccato</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">barline</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/accent-01.png" src="../_images/accent-01.png" />
@@ -86,18 +84,18 @@ Instrument-specific notations are defined by the <code class="xref std std-token
 </div>
 <div class="section" id="stress-marks">
 <h2>7.4.2. Stress marks</h2>
-<p>Stress marks refer to additional accents introduced by Schoenberg&#8217; <em>Suite for piano, Op.25</em> and other sources for filling the gaps in the traditional accents. They are also displayed as a symbol above or below a note or chord:</p>
+<p>Stress marks refer to additional accents introduced by Schoenberg’ <em>Suite for piano, Op.25</em> and other sources for filling the gaps in the traditional accents. They are also displayed as a symbol above or below a note or chord:</p>
 <pre class="bnf-rule">
 <strong id="grammar-token-stressMark">stressMark</strong> ::=  (<a class="reference internal" href="#grammar-token-stressType"><code class="xref docutils literal"><span class="pre">stressType</span></code></a> [<a class="reference internal" href="../pauses/pauses.html#grammar-token-placement"><code class="xref docutils literal"><span class="pre">placement</span></code></a>] <a class="reference internal" href="../music-data/note-rest.html#grammar-token-printOptions"><code class="xref docutils literal"><span class="pre">printOptions</span></code></a>* )
 <strong id="grammar-token-stressType">stressType</strong> ::=  { stress | unstress }
 </pre>
 <p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
-    (clef G)
-    (n e4 q (stress))(n c5 q (stress))
-    (n e4 q (unstress))(n c5 q (unstress))
-    (barline)
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span> <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">q</span> <span class="p">(</span><span class="n">stress</span><span class="p">))(</span><span class="n">n</span> <span class="n">c5</span> <span class="n">q</span> <span class="p">(</span><span class="n">stress</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">q</span> <span class="p">(</span><span class="n">unstress</span><span class="p">))(</span><span class="n">n</span> <span class="n">c5</span> <span class="n">q</span> <span class="p">(</span><span class="n">unstress</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">barline</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/stress-01.png" src="../_images/stress-01.png" />
@@ -122,7 +120,7 @@ Instrument-specific notations are defined by the <code class="xref std std-token
 <li class="toctree-l2"><a class="reference internal" href="intro.html">7.1. introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dynamics.html">7.2. Dynamics marks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="graphical-objects.html">7.3. Lines</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">7.4. Accents and articulations</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7.4. Accents and articulations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#accents">7.4.1. Accents</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#stress-marks">7.4.2. Stress marks</a></li>
 </ul>
@@ -164,7 +162,7 @@ Instrument-specific notations are defined by the <code class="xref std std-token
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Sep-05.
+      Last updated on 2020-May-09.
     </div>
         </div>
         <div class="clearer"></div>

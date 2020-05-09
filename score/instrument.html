@@ -1,35 +1,33 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>2.2. The Instrument element &mdash; LDP language manual. Vers. 2.0 (draft)</title>
-    
+    <title>2.2. The Instrument element &#8212; LDP language manual. Vers. 2.0 (draft)</title>
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  false
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
-    <link rel="up" title="2. The score and its structure" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. Music description" href="../music-data/index.html" />
     <link rel="prev" title="2.1. The Score element" href="score.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
@@ -64,13 +62,13 @@
 </pre>
 <p>Instruments have usually a name. Optionally, also an abbreviated name; in these cases the name will be used at the start of the first system, and the abbreviation for succeeding systems.</p>
 <p>Instruments should have an ID but it is not required if the <a class="reference internal" href="score.html#grammar-token-parts"><code class="xref std std-token docutils literal"><span class="pre">parts</span></code></a> element is not defined in the <a class="reference internal" href="score.html#grammar-token-score"><code class="xref std std-token docutils literal"><span class="pre">score</span></code></a> element:</p>
-<div class="highlight-python"><div class="highlight"><pre>(instrument P1 (name &quot;Flute&quot;)(musicData ... ))       //instrument ID = P1
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">instrument</span> <span class="n">P1</span> <span class="p">(</span><span class="n">name</span> <span class="s2">&quot;Flute&quot;</span><span class="p">)(</span><span class="n">musicData</span> <span class="o">...</span> <span class="p">))</span>       <span class="o">//</span><span class="n">instrument</span> <span class="n">ID</span> <span class="o">=</span> <span class="n">P1</span>
 </pre></div>
 </div>
-<p>The musical content is described by the <a class="reference internal" href="../music-data/music-data.html#grammar-token-musicData"><code class="xref std std-token docutils literal"><span class="pre">musicData</span></code></a> element (see next chapter <a class="reference internal" href="../music-data/music-data.html#element-musicdata"><span>The musicData element</span></a>). It is the only mandatory element and can be empty:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)
-    (instrument (musicData))
-)
+<p>The musical content is described by the <a class="reference internal" href="../music-data/music-data.html#grammar-token-musicData"><code class="xref std std-token docutils literal"><span class="pre">musicData</span></code></a> element (see next chapter <a class="reference internal" href="../music-data/music-data.html#element-musicdata"><span class="std std-ref">The musicData element</span></a>). It is the only mandatory element and can be empty:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span><span class="p">))</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <p>The previous LDP score is the minimum content and will render an empty staff:</p>
@@ -83,28 +81,28 @@
 <strong id="grammar-token-num_staves">num_staves</strong> ::=  integer 1 .. n
 </pre>
 <p>For instance, for a piano grand-staff, you will have to define <code class="docutils literal"><span class="pre">(staves</span> <span class="pre">2)</span></code></p>
-<div class="highlight-python"><div class="highlight"><pre>(instrument (name &quot;Piano&quot;)(staves 2)(musicData ... ))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">name</span> <span class="s2">&quot;Piano&quot;</span><span class="p">)(</span><span class="n">staves</span> <span class="mi">2</span><span class="p">)(</span><span class="n">musicData</span> <span class="o">...</span> <span class="p">))</span>
 </pre></div>
 </div>
 <p>By default all staves are 5-lines, standard size. To have a different layout the element <a class="reference internal" href="#grammar-token-staff"><code class="xref std std-token docutils literal"><span class="pre">staff</span></code></a> is used. It describes the type and layout for one staff. You have to use as many <a class="reference internal" href="#grammar-token-staff"><code class="xref std std-token docutils literal"><span class="pre">staff</span></code></a> elements as staves you would like to change:</p>
 <pre class="bnf-rule">
 <strong id="grammar-token-staff">staff</strong> ::=  (staff <code class="xref docutils literal"><span class="pre">num_staff</span></code> [<code class="xref docutils literal"><span class="pre">staffType</span></code>] [<code class="xref docutils literal"><span class="pre">staffLines</span></code>] [<code class="xref docutils literal"><span class="pre">staffSpacing</span></code>]
 </pre>
-<p>The <code class="xref std std-token docutils literal"><span class="pre">staffType</span></code> element is used to indicate different types of staves. Default is &#8216;regular&#8217;. An &#8216;alternate&#8217; staff indicates one that shares the same musical data as the prior staff, but displayed differently (e.g., treble and bass clef, standard notation and tab).</p>
+<p>The <code class="xref std std-token docutils literal"><span class="pre">staffType</span></code> element is used to indicate different types of staves. Default is ‘regular’. An ‘alternate’ staff indicates one that shares the same musical data as the prior staff, but displayed differently (e.g., treble and bass clef, standard notation and tab).</p>
 <p>The <code class="xref std std-token docutils literal"><span class="pre">staffLines</span></code> element specifies the number of lines. Default is 5-line staff.</p>
 <p>The <code class="xref std std-token docutils literal"><span class="pre">staffSpacing</span></code> element indicates the distance between two lines (in logical units, cents of a millimeter), measured from the center of the lines. Default value is 1.8 millimeters (180 LUnits), so the resulting staff height is of 7.2 mm.</p>
 <p>The <code class="xref std std-token docutils literal"><span class="pre">staffDistance</span></code> element is the vertical distance from the bottom line of the previous staff in the system (in logical units, cents of a millimeter). This value is ignored for the first staff in a system. Default value is 10 millimeters (1000 LUnits).</p>
 <p>The <code class="xref std std-token docutils literal"><span class="pre">lineThickness</span></code> element is the thickness of each staff line (in logical units, cents of millimeter). Default value is 0.15 millimeters (15 LUnits).</p>
 <p>For example:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)
-    (instrument (name &quot;Flute&quot;)
-        (staff 1 (staffType regular)(staffLines 5)(staffSpacing 120.00)
-                 (staffDistance 1000.00)(lineThickness 10.00)
-        )
-        (musicData)
-    )
-    (instrument (name &quot;Piano&quot;)(staves 2)(musicData))
-)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">name</span> <span class="s2">&quot;Flute&quot;</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">staff</span> <span class="mi">1</span> <span class="p">(</span><span class="n">staffType</span> <span class="n">regular</span><span class="p">)(</span><span class="n">staffLines</span> <span class="mi">5</span><span class="p">)(</span><span class="n">staffSpacing</span> <span class="mf">120.00</span><span class="p">)</span>
+                 <span class="p">(</span><span class="n">staffDistance</span> <span class="mf">1000.00</span><span class="p">)(</span><span class="n">lineThickness</span> <span class="mf">10.00</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="p">(</span><span class="n">musicData</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">name</span> <span class="s2">&quot;Piano&quot;</span><span class="p">)(</span><span class="n">staves</span> <span class="mi">2</span><span class="p">)(</span><span class="n">musicData</span><span class="p">))</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <p>will be rendered as:</p>
@@ -132,7 +130,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">2. The score and its structure</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="score.html">2.1. The Score element</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">2.2. The Instrument element</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.2. The Instrument element</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#number-of-staves">2.2.1. Number of staves</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#midi-information">2.2.2. MIDI information</a></li>
 </ul>
@@ -178,7 +176,7 @@
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Sep-05.
+      Last updated on 2020-May-09.
     </div>
         </div>
         <div class="clearer"></div>

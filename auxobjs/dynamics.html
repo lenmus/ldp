@@ -1,35 +1,33 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>7.2. Dynamics marks &mdash; LDP language manual. Vers. 2.0 (draft)</title>
-    
+    <title>7.2. Dynamics marks &#8212; LDP language manual. Vers. 2.0 (draft)</title>
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  false
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
-    <link rel="up" title="7. Notations attached to one object" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="7.3. Lines" href="graphical-objects.html" />
     <link rel="prev" title="7.1. introduction" href="intro.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
@@ -54,37 +52,37 @@
             
   <div class="section" id="dynamics-marks">
 <span id="element-dynamics"></span><h1>7.2. Dynamics marks</h1>
-<p>A dynamics mark is a string, such as &#8220;p&#8221;, &#8220;pp&#8221;, &#8220;sfz&#8221;, &#8220;mp&#8221;, &#8220;fff&#8221;, &#8220;mf&#8221;, etc. attached to a note and by default placed under the note, on the space between the note staff and the next staff:</p>
+<p>A dynamics mark is a string, such as “p”, “pp”, “sfz”, “mp”, “fff”, “mf”, etc. attached to a note and by default placed under the note, on the space between the note staff and the next staff:</p>
 <pre class="bnf-rule">
 <strong id="grammar-token-dynamics">dynamics</strong> ::=  (dyn string [<a class="reference internal" href="../pauses/pauses.html#grammar-token-placement"><code class="xref docutils literal"><span class="pre">placement</span></code></a>] <a class="reference internal" href="../music-data/note-rest.html#grammar-token-printOptions"><code class="xref docutils literal"><span class="pre">printOptions</span></code></a>* )
 </pre>
 <p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
-    (clef G)(key C)
-    (n g4 q (dyn &quot;fff&quot; below))
-    (n g4 q (dyn &quot;ppp&quot;))
-    (n g4 q (dyn &quot;sfz&quot; above))
-    (n g4 q (dyn &quot;p&quot; above (color #ff0000)))
-    (barline end)
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span> <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)(</span><span class="n">key</span> <span class="n">C</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">q</span> <span class="p">(</span><span class="n">dyn</span> <span class="s2">&quot;fff&quot;</span> <span class="n">below</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">q</span> <span class="p">(</span><span class="n">dyn</span> <span class="s2">&quot;ppp&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">q</span> <span class="p">(</span><span class="n">dyn</span> <span class="s2">&quot;sfz&quot;</span> <span class="n">above</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">q</span> <span class="p">(</span><span class="n">dyn</span> <span class="s2">&quot;p&quot;</span> <span class="n">above</span> <span class="p">(</span><span class="n">color</span> <span class="c1">#ff0000)))</span>
+    <span class="p">(</span><span class="n">barline</span> <span class="n">end</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/dynamics-01.png" src="../_images/dynamics-01.png" />
 <p>The most usual dinamics marks are:</p>
-<div class="highlight-python"><div class="highlight"><pre>ppp - pianississimo
-pp  - painissimo
-p   - piano
-mp  - mezzo piano
-mf  - mezzo forte
-f   - forte
-ff  - fortissimo
-fff - fortississimo
-sfz - sforzando
-fp  - forte-piano
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ppp</span> <span class="o">-</span> <span class="n">pianississimo</span>
+<span class="n">pp</span>  <span class="o">-</span> <span class="n">painissimo</span>
+<span class="n">p</span>   <span class="o">-</span> <span class="n">piano</span>
+<span class="n">mp</span>  <span class="o">-</span> <span class="n">mezzo</span> <span class="n">piano</span>
+<span class="n">mf</span>  <span class="o">-</span> <span class="n">mezzo</span> <span class="n">forte</span>
+<span class="n">f</span>   <span class="o">-</span> <span class="n">forte</span>
+<span class="n">ff</span>  <span class="o">-</span> <span class="n">fortissimo</span>
+<span class="n">fff</span> <span class="o">-</span> <span class="n">fortississimo</span>
+<span class="n">sfz</span> <span class="o">-</span> <span class="n">sforzando</span>
+<span class="n">fp</span>  <span class="o">-</span> <span class="n">forte</span><span class="o">-</span><span class="n">piano</span>
 </pre></div>
 </div>
 <p>In addition, in LDP the following strings are also supported:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">m</span>       <span class="o">-</span> <span class="n">mezzo</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">m</span>       <span class="o">-</span> <span class="n">mezzo</span>
 <span class="n">r</span>       <span class="o">-</span> <span class="n">rinforzando</span>
 <span class="n">s</span>       <span class="o">-</span> <span class="n">sforzando</span>
 <span class="n">z</span>
@@ -123,7 +121,7 @@ fp  - forte-piano
 <li class="toctree-l1"><a class="reference internal" href="../pauses/index.html">6. Pauses and breath marks</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">7. Notations attached to one object</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="intro.html">7.1. introduction</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">7.2. Dynamics marks</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7.2. Dynamics marks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="graphical-objects.html">7.3. Lines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="articulations.html">7.4. Accents and articulations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="texts.html">7.5. Texts</a></li>
@@ -163,7 +161,7 @@ fp  - forte-piano
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Sep-05.
+      Last updated on 2020-May-09.
     </div>
         </div>
         <div class="clearer"></div>

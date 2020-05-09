@@ -1,35 +1,33 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>6.1. Fermata &mdash; LDP language manual. Vers. 2.0 (draft)</title>
-    
+    <title>6.1. Fermata &#8212; LDP language manual. Vers. 2.0 (draft)</title>
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  false
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
-    <link rel="up" title="6. Pauses and breath marks" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="7. Notations attached to one object" href="../auxobjs/index.html" />
     <link rel="prev" title="6. Pauses and breath marks" href="index.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
@@ -63,14 +61,14 @@
 </pre>
 <p>Default placement is <em>above</em> if the stem goes down, and <em>below</em> if the stem goes up.</p>
 <p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
-    (clef G)(key C)
-    (n g4  q (fermata))
-    (r q (fermata above))
-    (r q (fermata below))
-    (n g4  q (fermata short))
-    (barline end)
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span> <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)(</span><span class="n">key</span> <span class="n">C</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">g4</span>  <span class="n">q</span> <span class="p">(</span><span class="n">fermata</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">r</span> <span class="n">q</span> <span class="p">(</span><span class="n">fermata</span> <span class="n">above</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">r</span> <span class="n">q</span> <span class="p">(</span><span class="n">fermata</span> <span class="n">below</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">g4</span>  <span class="n">q</span> <span class="p">(</span><span class="n">fermata</span> <span class="n">short</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">barline</span> <span class="n">end</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/fermata-01.png" src="../_images/fermata-01.png" />
@@ -85,14 +83,14 @@
 <strong id="grammar-token-caesuraSymbol">caesuraSymbol</strong> ::=  { normal | thick | short | curved }     default 'normal'
 </pre>
 <p>Example:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
-    (clef G)(key C)
-    (n c4 q (caesura))
-    (n f4 q (caesura thick))
-    (n g4 q (caesura short))
-    (n c4 q (caesura curved))
-    (barline end)
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span> <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)(</span><span class="n">key</span> <span class="n">C</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">q</span> <span class="p">(</span><span class="n">caesura</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">f4</span> <span class="n">q</span> <span class="p">(</span><span class="n">caesura</span> <span class="n">thick</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">q</span> <span class="p">(</span><span class="n">caesura</span> <span class="n">short</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">q</span> <span class="p">(</span><span class="n">caesura</span> <span class="n">curved</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">barline</span> <span class="n">end</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/caesura-01.png" src="../_images/caesura-01.png" />
@@ -105,14 +103,14 @@
 <strong id="grammar-token-breathSymbol">breathSymbol</strong> ::=  { comma | tick | V | salzedo }     default 'comma'
 </pre>
 <p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0) (instrument (musicData
-    (clef G)(key C)
-    (n g4  q (breathMark comma))
-    (n g4  q (breathMark tick))
-    (n g4  q (breathMark V))
-    (n g4  q (breathMark salzedo))
-    (barline end)
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span> <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+    <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)(</span><span class="n">key</span> <span class="n">C</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">g4</span>  <span class="n">q</span> <span class="p">(</span><span class="n">breathMark</span> <span class="n">comma</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">g4</span>  <span class="n">q</span> <span class="p">(</span><span class="n">breathMark</span> <span class="n">tick</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">g4</span>  <span class="n">q</span> <span class="p">(</span><span class="n">breathMark</span> <span class="n">V</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">n</span> <span class="n">g4</span>  <span class="n">q</span> <span class="p">(</span><span class="n">breathMark</span> <span class="n">salzedo</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">barline</span> <span class="n">end</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/breath-01.png" src="../_images/breath-01.png" />
@@ -132,7 +130,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../polyphony/index.html">4. Polyophony: chords and voices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relobjs/index.html">5. Note relationships</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Pauses and breath marks</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">6.1. Fermata</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6.1. Fermata</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#caesura">6.2. Caesura</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#breath-mark">6.3. Breath mark</a></li>
 </ul>
@@ -172,7 +170,7 @@
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Sep-05.
+      Last updated on 2020-May-09.
     </div>
         </div>
         <div class="clearer"></div>

@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>3.8. Metronome marks &#8212; LDP language manual. Vers. 2.0 (draft)</title>
+    <title>Directions &#8212; LDP language manual. Vers. 2.0 (draft)</title>
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -23,19 +23,13 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. Polyophony: chords and voices" href="../polyphony/index.html" />
-    <link rel="prev" title="3.6. Notes and rests" href="note-rest.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
   </head>
   <body>
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
         <div class="rel">
-          <a href="note-rest.html" title="3.6. Notes and rests"
-             accesskey="P">previous</a> |
-          <a href="../polyphony/index.html" title="4. Polyophony: chords and voices"
-             accesskey="N">next</a> |
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a>
         </div>
@@ -50,15 +44,12 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="metronome-marks">
-<span id="element-metronome"></span><h1>3.8. Metronome marks</h1>
-<p>Standard metronome marks can be displayed using the <a class="reference internal" href="#grammar-token-metronome"><code class="xref std std-token docutils literal"><span class="pre">metronome</span></code></a> element.
-It also affects the default tempo in playback.</p>
+  <div class="section" id="directions">
+<span id="element-direction"></span><h1>Directions</h1>
+<p>A direction is a discrete instruction in the score that applies to notes and rests.</p>
 <pre class="bnf-rule">
-<strong id="grammar-token-metronome">metronome     </strong> ::=  (metronome { <a class="reference internal" href="#grammar-token-noteType"><code class="xref docutils literal"><span class="pre">noteType</span></code></a> {<a class="reference internal" href="#grammar-token-ticksPerMinute"><code class="xref docutils literal"><span class="pre">ticksPerMinute</span></code></a> | <a class="reference internal" href="#grammar-token-noteType"><code class="xref docutils literal"><span class="pre">noteType</span></code></a>} | <a class="reference internal" href="#grammar-token-ticksPerMinute"><code class="xref docutils literal"><span class="pre">ticksPerMinute</span></code></a> }
-                               [parenthesis] [noVisible] )
-<strong id="grammar-token-noteType">noteType      </strong> ::=  note duration, a letter with optional dots, as in notes/rest
-<strong id="grammar-token-ticksPerMinute">ticksPerMinute</strong> ::=  number
+<strong id="grammar-token-direction">direction</strong> ::=  (dir [width] <a class="reference internal" href="#grammar-token-dirType"><code class="xref docutils literal"><span class="pre">dirType</span></code></a>* )
+<strong id="grammar-token-dirType">dirType  </strong> ::=   { <a class="reference internal" href="metronome.html#grammar-token-metronome"><code class="xref docutils literal"><span class="pre">metronome</span></code></a> | <a class="reference internal" href="../auxobjs/texts.html#grammar-token-text"><code class="xref docutils literal"><span class="pre">text</span></code></a> | <a class="reference internal" href="../auxobjs/graphical-objects.html#grammar-token-line"><code class="xref docutils literal"><span class="pre">line</span></code></a> | <a class="reference internal" href="../lyrics.html#grammar-token-lyric"><code class="xref docutils literal"><span class="pre">lyric</span></code></a> }
 </pre>
 <p>To set the tempo in playback without printing anything on the score, make the metronome
 marking invisible by using a <code class="xref std std-token docutils literal"><span class="pre">noVisible</span></code> option.</p>
@@ -89,20 +80,10 @@ marking invisible by using a <code class="xref std std-token docutils literal"><
         </div>
         <div class="sidebar">
           <h3>Table Of Contents</h3>
-          <ul class="current">
+          <ul>
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../score/index.html">2. The score and its structure</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Music description</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="music-data.html">3.1. The musicData element</a></li>
-<li class="toctree-l2"><a class="reference internal" href="clef.html">3.2. Clefs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="key-signature.html">3.3. Key signatures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="time-signature.html">3.4. Time signatures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="barlines.html">3.5. Barlines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="note-rest.html">3.6. Notes and rests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="note-rest.html#selecting-the-staff">3.7. Selecting the staff</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">3.8. Metronome marks</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">3. Music description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../polyphony/index.html">4. Polyophony: chords and voices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relobjs/index.html">5. Note relationships</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pauses/index.html">6. Pauses and breath marks</a></li>
@@ -130,10 +111,6 @@ marking invisible by using a <code class="xref std std-token docutils literal"><
     <div class="footer-wrapper">
       <div class="footer">
         <div class="left">
-          <a href="note-rest.html" title="3.6. Notes and rests"
-             >previous</a> |
-          <a href="../polyphony/index.html" title="4. Polyophony: chords and voices"
-             >next</a> |
           <a href="../genindex.html" title="General Index"
              >index</a>
         </div>

@@ -1,35 +1,33 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>2.1. The Score element &mdash; LDP language manual. Vers. 2.0 (draft)</title>
-    
+    <title>2.1. The Score element &#8212; LDP language manual. Vers. 2.0 (draft)</title>
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
         VERSION:     '0.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  false
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="LDP language manual. Vers. 2.0 (draft)" href="../index.html" />
-    <link rel="up" title="2. The score and its structure" href="index.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2.2. The Instrument element" href="instrument.html" />
     <link rel="prev" title="2. The score and its structure" href="index.html" /> 
   </head>
-  <body role="document">
+  <body>
     <div class="header-wrapper">
       <div class="header">
         <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
@@ -54,14 +52,14 @@
             
   <div class="section" id="the-score-element">
 <span id="element-score"></span><h1>2.1. The Score element</h1>
-<p>In music, a music score is, basically, a collection of staves. When the score is intended to be performed by more than one person, each performer will usually have assigned one or more staves (a &#8216;score part&#8217;) with the music he/she has to perform. Each score part can be printed in a separate piece of sheet music, called a part, to play from. In short:</p>
+<p>In music, a music score is, basically, a collection of staves. When the score is intended to be performed by more than one person, each performer will usually have assigned one or more staves (a ‘score part’) with the music he/she has to perform. Each score part can be printed in a separate piece of sheet music, called a part, to play from. In short:</p>
 <blockquote>
 <div><ul class="simple">
 <li>The score is a collection of score parts.</li>
 <li>A score part is a set of staves for one instrument or performer.</li>
 </ul>
 </div></blockquote>
-<p>In LDP the concept of &#8216;score part&#8217; is named &#8216;instrument&#8217; and a score is, basically, a collection of instruments and some optional information:</p>
+<p>In LDP the concept of ‘score part’ is named ‘instrument’ and a score is, basically, a collection of instruments and some optional information:</p>
 <pre class="bnf-rule">
 <strong id="grammar-token-score">score</strong> ::=  (score <a class="reference internal" href="#grammar-token-version"><code class="xref docutils literal"><span class="pre">version</span></code></a> [<a class="reference internal" href="../format/styles.html#grammar-token-defineStyle"><code class="xref docutils literal"><span class="pre">defineStyle</span></code></a>*] [<a class="reference internal" href="#grammar-token-title"><code class="xref docutils literal"><span class="pre">title</span></code></a>*] [<a class="reference internal" href="#grammar-token-pageLayout"><code class="xref docutils literal"><span class="pre">pageLayout</span></code></a>*]
                   [<a class="reference internal" href="#grammar-token-systemLayout"><code class="xref docutils literal"><span class="pre">systemLayout</span></code></a>*] [<a class="reference internal" href="#grammar-token-option"><code class="xref docutils literal"><span class="pre">option</span></code></a>*] [<a class="reference internal" href="#grammar-token-parts"><code class="xref docutils literal"><span class="pre">parts</span></code></a>]
@@ -72,10 +70,10 @@
 <strong id="grammar-token-version">version</strong> ::=  (vers <code class="xref docutils literal"><span class="pre">string</span></code>)
 </pre>
 <p>For example:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score
-    (vers 2.0)      //the score is encoded using LDP version 2.0
-    (instrument ...)
-)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span>
+    <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span>      <span class="o">//</span><span class="n">the</span> <span class="n">score</span> <span class="ow">is</span> <span class="n">encoded</span> <span class="n">using</span> <span class="n">LDP</span> <span class="n">version</span> <span class="mf">2.0</span>
+    <span class="p">(</span><span class="n">instrument</span> <span class="o">...</span><span class="p">)</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <p>The optional <a class="reference internal" href="#grammar-token-parts"><code class="xref std std-token docutils literal"><span class="pre">parts</span></code></a> element defines how the instruments are grouped for adding visual clues, such as:</p>
@@ -105,24 +103,24 @@ a brace or bracket to its staves. But this is not necessary for adding a brace t
 as for multi-staves instruments their staves are automatically joined by a brace.</p>
 <p>Element <a class="reference internal" href="#grammar-token-symbol"><code class="xref std std-token docutils literal"><span class="pre">symbol</span></code></a> refers to the symbol to be used for displaying
 the group. Possible values are { none | brace | bracket }. If not
-specified, &#8216;brace&#8217; is assumed.</p>
+specified, ‘brace’ is assumed.</p>
 <p>Element <a class="reference internal" href="#grammar-token-joinBarlines"><code class="xref std std-token docutils literal"><span class="pre">joinBarlines</span></code></a> is for declaring that all the instruments in the
 group must share the barlines. Possible values are { no | yes |
-mensurstrich}. If not specified, &#8216;yes&#8217; is assumed.</p>
+mensurstrich}. If not specified, ‘yes’ is assumed.</p>
 <p>For example, the next LDP code is for a score with four parts: three voices (soprano, tenor and bass) and
 a piano part. The voices are grouped by a bracket and they will share all barlines. For the piano is not
 necessary to define and group as the two piano staves are automatically joined by a brace. For instance,
 the following code:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)
-    (parts
-        (instrIds S1 T1 B1 P1)
-        (group S1 B1 (symbol bracket)(joinBarlines yes))
-    )
-    (instrument S1 (name &quot;Soprano&quot;)(abbrev &quot;S&quot;)(musicData))
-    (instrument T1 (name &quot;Tenor&quot;)(abbrev &quot;T&quot;)(musicData))
-    (instrument B1 (name &quot;Bass&quot;)(abbrev &quot;B&quot;)(musicData))
-    (instrument P1 (name &quot;Piano&quot;)(abbrev &quot;P&quot;)(staves 2)(musicData))
-)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">parts</span>
+        <span class="p">(</span><span class="n">instrIds</span> <span class="n">S1</span> <span class="n">T1</span> <span class="n">B1</span> <span class="n">P1</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">group</span> <span class="n">S1</span> <span class="n">B1</span> <span class="p">(</span><span class="n">symbol</span> <span class="n">bracket</span><span class="p">)(</span><span class="n">joinBarlines</span> <span class="n">yes</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="p">(</span><span class="n">instrument</span> <span class="n">S1</span> <span class="p">(</span><span class="n">name</span> <span class="s2">&quot;Soprano&quot;</span><span class="p">)(</span><span class="n">abbrev</span> <span class="s2">&quot;S&quot;</span><span class="p">)(</span><span class="n">musicData</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">instrument</span> <span class="n">T1</span> <span class="p">(</span><span class="n">name</span> <span class="s2">&quot;Tenor&quot;</span><span class="p">)(</span><span class="n">abbrev</span> <span class="s2">&quot;T&quot;</span><span class="p">)(</span><span class="n">musicData</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">instrument</span> <span class="n">B1</span> <span class="p">(</span><span class="n">name</span> <span class="s2">&quot;Bass&quot;</span><span class="p">)(</span><span class="n">abbrev</span> <span class="s2">&quot;B&quot;</span><span class="p">)(</span><span class="n">musicData</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">instrument</span> <span class="n">P1</span> <span class="p">(</span><span class="n">name</span> <span class="s2">&quot;Piano&quot;</span><span class="p">)(</span><span class="n">abbrev</span> <span class="s2">&quot;P&quot;</span><span class="p">)(</span><span class="n">staves</span> <span class="mi">2</span><span class="p">)(</span><span class="n">musicData</span><span class="p">))</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <p>will be rendered as:</p>
@@ -143,13 +141,13 @@ elements, for controlling appearance in score renderization.</p>
 <ul>
 <li><p class="first"><strong>StaffLines.Hide</strong></p>
 <blockquote>
-<div><p>It is a boolean option for supressing drawing the staff lines. Default value is &#8216;false&#8217;.</p>
+<div><p>It is a boolean option for supressing drawing the staff lines. Default value is ‘false’.</p>
 </div></blockquote>
 </li>
 <li><p class="first"><strong>Staff.DrawLeftBarline</strong></p>
 <blockquote>
 <div><p>It is a boolean option for removing the left barline that connect all staves in one system.
-Default value is &#8216;true&#8217;.</p>
+Default value is ‘true’.</p>
 </div></blockquote>
 </li>
 <li><p class="first"><strong>Staff.UpperLegerLines.Displacement</strong></p>
@@ -158,29 +156,29 @@ Default value is &#8216;true&#8217;.</p>
 the distance between the fifth line and the first top ledger line. Default value is 0. This option was
 created as a trick for displaying an scale across two staves, for forcing the first ledger line to
 be placed between both staves, as in following example:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)
-   (opt Staff.UpperLegerLines.Displacement 15)
-   (instrument (staves 2) (musicData
-        (clef G p1)
-        (clef F p2)
-        (key C)
-        (n c3 q p2)
-        (n d3 q p2)
-        (n e3 q p2)
-        (n f3 q p2)
-        (n g3 q p2)
-        (n a3 q p2)
-        (n b3 q p2)
-        (n c4 q p2)
-        (n d4 q p1)
-        (n e4 q p1)
-        (n f4 q p1)
-        (n g4 q p1)
-        (n a4 q p1)
-        (n b4 q p1)
-        (n c5 q p1)
-        (barline end)
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span>
+   <span class="p">(</span><span class="n">opt</span> <span class="n">Staff</span><span class="o">.</span><span class="n">UpperLegerLines</span><span class="o">.</span><span class="n">Displacement</span> <span class="mi">15</span><span class="p">)</span>
+   <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">staves</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="n">musicData</span>
+        <span class="p">(</span><span class="n">clef</span> <span class="n">G</span> <span class="n">p1</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">clef</span> <span class="n">F</span> <span class="n">p2</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">key</span> <span class="n">C</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">c3</span> <span class="n">q</span> <span class="n">p2</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">d3</span> <span class="n">q</span> <span class="n">p2</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">e3</span> <span class="n">q</span> <span class="n">p2</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">f3</span> <span class="n">q</span> <span class="n">p2</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">g3</span> <span class="n">q</span> <span class="n">p2</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">a3</span> <span class="n">q</span> <span class="n">p2</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">b3</span> <span class="n">q</span> <span class="n">p2</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">q</span> <span class="n">p2</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">d4</span> <span class="n">q</span> <span class="n">p1</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">e4</span> <span class="n">q</span> <span class="n">p1</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">f4</span> <span class="n">q</span> <span class="n">p1</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">q</span> <span class="n">p1</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">a4</span> <span class="n">q</span> <span class="n">p1</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">b4</span> <span class="n">q</span> <span class="n">p1</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">c5</span> <span class="n">q</span> <span class="n">p1</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">barline</span> <span class="n">end</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/opt-01.png" src="../_images/opt-01.png" />
@@ -191,11 +189,11 @@ be placed between both staves, as in following example:</p>
 <blockquote>
 <div><p>Staff lines truncation only can occur when system is not justified.
 Staff lines always run until right margin unless requesting truncation.
-Option &#8220;StaffLines.Truncate&#8221; defines the behaviour:</p>
-<div class="highlight-python"><div class="highlight"><pre>0 - never truncate. Staff lines will always run to right margin.
-1 - truncate only if last object is barline of type final.
-2 - truncate only if last object is barline (any type).
-3 - truncate always after last object.
+Option “StaffLines.Truncate” defines the behaviour:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-</span> <span class="n">never</span> <span class="n">truncate</span><span class="o">.</span> <span class="n">Staff</span> <span class="n">lines</span> <span class="n">will</span> <span class="n">always</span> <span class="n">run</span> <span class="n">to</span> <span class="n">right</span> <span class="n">margin</span><span class="o">.</span>
+<span class="mi">1</span> <span class="o">-</span> <span class="n">truncate</span> <span class="n">only</span> <span class="k">if</span> <span class="n">last</span> <span class="nb">object</span> <span class="ow">is</span> <span class="n">barline</span> <span class="n">of</span> <span class="nb">type</span> <span class="n">final</span><span class="o">.</span>
+<span class="mi">2</span> <span class="o">-</span> <span class="n">truncate</span> <span class="n">only</span> <span class="k">if</span> <span class="n">last</span> <span class="nb">object</span> <span class="ow">is</span> <span class="n">barline</span> <span class="p">(</span><span class="nb">any</span> <span class="nb">type</span><span class="p">)</span><span class="o">.</span>
+<span class="mi">3</span> <span class="o">-</span> <span class="n">truncate</span> <span class="n">always</span> <span class="n">after</span> <span class="n">last</span> <span class="nb">object</span><span class="o">.</span>
 </pre></div>
 </div>
 <p>Option 1 is the default behaviour and it can be useful for score
@@ -207,12 +205,12 @@ useful for creating score samples (i.e. for ebooks).</p>
 </li>
 <li><p class="first"><strong>Score.JustifyLastSystem</strong></p>
 <blockquote>
-<div><p>Justification of last system is controlled by option &#8220;Score.JustifyLastSystem&#8221;,
+<div><p>Justification of last system is controlled by option “Score.JustifyLastSystem”,
 accepting the following values:</p>
-<div class="highlight-python"><div class="highlight"><pre>0 - never justify last system
-1 - justify it only if ends in barline of type final
-2 - justify it only if ends in barline of any type
-3 - justify it in any case
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-</span> <span class="n">never</span> <span class="n">justify</span> <span class="n">last</span> <span class="n">system</span>
+<span class="mi">1</span> <span class="o">-</span> <span class="n">justify</span> <span class="n">it</span> <span class="n">only</span> <span class="k">if</span> <span class="n">ends</span> <span class="ow">in</span> <span class="n">barline</span> <span class="n">of</span> <span class="nb">type</span> <span class="n">final</span>
+<span class="mi">2</span> <span class="o">-</span> <span class="n">justify</span> <span class="n">it</span> <span class="n">only</span> <span class="k">if</span> <span class="n">ends</span> <span class="ow">in</span> <span class="n">barline</span> <span class="n">of</span> <span class="nb">any</span> <span class="nb">type</span>
+<span class="mi">3</span> <span class="o">-</span> <span class="n">justify</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">any</span> <span class="n">case</span>
 </pre></div>
 </div>
 <p>Option 1 is the default value, and is convenient for score editors as
@@ -224,15 +222,15 @@ is finished, the user should change to option 3.</p>
 <li><p class="first"><strong>Score.FillPageWithEmptyStaves</strong></p>
 <blockquote>
 <div><p>It is a boolean option for forcing to fill the rest of the page with empty systems, when the score
-does not fills the page. Default value is &#8216;false&#8217;. Using value &#8216;true&#8217; in an empty score or an score
+does not fills the page. Default value is ‘false’. Using value ‘true’ in an empty score or an score
 with just empty instruments with clefs, key and time signatures is a convenient
 way of producing manuscript paper.</p>
 <p>For example, the following LDP code:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)
-    (opt Score.FillPageWithEmptyStaves yes)
-    (opt StaffLines.Truncate no)
-    (instrument (musicData))
-)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">opt</span> <span class="n">Score</span><span class="o">.</span><span class="n">FillPageWithEmptyStaves</span> <span class="n">yes</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">opt</span> <span class="n">StaffLines</span><span class="o">.</span><span class="n">Truncate</span> <span class="n">no</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span><span class="p">))</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <p>Will generate a blank page with staves (a manuscript paper page). It will be rendered as:</p>
@@ -242,26 +240,26 @@ way of producing manuscript paper.</p>
 <li><dl class="first docutils">
 <dt><strong>Render.SpacingMethod</strong></dt>
 <dd><p class="first">This option specifies the desired spacing between notes:</p>
-<div class="highlight-python"><div class="highlight"><pre>1 = fixed spacing
-2 = proportional spacing
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">=</span> <span class="n">fixed</span> <span class="n">spacing</span>
+<span class="mi">2</span> <span class="o">=</span> <span class="n">proportional</span> <span class="n">spacing</span>
 </pre></div>
 </div>
 <p>Default value is 2. Fixed spacing can be convenient in some cases, when preparing examples
 for text books, for instance for displaying different note values:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)
-   (opt Render.SpacingMethod 1)
-   (instrument (musicData
-        (clef G)
-        (n g4 w)
-        (n g4 h)
-        (n g4 q)
-        (n g4 e)
-        (n g4 s)
-        (n g4 t)
-        (n g4 i)
-        (n g4 o)
-        (n g4 f)
-)))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span>
+   <span class="p">(</span><span class="n">opt</span> <span class="n">Render</span><span class="o">.</span><span class="n">SpacingMethod</span> <span class="mi">1</span><span class="p">)</span>
+   <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+        <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">w</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">h</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">q</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">e</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">s</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">t</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">i</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">o</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">f</span><span class="p">)</span>
+<span class="p">)))</span>
 </pre></div>
 </div>
 <img alt="../_images/opt-02.png" class="last" src="../_images/opt-02.png" />
@@ -271,39 +269,35 @@ for text books, for instance for displaying different note values:</p>
 <li><p class="first"><strong>Render.SpacingValue</strong></p>
 <blockquote>
 <div><p>When using fixed spacing (Render.SpacingMethod = 1), this option defines the amount of space
-between notes. It must be a real number, in tenths. Default value is 35.0.</p>
+between notes. It must be an integer number, in tenths. Default value is 35 tenths (3.5 lines).</p>
 </div></blockquote>
 </li>
 </ul>
 <p>Two additional options are used for controlling some parameters of the spacing algorithm, when proportional spacing is used.
 Normally you should not use these parameters:</p>
-<ul>
+<ul class="simple">
 <li><dl class="first docutils">
 <dt><strong>Render.SpacingFactor</strong></dt>
-<dd><p class="first last">It is areal number, normally in the range 0.2 to 2.0. Default value is 0.547.</p>
-</dd>
+<dd>It is areal number, normally in the range 0.2 to 2.0. Default value is 0.547.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt><strong>Render.SpacingFopt</strong></dt>
-<dd><p class="first last">It is areal number, normally in the range 0.7 to 4.0. Default value is 1.5.</p>
-</dd>
+<dd>It is areal number, normally in the range 0.7 to 4.0. Default value is 1.4.</dd>
 </dl>
 </li>
 </ul>
 <p><strong>Deprecated options</strong></p>
 <p>They are accepted but will be removed in future:</p>
-<ul>
+<ul class="simple">
 <li><dl class="first docutils">
 <dt><strong>StaffLines.StopAtFinalBarline</strong></dt>
-<dd><p class="first last">This is a yes/no option. It is deprecated and you should use <em>StaffLines.Truncate</em> instead.</p>
-</dd>
+<dd>This is a yes/no option. It is deprecated and you should use <em>StaffLines.Truncate</em> instead.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt><strong>Score.JustifyFinalBarline</strong></dt>
-<dd><p class="first last">This is a yes/no option. It is deprecated and you should use <em>Score.JustifyLastSystem</em> instead.</p>
-</dd>
+<dd>This is a yes/no option. It is deprecated and you should use <em>Score.JustifyLastSystem</em> instead.</dd>
 </dl>
 </li>
 </ul>
@@ -311,9 +305,9 @@ Normally you should not use these parameters:</p>
 <div class="section" id="units-for-measurements">
 <span id="score-units"></span><h2>2.1.2. Units for measurements</h2>
 <p>LDP uses two types of units: absolute units and relative units.</p>
-<p>Relative units in LDP are named &#8216;tenths&#8217; and they refer to one tenth of staff interline space. These units are relative, as a score
-can have staves of different sizes. So &#8216;tenths&#8217; units can only be used to specify measurements referred to an staff. They have a great advantage as changing the staff size will preserve the relative positions of all objects.</p>
-<p>LDP uses &#8216;tenths&#8217; for all measures, except in those rare cases in which no staff can be used as reference. In particular, all page margins and page width and height must be in absolute units. Absolute units are real world units, such as millimeters or inches. LDP uses as absolute unit one cent of a millimeter. Absolute units are only used when relative units can not be used</p>
+<p>Relative units in LDP are named ‘tenths’ and they refer to one tenth of staff interline space. These units are relative, as a score
+can have staves of different sizes. So ‘tenths’ units can only be used to specify measurements referred to an staff. They have a great advantage as changing the staff size will preserve the relative positions of all objects.</p>
+<p>LDP uses ‘tenths’ for all measures, except in those rare cases in which no staff can be used as reference. In particular, all page margins and page width and height must be in absolute units. Absolute units are real world units, such as millimeters or inches. LDP uses as absolute unit one cent of a millimeter. Absolute units are only used when relative units can not be used</p>
 </div>
 <div class="section" id="page-layout">
 <span id="element-pagelayout"></span><h2>2.1.3. Page layout</h2>
@@ -330,14 +324,14 @@ When embedded, page layout options are controlled by the document settings.</p>
 <strong id="grammar-token-pageMargins">pageMargins    </strong> ::=  (pageMargins left top right bottom binding)
 <strong id="grammar-token-pageOrientation">pageOrientation</strong> ::=  { portrait | landscape }
 </pre>
-<p>All page margins and page width and height must be in absolute units (one cent of a millimeter). See <a class="reference internal" href="#score-units"><span>Units for measurements</span></a>.
+<p>All page margins and page width and height must be in absolute units (one cent of a millimeter). See <a class="reference internal" href="#score-units"><span class="std std-ref">Units for measurements</span></a>.
 For instance, if intended page size DIN A4 (210mm X 297mm) the pageSize element will be:</p>
-<div class="highlight-python"><div class="highlight"><pre>(pageSize 21000 29700)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">pageSize</span> <span class="mi">21000</span> <span class="mi">29700</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>By default, if no pageLayout element is defined, it will be assumed DIN A4 page size; portrait orientation;
 2cm for left, top and bottom margins and 1.5cm for right margin. No binding margin:</p>
-<div class="highlight-python"><div class="highlight"><pre>(pageLayout (pageSize 21000 29700)(pageMargins 2000 2000 1500 2000 0) portrait)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">pageLayout</span> <span class="p">(</span><span class="n">pageSize</span> <span class="mi">21000</span> <span class="mi">29700</span><span class="p">)(</span><span class="n">pageMargins</span> <span class="mi">2000</span> <span class="mi">2000</span> <span class="mi">1500</span> <span class="mi">2000</span> <span class="mi">0</span><span class="p">)</span> <span class="n">portrait</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -353,12 +347,12 @@ For instance, if intended page size DIN A4 (210mm X 297mm) the pageSize element 
 <strong id="grammar-token-systemDistance">systemDistance   </strong> ::=  tenths
 <strong id="grammar-token-topSystemDistance">topSystemDistance</strong> ::=  tenths
 </pre>
-<p>The first parameter of <a class="reference internal" href="#grammar-token-systemLayout"><code class="xref std std-token docutils literal"><span class="pre">systemLayout</span></code></a> must be either &#8220;first&#8221; or &#8220;other&#8221;. Value &#8220;first&#8221; refers to the first system in the score. Usually, the first system requires special margins. Value &#8220;other&#8221; will apply to all other systems in the score.</p>
-<p>System margins are relative to the page margins. Positive values indent the system and negative values reduce the page margin size. All margin values are always in tenths (see <a class="reference internal" href="#score-units"><span>Units for measurements</span></a>).</p>
+<p>The first parameter of <a class="reference internal" href="#grammar-token-systemLayout"><code class="xref std std-token docutils literal"><span class="pre">systemLayout</span></code></a> must be either “first” or “other”. Value “first” refers to the first system in the score. Usually, the first system requires special margins. Value “other” will apply to all other systems in the score.</p>
+<p>System margins are relative to the page margins. Positive values indent the system and negative values reduce the page margin size. All margin values are always in tenths (see <a class="reference internal" href="#score-units"><span class="std std-ref">Units for measurements</span></a>).</p>
 <p><a class="reference internal" href="#grammar-token-systemDistance"><code class="xref std std-token docutils literal"><span class="pre">systemDistance</span></code></a> is the vertical distance from the previous system. It is measured from the bottom line of the previous system to the top line of the current system. It is ignored for the first system on a page; for it the value of <a class="reference internal" href="#grammar-token-topSystemDistance"><code class="xref std std-token docutils literal"><span class="pre">topSystemDistance</span></code></a> will be used. The <a class="reference internal" href="#grammar-token-topSystemDistance"><code class="xref std std-token docutils literal"><span class="pre">topSystemDistance</span></code></a> value defines the distance between top page margin and top line of first system in the page.</p>
 <p>When no system layout elements are defined the following will be assumed:</p>
-<div class="highlight-python"><div class="highlight"><pre>(systemLayout first (systemMargins 0 0 2000 1000))   //left: 0, right: 0, system distance: 2cm, top: 1cm
-(systemLayout other (systemMargins 0 0 2000 1500))   //left: 0, right: 0, system distance: 2cm, top: 1.5cm
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">systemLayout</span> <span class="n">first</span> <span class="p">(</span><span class="n">systemMargins</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">2000</span> <span class="mi">1000</span><span class="p">))</span>   <span class="o">//</span><span class="n">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">right</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">system</span> <span class="n">distance</span><span class="p">:</span> <span class="mi">2</span><span class="n">cm</span><span class="p">,</span> <span class="n">top</span><span class="p">:</span> <span class="mi">1</span><span class="n">cm</span>
+<span class="p">(</span><span class="n">systemLayout</span> <span class="n">other</span> <span class="p">(</span><span class="n">systemMargins</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">2000</span> <span class="mi">1500</span><span class="p">))</span>   <span class="o">//</span><span class="n">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">right</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">system</span> <span class="n">distance</span><span class="p">:</span> <span class="mi">2</span><span class="n">cm</span><span class="p">,</span> <span class="n">top</span><span class="p">:</span> <span class="mf">1.5</span><span class="n">cm</span>
 </pre></div>
 </div>
 </div>
@@ -369,59 +363,59 @@ For instance, if intended page size DIN A4 (210mm X 297mm) the pageSize element 
 <strong id="grammar-token-title">title</strong> ::=  (title string [<a class="reference internal" href="../common/common.html#grammar-token-style"><code class="xref docutils literal"><span class="pre">style</span></code></a>] [<a class="reference internal" href="../format/new-system.html#grammar-token-location"><code class="xref docutils literal"><span class="pre">location</span></code></a>])
 </pre>
 <p>Examples:</p>
-<div class="highlight-python"><div class="highlight"><pre>(title &quot;Prelude&quot; (style &quot;Title&quot;))
-(title &quot;Op. 28, No. 20&quot; (style &quot;Subtitle&quot;))
-(title &quot;F. Chopin&quot; (style &quot;Composer&quot;)(dy 30))
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">title</span> <span class="s2">&quot;Prelude&quot;</span> <span class="p">(</span><span class="n">style</span> <span class="s2">&quot;Title&quot;</span><span class="p">))</span>
+<span class="p">(</span><span class="n">title</span> <span class="s2">&quot;Op. 28, No. 20&quot;</span> <span class="p">(</span><span class="n">style</span> <span class="s2">&quot;Subtitle&quot;</span><span class="p">))</span>
+<span class="p">(</span><span class="n">title</span> <span class="s2">&quot;F. Chopin&quot;</span> <span class="p">(</span><span class="n">style</span> <span class="s2">&quot;Composer&quot;</span><span class="p">)(</span><span class="n">dy</span> <span class="mi">30</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>The reference point for displaying the first title is the top-left corner of the score margins. This means that the base line of the first title will be the top margin line of the score and thus, will be above the margin (in following image the score margin is drawn in orange):</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)
-    (defineStyle &quot;Big-red&quot; (font &quot;Times New Roman&quot; 20pt bold)(color #FF0000))
-    (title &quot;The title for this score&quot; (style &quot;Big-red&quot;))
-    (instrument (musicData
-        (clef G)
-        (n c4 q)
-        (barline)
-    ))
-)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">defineStyle</span> <span class="s2">&quot;Big-red&quot;</span> <span class="p">(</span><span class="n">font</span> <span class="s2">&quot;Times New Roman&quot;</span> <span class="mi">20</span><span class="n">pt</span> <span class="n">bold</span><span class="p">)(</span><span class="n">color</span> <span class="c1">#FF0000))</span>
+    <span class="p">(</span><span class="n">title</span> <span class="s2">&quot;The title for this score&quot;</span> <span class="p">(</span><span class="n">style</span> <span class="s2">&quot;Big-red&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+        <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">q</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">barline</span><span class="p">)</span>
+    <span class="p">))</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/score-04.png" src="../_images/score-04.png" />
 <p>The reference point for positioning following title elements is previous the title reference point incremented by previous title height:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)
-    (defineStyle &quot;Big&quot; (font &quot;Times New Roman&quot; 20pt bold))
-    (defineStyle &quot;Medium&quot; (font &quot;Times New Roman&quot; 16pt))
-    (title &quot;The title for this score&quot; (style &quot;Big&quot;))
-    (title &quot;A subtitle&quot; (style &quot;Medium&quot;))
-    (instrument (musicData
-        (clef G)
-        (n c4 q)
-        (barline)
-    ))
-)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">defineStyle</span> <span class="s2">&quot;Big&quot;</span> <span class="p">(</span><span class="n">font</span> <span class="s2">&quot;Times New Roman&quot;</span> <span class="mi">20</span><span class="n">pt</span> <span class="n">bold</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">defineStyle</span> <span class="s2">&quot;Medium&quot;</span> <span class="p">(</span><span class="n">font</span> <span class="s2">&quot;Times New Roman&quot;</span> <span class="mi">16</span><span class="n">pt</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">title</span> <span class="s2">&quot;The title for this score&quot;</span> <span class="p">(</span><span class="n">style</span> <span class="s2">&quot;Big&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">title</span> <span class="s2">&quot;A subtitle&quot;</span> <span class="p">(</span><span class="n">style</span> <span class="s2">&quot;Medium&quot;</span><span class="p">))</span>
+    <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+        <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">q</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">barline</span><span class="p">)</span>
+    <span class="p">))</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/score-05.png" src="../_images/score-05.png" />
 <p>The <a class="reference internal" href="../format/new-system.html#grammar-token-location"><code class="xref std std-token docutils literal"><span class="pre">location</span></code></a> element should be used for properly positioning the title at the desired location. The displacement indicated by the <a class="reference internal" href="../format/new-system.html#grammar-token-location"><code class="xref std std-token docutils literal"><span class="pre">location</span></code></a> element is measured in tenths, referred to first staff of first instrument:</p>
-<div class="highlight-python"><div class="highlight"><pre>(score (vers 2.0)
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span>
 
-   (defineStyle &quot;Small-blue&quot; (font &quot;Times New Roman&quot; 10pt italic)(color #0000FF))
-   (defineStyle &quot;Medium-grey&quot; (font &quot;Bernard MT Condensed&quot; 14pt bold)(color #606060))
-   (defineStyle &quot;Big-red&quot; (font &quot;Times New Roman&quot; 20pt bold)(color #FF0000))
-   (defineStyle &quot;Style3&quot; (font &quot;Times New Roman&quot; 12pt normal))
+   <span class="p">(</span><span class="n">defineStyle</span> <span class="s2">&quot;Small-blue&quot;</span> <span class="p">(</span><span class="n">font</span> <span class="s2">&quot;Times New Roman&quot;</span> <span class="mi">10</span><span class="n">pt</span> <span class="n">italic</span><span class="p">)(</span><span class="n">color</span> <span class="c1">#0000FF))</span>
+   <span class="p">(</span><span class="n">defineStyle</span> <span class="s2">&quot;Medium-grey&quot;</span> <span class="p">(</span><span class="n">font</span> <span class="s2">&quot;Bernard MT Condensed&quot;</span> <span class="mi">14</span><span class="n">pt</span> <span class="n">bold</span><span class="p">)(</span><span class="n">color</span> <span class="c1">#606060))</span>
+   <span class="p">(</span><span class="n">defineStyle</span> <span class="s2">&quot;Big-red&quot;</span> <span class="p">(</span><span class="n">font</span> <span class="s2">&quot;Times New Roman&quot;</span> <span class="mi">20</span><span class="n">pt</span> <span class="n">bold</span><span class="p">)(</span><span class="n">color</span> <span class="c1">#FF0000))</span>
+   <span class="p">(</span><span class="n">defineStyle</span> <span class="s2">&quot;Style3&quot;</span> <span class="p">(</span><span class="n">font</span> <span class="s2">&quot;Times New Roman&quot;</span> <span class="mi">12</span><span class="n">pt</span> <span class="n">normal</span><span class="p">))</span>
 
-   (title center &quot;Title for this great opus&quot; (style &quot;Big-red&quot;)(dx 270)(dy 30))
-   (title center &quot;Pianoworks Op.114, No.7&quot; (style &quot;Medium-grey&quot;)(dx 340)(dy 30))
-   (title right &quot;Words: P.Copypaste&quot; (style &quot;Small-blue&quot;)(dy 70))
-   (title left &quot;Music: G.H.MendItAll&quot; (style &quot;Medium-grey&quot;)(dx 747)(dy 55))
-   (title right &quot;The famous artist&quot; (style &quot;Medium-grey&quot;)(dx 805)(dy 60))
+   <span class="p">(</span><span class="n">title</span> <span class="n">center</span> <span class="s2">&quot;Title for this great opus&quot;</span> <span class="p">(</span><span class="n">style</span> <span class="s2">&quot;Big-red&quot;</span><span class="p">)(</span><span class="n">dx</span> <span class="mi">270</span><span class="p">)(</span><span class="n">dy</span> <span class="mi">30</span><span class="p">))</span>
+   <span class="p">(</span><span class="n">title</span> <span class="n">center</span> <span class="s2">&quot;Pianoworks Op.114, No.7&quot;</span> <span class="p">(</span><span class="n">style</span> <span class="s2">&quot;Medium-grey&quot;</span><span class="p">)(</span><span class="n">dx</span> <span class="mi">340</span><span class="p">)(</span><span class="n">dy</span> <span class="mi">30</span><span class="p">))</span>
+   <span class="p">(</span><span class="n">title</span> <span class="n">right</span> <span class="s2">&quot;Words: P.Copypaste&quot;</span> <span class="p">(</span><span class="n">style</span> <span class="s2">&quot;Small-blue&quot;</span><span class="p">)(</span><span class="n">dy</span> <span class="mi">70</span><span class="p">))</span>
+   <span class="p">(</span><span class="n">title</span> <span class="n">left</span> <span class="s2">&quot;Music: G.H.MendItAll&quot;</span> <span class="p">(</span><span class="n">style</span> <span class="s2">&quot;Medium-grey&quot;</span><span class="p">)(</span><span class="n">dx</span> <span class="mi">747</span><span class="p">)(</span><span class="n">dy</span> <span class="mi">55</span><span class="p">))</span>
+   <span class="p">(</span><span class="n">title</span> <span class="n">right</span> <span class="s2">&quot;The famous artist&quot;</span> <span class="p">(</span><span class="n">style</span> <span class="s2">&quot;Medium-grey&quot;</span><span class="p">)(</span><span class="n">dx</span> <span class="mi">805</span><span class="p">)(</span><span class="n">dy</span> <span class="mi">60</span><span class="p">))</span>
 
-    (instrument (musicData
-        (clef G)
-        (n c4 q)
-        (barline)
-    ))
-)
+    <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span>
+        <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">c4</span> <span class="n">q</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">barline</span><span class="p">)</span>
+    <span class="p">))</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/score-06.png" src="../_images/score-06.png" />
@@ -438,7 +432,7 @@ For instance, if intended page size DIN A4 (210mm X 297mm) the pageSize element 
           <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">2. The score and its structure</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">2.1. The Score element</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.1. The Score element</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#score-options">2.1.1. Score options</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#units-for-measurements">2.1.2. Units for measurements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#page-layout">2.1.3. Page layout</a></li>
@@ -488,7 +482,7 @@ For instance, if intended page size DIN A4 (210mm X 297mm) the pageSize element 
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2016-Sep-05.
+      Last updated on 2020-May-09.
     </div>
         </div>
         <div class="clearer"></div>
