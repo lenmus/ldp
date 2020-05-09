@@ -10,8 +10,9 @@ The :token:`musicData` element is just a collection of objects, mainly notes and
 .. productionlist:: *
     musicData: (musicData { `note` | `rest` | `chord` | `clef` | `key` | `time` | 
              :              `barline` | `metronome` | `newSystem` | `spacer` |
-             :              `figuredBass` | `goFwd` }* )
+             :              `direction` | `figuredBass` | `goFwd` }* )
 
+The :token:`metronome` element is accepted for backwards compatibility with 2.0. But in future this element will not be possible here and must go as an attachement to a :token:`direction` element.
 
 Examples::
 

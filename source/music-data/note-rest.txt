@@ -128,11 +128,13 @@ Stem
 
 Stem direction and size will be automatically computed by the rendering program,
 according to usual engraving rules. Nevertheless, the stem of a note can
-be fully specified by using the :token:`stem` element. It forces stem direction.
+be fully specified by using the :token:`stem` element. It forces stem direction
+(values 'up', 'down') or suppresses the stem (value 'none'); in this case, also
+the flag will be supressed and only the notehead will be rendered.
 
 .. rst-class:: bnf-rule
 .. productionlist:: *
-    stem : (stem { up | down })
+    stem : (stem { up | down | none })
 
 Example::
 

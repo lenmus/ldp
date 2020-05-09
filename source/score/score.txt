@@ -244,7 +244,7 @@ Currently, the following options are available:
 - **Render.SpacingValue**
 
     When using fixed spacing (Render.SpacingMethod = 1), this option defines the amount of space
-    between notes. It must be a real number, in tenths. Default value is 35.0.
+    between notes. It must be an integer number, in tenths. Default value is 35 tenths (3.5 lines).
 
 Two additional options are used for controlling some parameters of the spacing algorithm, when proportional spacing is used.
 Normally you should not use these parameters:
@@ -253,7 +253,7 @@ Normally you should not use these parameters:
     It is areal number, normally in the range 0.2 to 2.0. Default value is 0.547.
 
 - **Render.SpacingFopt**
-    It is areal number, normally in the range 0.7 to 4.0. Default value is 1.5.
+    It is areal number, normally in the range 0.7 to 4.0. Default value is 1.4.
 
 
 **Deprecated options**
