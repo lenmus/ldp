@@ -237,6 +237,24 @@ way of producing manuscript paper.</p>
 <img alt="../_images/score-03.png" src="../_images/score-03.png" />
 </div></blockquote>
 </li>
+<li><p class="first"><strong>Score.Center</strong></p>
+<blockquote>
+<div><p>It is a boolean option for centering the score. It is oriented for snippet scores in eBooks.
+If the score has only one system and it takes less space than available paper width, this
+option allows to center the score. Default value is ‘false’.</p>
+<p>For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">score</span> <span class="p">(</span><span class="n">vers</span> <span class="mf">2.0</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">opt</span> <span class="n">Score</span><span class="o">.</span><span class="n">Center</span> <span class="n">yes</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">instrument</span> <span class="p">(</span><span class="n">musicData</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">clef</span> <span class="n">G</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">w</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">h</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">n</span> <span class="n">g4</span> <span class="n">q</span><span class="p">)</span>
+<span class="p">)))</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
 <li><dl class="first docutils">
 <dt><strong>Render.SpacingMethod</strong></dt>
 <dd><p class="first">This option specifies the desired spacing between notes:</p>
@@ -482,7 +500,7 @@ For instance, if intended page size DIN A4 (210mm X 297mm) the pageSize element 
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2020-May-09.
+      Last updated on 2020-Jul-03.
     </div>
         </div>
         <div class="clearer"></div>
