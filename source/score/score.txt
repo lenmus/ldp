@@ -215,6 +215,25 @@ Currently, the following options are available:
     .. image:: ../figures/score-03.png
 
 
+
+- **Score.Center**
+
+    It is a boolean option for centering the score. It is oriented for snippet scores in eBooks. 
+    If the score has only one system and it takes less space than available paper width, this
+    option allows to center the score. Default value is ‘false’.
+
+    For example::
+
+        (score (vers 2.0)
+            (opt Score.Center yes)
+            (instrument (musicData)
+                (clef G)
+                (n g4 w)
+                (n g4 h)
+                (n g4 q)
+        )))
+
+
 - **Render.SpacingMethod**
     This option specifies the desired spacing between notes::
 
