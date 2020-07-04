@@ -309,10 +309,13 @@ depending on springs hardness.</dd>
 </li>
 <li><dl class="first docutils">
 <dt><strong>Render.SpacingDmin</strong></dt>
-<dd>It is a real number, normally in the range 1.0 to 32.0. Default value is 16.0 but it is normally computed for each
+<dd>It is a real number, normally in the range 1.0 to 32.0. For LDP ver &lt; 2.1 the default value is 16.0. For LDP &gt;= 2.1
+this value is not fixed but it is automatically computed for each
 score, and the duration of the shortest note found is used. For instance, if the shortest note is a 32nd note, this
 parameter will take a value of 8.0. All notes of lower or equal duration than Dmin will be spaced by a minimum fixed
-amount of about 5 tenths. Notes with greater duration will have more space between note heads.</dd>
+amount of about 5 tenths. Notes with greater duration will have more space between note heads. When using this
+option, a value of 0.0 means “compute it automatically based on the shortest note duration”. A value different from 0.0
+will force to use that value.</dd>
 </dl>
 </li>
 </ul>
