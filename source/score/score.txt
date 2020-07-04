@@ -265,14 +265,23 @@ Currently, the following options are available:
     When using fixed spacing (Render.SpacingMethod = 1), this option defines the amount of space
     between notes. It must be an integer number, in tenths. Default value is 35 tenths (3.5 lines).
 
-Two additional options are used for controlling some parameters of the spacing algorithm, when proportional spacing is used.
+Three additional options are used for controlling some parameters of the spacing algorithm, when proportional spacing is used.
 Normally you should not use these parameters:
 
 - **Render.SpacingFactor**
-    It is areal number, normally in the range 0.2 to 2.0. Default value is 0.547.
+    It is a real number, normally in the range 0.2 to 2.0. Default value is 0.547.
 
 - **Render.SpacingFopt**
-    It is areal number, normally in the range 0.7 to 4.0. Default value is 1.4.
+    It is a real number, normally in the range 0.7 to 4.0. Default value is 1.0. Lomse spacing algorithm is based on the
+    Gourlay's algorithm. Fopt represents the applied force. Low values does not stretch the springs and all note heads will be
+    spaced by a minimum fixed amount of about 5 tenths. High values stretch the springs and increases space between note heads
+    depending on springs hardness.
+
+- **Render.SpacingDmin**
+    It is a real number, normally in the range 1.0 to 32.0. Default value is 16.0 but it is normally computed for each
+    score, and the duration of the shortest note found is used. For instance, if the shortest note is a 32nd note, this
+    parameter will take a value of 8.0. All notes of lower or equal duration than Dmin will be spaced by a minimum fixed
+    amount of about 5 tenths. Notes with greater duration will have more space between note heads.
 
 
 **Deprecated options**

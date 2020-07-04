@@ -41,7 +41,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'lomse'
-copyright = u'2010-2016, Cecilio Salmeron'
+copyright = u'2010-2020, Cecilio Salmeron'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -107,10 +107,10 @@ html_theme_path = ['../theme/']
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = "LDP language manual. Vers. 2.0 (draft)"
+html_title = "LDP language manual. Vers. 2.1"
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-html_short_title = "LDP language manual. Vers. 2.0"
+html_short_title = "LDP language manual. Vers. 2.1"
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
