@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>2.1. The Score element &#8212; LDP language manual. Vers. 2.0 (draft)</title>
+    <title>2.1. The Score element &#8212; LDP language manual. Vers. 2.1</title>
     <link rel="stylesheet" href="../_static/ldp.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -30,7 +30,7 @@
   <body>
     <div class="header-wrapper">
       <div class="header">
-        <h1><a href="../index.html">LDP language manual. Vers. 2.0</a></h1>
+        <h1><a href="../index.html">LDP language manual. Vers. 2.1</a></h1>
         <div class="rel">
           <a href="index.html" title="2. The score and its structure"
              accesskey="P">previous</a> |
@@ -291,17 +291,28 @@ between notes. It must be an integer number, in tenths. Default value is 35 tent
 </div></blockquote>
 </li>
 </ul>
-<p>Two additional options are used for controlling some parameters of the spacing algorithm, when proportional spacing is used.
+<p>Three additional options are used for controlling some parameters of the spacing algorithm, when proportional spacing is used.
 Normally you should not use these parameters:</p>
 <ul class="simple">
 <li><dl class="first docutils">
 <dt><strong>Render.SpacingFactor</strong></dt>
-<dd>It is areal number, normally in the range 0.2 to 2.0. Default value is 0.547.</dd>
+<dd>It is a real number, normally in the range 0.2 to 2.0. Default value is 0.547.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt><strong>Render.SpacingFopt</strong></dt>
-<dd>It is areal number, normally in the range 0.7 to 4.0. Default value is 1.4.</dd>
+<dd>It is a real number, normally in the range 0.7 to 4.0. Default value is 1.0. Lomse spacing algorithm is based on the
+Gourlay’s algorithm. Fopt represents the applied force. Low values does not stretch the springs and all note heads will be
+spaced by a minimum fixed amount of about 5 tenths. High values stretch the springs and increases space between note heads
+depending on springs hardness.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Render.SpacingDmin</strong></dt>
+<dd>It is a real number, normally in the range 1.0 to 32.0. Default value is 16.0 but it is normally computed for each
+score, and the duration of the shortest note found is used. For instance, if the shortest note is a 32nd note, this
+parameter will take a value of 8.0. All notes of lower or equal duration than Dmin will be spaced by a minimum fixed
+amount of about 5 tenths. Notes with greater duration will have more space between note heads.</dd>
 </dl>
 </li>
 </ul>
@@ -500,7 +511,7 @@ For instance, if intended page size DIN A4 (210mm X 297mm) the pageSize element 
         <div class="right">
           
     <div class="footer" role="contentinfo">
-      Last updated on 2020-Jul-03.
+      Last updated on 2020-Jul-04.
     </div>
         </div>
         <div class="clearer"></div>
