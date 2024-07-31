@@ -1,0 +1,35 @@
+.. _element_direction:
+
+Directions
+~~~~~~~~~~~~~~~~~~~~~
+
+A direction is a discrete instruction in the score that applies to notes and rests.
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    direction : (dir [width] `dirType`* )
+    dirType :  { `metronome` | `text` | `line` | `lyric` }
+
+
+To set the tempo in playback without printing anything on the score, make the metronome
+marking invisible by using a :token:`noVisible` option.
+
+The :token:`parenthesis` option is for enclosing the metronome mark between parenthesis.
+
+Examples::
+
+    (score (vers 2.0) (instrument (musicData 
+        (clef G)(key C)(time 2 4)
+        (metronome q 60)            // quarter-note = 60
+        (n e4 q)(n g4 q)(barline)
+        (metronome q q.)            // quarter-note = dotted-quarter-note
+        (n e4 q)(n g4 q)(barline)
+        (metronome 60)              // m.m. = 60
+        (n e4 q)(n g4 q)(barline)
+        (metronome q 60 parenthesis)    // (quarter-note = 60)
+        (n e4 q)(n g4 q)(barline)
+        (metronome q 60 noVisible)      // nothing displayed
+        (n e4 q)(n g4 q)(barline end)
+    )))
+
+.. image:: ../figures/metronome-01.png

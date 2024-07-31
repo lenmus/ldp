@@ -1,0 +1,58 @@
+
+.. _element_octave_shift:
+
+Octave shift
+~~~~~~~~~~~~~~~
+
+The :token:`octaveShift` element is used to display an octave shift line to indicate that a section of music is to be played one or more octaves above or below written pitch.
+
+.. important::
+    The pitch in the LDP source for notes associated to an octave-shift lines must be encoded using the real sounded pitch, not the written pitch that is displayed in the score. For instance, a quarter note displayed as a C5 pitch in the score affected by an Ottava (8va) line will sound as a C6 pitch. Therefore, in the LDP source file, that note must be encoded as '(n c6 q)'.
+
+The :token:`octaveShift` element has the following syntax:
+
+.. rst-class:: bnf-rule
+.. productionlist:: *
+    octaveShift : (octaveShift shiftID `startStopType` [`octaveShiftType`] [`color`] )
+    shiftID : integer_number
+    startStopType : { start | stop }
+    octaveShiftType : { 8u | 15u | 8d | 15d }
+
+
+The :token:`shiftID` element is just a numerical ID that must be unique for this :token:`octaveShift` element.
+
+The :token:`octaveShift` element must be included in the :token:`noterestOptions` element of the first note/rest it affects, using the value 'start' for the :token:`startStopType` element. Also the :token:`octaveShift` element must be included in the last note/rest it affects, using the value 'end' for the :token:`startStopType` element.
+
+The remaining elements, :token:`octaveShiftType` and :token:`color`, are only possible for the 'start' :token:`octaveShift` element.
+
+The :token:`octaveShiftType` element specifies how many octaves the written pitch will be shifted at playback, and its direction, up or down. The following values are possible:
+
+- 8u (8 up): Ottava (8va), the octave-shift line is placed above the staff and the pitches of the notes in that passage are displayed in the score one octave below the pitch encoded in the LDP source. For instance '(n c4 q)' will be displayed as a C3 quarter note.
+
+- 15u (15 up): Quindicesima (15ma), the octave-shift line is placed above the staff and the pitches of the notes in that passage are displayed in the score two octaves below the pitch encoded in the LDP source.
+
+- 8d (8 down): Ottava Bassa (8ba), the octave-shift line is placed below the staff and the pitches of the notes in that passage are displayed in the score one octave above the pitch encoded in the LDP source.
+
+- 15d (15 down): Quindicesima Bassa (15ma), the octave-shift line is placed below the staff and the pitches of the notes in that passage are displayed in the score two octaves above the pitch encoded in the LDP source.
+
+
+An octave shift will apply to all notes in the current staff, between and including the 'start' and 'stop' notes.
+
+
+Example::
+
+    (score (vers 2.0) (instrument (musicData
+        (clef G)
+        (n c5 q (octaveShift 1 start 8u))
+        (n d5 q)
+        (n g5 q (octaveShift 1 stop))
+        (n c5 q)
+        (n d5 q)
+        (n g5 q)
+        (barline end)
+    )))
+
+.. image:: ../figures/octave-shift-01.png
+
+
+

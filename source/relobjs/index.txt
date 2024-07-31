@@ -9,6 +9,7 @@ Note relationships
     tie-slur.txt
     beams.txt
     tuplets.txt
+    octave-shift.txt
 
 
 .. RelObjs
