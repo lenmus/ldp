@@ -226,7 +226,7 @@ Currently, the following options are available:
 
         (score (vers 2.0)
             (opt Score.Center yes)
-            (instrument (musicData)
+            (instrument (musicData
                 (clef G)
                 (n g4 w)
                 (n g4 h)
